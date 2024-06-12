@@ -18,8 +18,7 @@ export default function HomeMain() {
   useEffect(loadProjects,[]);
 
   return <main>
-  <BestProjectList projects={projects}/>
-  <Introduce/>
-  
+    <Introduce/>
+    <BestProjectList projects={projects}/>
   </main>;
 }
