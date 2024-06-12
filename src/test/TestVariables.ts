@@ -1,6 +1,6 @@
 import { Status } from "../components/card/projectStatus.ts";
 import {ProjectEntity} from "../entity/ProjectEntity.ts";
-import axios from 'axios';
+// import axios from 'axios';
 
 
 export async function getAllProjectEntity(numberOfProjects:number=10): Promise<ProjectEntity[]> {
@@ -39,7 +39,11 @@ function randomId(): string {
 }
 
 async function getRandomWords(wordsLength: number): Promise<string[]> {
-  const words = await axios.get(`https://random-word-api.herokuapp.com/word?number=${wordsLength}&length=7`).then(res => res.data);
+  const words:string[] = [];
+  for(let i = 0; i < wordsLength; i++){
+    words.push("word");
+  }
+  // const words = await axios.get(`https://random-word-api.herokuapp.com/word?number=${wordsLength}&length=7`).then(res => res.data);
   return words;
 }
 
