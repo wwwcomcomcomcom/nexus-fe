@@ -2,9 +2,9 @@ import './App.css'
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Layout from "./components/layout.tsx";
 import HomeMain from "./components/main/HomePage.tsx";
-import Login from "./components/main/login.tsx";
+import Login from "./components/login/login.tsx";
 import ProjectPage from "./components/main/ProjectPage.tsx";
-import ProjectList from './components/main/projectList.tsx';
+import ProjectList from './components/content/projectList.tsx';
 
 function App() {
   return <>
