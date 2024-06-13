@@ -12,6 +12,7 @@
   "dependencies": {
     "@egjs/flicking-plugins": "^4.7.1",
     "@egjs/react-flicking": "^4.11.2",
+    "@types/react-router-dom": "^6.22.3",
     "axios": "^1.6.8",
     "framer-motion": "^11.1.9",
     "react": "^18.2.0",
