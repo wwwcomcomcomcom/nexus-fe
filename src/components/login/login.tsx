@@ -1,14 +1,18 @@
 import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { ApiBaseUrl, OauthClientId } from "../../shared/api";
+import { useUserStore } from "../../shared/userStore";
 
 export default function Login() {
   const [query] = useSearchParams();
   const navigate = useNavigate();
   const code = query.get('code');
+  const {setLogin} = useUserStore((state) => state);
   if(code) {
-    axios.get(`/api/accesstoken?code=${code}`).then(res => {
+    axios.get(`${ApiBaseUrl}/api/oauth/login?accessCode=${code}`).then(res => {
       if(res.status === 200 && typeof res.data === 'string'){
-        navigate('/',{state:{accessToken: res.data}})
+        setLogin(true,res.data);
+        navigate('/');
       }
     });
   }
@@ -40,7 +44,7 @@ export default function Login() {
       </div>
       <div data-orientation="horizontal" role="none" className="shrink-0 bg-gray-100 h-[1px] w-full my-6"></div>
       <img src="/github-icon.png" alt="github" className="mx-auto w-64" />
-      <a className="space-y-4 block" href="https://github.com/login/oauth/authorize?client_id=Ov23liFOAvma299kOPOq">
+      <a className="space-y-4 block" href={`https://github.com/login/oauth/authorize?client_id=${OauthClientId}`}>
         <button
           className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border transition-colors duration-300 active:bg-black active:text-white h-10 px-4 py-2 w-full">
           <svg
