@@ -1,20 +1,23 @@
+import { useNavigate } from "react-router-dom";
 import LoginControl from "./loginControl.tsx";
 
 export default function Header() {
+  const navigate = useNavigate();
+  
   return <header
     className="flex items-center justify-between px-4 py-2 border-b border-gray-100 sm:py-4 md:py-6 dark:border-gray-800 w-full">
     <div className="flex items-center space-x-4">
       <div className="rounded-lg bg-gray-100 w-10 h-10 dark:bg-gray-300 max-xxs:hidden"></div>
       <nav className="flex items-center space-x-4">
-        <a className="font-semibold" href="/">
+        <button className="font-semibold" onClick={()=>navigate("/")}>
           Home
-        </a>
-        <a className="font-semibold" href="/">
+        </button>
+        <button className="font-semibold" onClick={()=>navigate("/")}>
           Projects
-        </a>
-        <a className="font-semibold !mr-4" href="/">
-          Team
-        </a>
+        </button>
+        <button className="font-semibold !mr-4" onClick={()=>navigate("/profile")}>
+          Profile
+        </button>
       </nav>
     </div>
     <div className="flex items-center space-x-4">

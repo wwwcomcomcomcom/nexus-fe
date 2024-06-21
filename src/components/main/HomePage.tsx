@@ -4,18 +4,18 @@ import { ProjectEntity } from "../../entity/ProjectEntity.ts";
 import { BestProjectList } from "../content/BestProjectList.tsx";
 import Introduce from "./introduce.tsx";
 import { useUserStore } from "../../shared/userStore.ts";
-import { getUserData } from "../../shared/api.ts";
 
 export default function HomeMain() {
 
   const [projects, setProjects] = useState<ProjectEntity[]>([]);
-  const {accessToken} = useUserStore((state) => state);
+  const {isLogin,user} = useUserStore((state) => state);
+
+  console.log(isLogin,user);
 
   function loadProjects() {
     getAllProjectEntity(20).then((newProjects) => {
       setProjects([...projects,...newProjects]);
     });
-    accessToken !== undefined &&  getUserData(accessToken);
   }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
