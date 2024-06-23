@@ -1,6 +1,5 @@
-import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { ApiBaseUrl, OauthClientId, getUserData } from "../../shared/api";
+import { OauthClientId, getAccessToken, getUserData } from "../../shared/api";
 import { useUserStore } from "../../shared/userStore";
 import { useEffect } from "react";
 
@@ -13,14 +12,12 @@ export default function Login() {
   
   useEffect(() => {
     if(code){
-      axios.get(`${ApiBaseUrl}/api/oauth/login?accessCode=${code}`).then(res => {
-        if(res.status === 200 && typeof res.data === 'string'){
-          setLogin(true,res.data);
-          getUserData(res.data).then((user) => {
-            setUser(user);
-            navigate('/');
-          });
-        }
+      getAccessToken(code).then((accessToken) => {
+        setLogin(true,accessToken);
+        getUserData(accessToken).then((user) => {
+          setUser(user);
+          navigate('/');
+        });
       });
     }
   },[code,setLogin,setUser,navigate]);
