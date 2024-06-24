@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { OauthClientId, getAccessToken, getUserData } from "../../shared/api";
+import { OauthClientId, getAccessToken } from "../../shared/api";
 import { useUserStore } from "../../shared/userStore";
 import { useEffect } from "react";
 
@@ -8,19 +8,20 @@ export default function Login() {
   const [query] = useSearchParams();
   const navigate = useNavigate();
   const code = query.get('code');
-  const {setLogin,setUser} = useUserStore((state) => state);
+  const {setAccessToken} = useUserStore((state) => state);
   
   useEffect(() => {
     if(code){
       getAccessToken(code).then((accessToken) => {
-        setLogin(true,accessToken);
-        getUserData(accessToken).then((user) => {
-          setUser(user);
-          navigate('/');
-        });
+        setAccessToken(accessToken);
+        //TODO: use zustand persist
+        // getUserData(accessToken).then((user) => {
+        //   setUser(user);
+        //   navigate('/');
+        // });
       });
     }
-  },[code,setLogin,setUser,navigate]);
+  },[code,setAccessToken,navigate]);
   return <>
     <a
       className="inline-flex items-center justify-center rounded-full bg-gray-100 p-3 m-2 absolute"

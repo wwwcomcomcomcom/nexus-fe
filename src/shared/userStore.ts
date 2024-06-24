@@ -1,17 +1,27 @@
 import {create} from "zustand";
 
 interface UserStore {
-  isLogin: boolean;
   accessToken: string|undefined;
-  user:{[keyof:string]:unknown};
-  setLogin: (isLogin: boolean,accessToken:string) => void;
-  setUser: (user: {[keyof:string]:unknown}) => void;
+  setAccessToken: (token: string) => void;
+  isLogin: () => boolean;
+  loadfromSession: () => void;
+  saveToSession: () => void;
 }
 
-export const useUserStore = create<UserStore>((set) => ({
-  isLogin: false,
+export const useUserStore = create<UserStore>((set,state) => ({
   accessToken: undefined,
-  user:{},
-  setLogin: (isLogin,accessToken) => set({ isLogin,accessToken }),
-  setUser: (user) => set({ user }),
+  isLogin:()=>state().accessToken !== undefined,
+  setAccessToken: (token: string) => {
+    set({accessToken: token});
+    state().saveToSession();
+  },
+  loadfromSession:()=>{
+    const token = window.sessionStorage.getItem("accessToken");
+    if(token){
+      set({accessToken: token});
+    }
+  },
+  saveToSession:()=>{
+    window.sessionStorage.setItem("accessToken",state().accessToken!);
+  }
 }));
