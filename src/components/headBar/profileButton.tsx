@@ -8,7 +8,6 @@ export default function ProfileButton(){
   const accessToken = useTokenStore((s) => s.accessToken);
   const user = useUserStore((s) => s.user);
   const [img,setImg] = useState("");
-  console.log("hello");
   useEffect(()=>{
     findUserData(user,accessToken!).then((data) => {
       setImg(data.avatar_url as string);
