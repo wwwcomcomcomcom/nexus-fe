@@ -13,13 +13,13 @@ export async function getAccessToken(code: string):Promise<string> {
     throw new Error("Invalid response");
   });
 }
-export async function getUserData(accessToken: string):Promise<{[key:string]:never}> {
+export async function getUserData(accessToken: string):Promise<{[key:string]:unknown}> {
   return await axios.get(`https://api.github.com/user`, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
       "X-GitHub-Api-Version": "2022-11-28"
     },
   }).then((res) => {
-    return res.data as {[key:string]:never};
+    return res.data as {[key:string]:unknown};
   });
 }
