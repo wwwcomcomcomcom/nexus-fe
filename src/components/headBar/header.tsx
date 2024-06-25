@@ -18,12 +18,6 @@ export default function Header() {
           <button className="font-semibold" onClick={() => navigate("/")}>
             Projects
           </button>
-          <button
-            className="font-semibold !mr-4"
-            onClick={() => navigate("/profile")}
-          >
-            Profile
-          </button>
         </nav>
       </div>
       <div className="flex items-center space-x-4">
