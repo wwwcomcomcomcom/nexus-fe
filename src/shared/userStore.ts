@@ -7,7 +7,7 @@ interface UserStore {
   isLogin: () => boolean;
 }
 
-export const useUserStore = create(
+export const useTokenStore = create(
   persist<UserStore>(
     (set,get) => ({
       accessToken: undefined,

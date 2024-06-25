@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useUserStore } from './userStore';
+import { useTokenStore } from './userStore';
 
 export const OauthClientId = "Ov23liUtVGUymJiEuINj";
 //this is default vite port (But for proxy)
@@ -25,7 +25,7 @@ export async function getUserData(accessToken: string):Promise<{[key:string]:nev
   });
 }
 export function useUpdateUserStore(accessToken:string){
-  const {setLogin,setUser} = useUserStore((state) => state);
+  const {setLogin,setUser} = useTokenStore((state) => state);
   setLogin(true,accessToken);
   getUserData(accessToken).then((user) => {
     setUser(user);

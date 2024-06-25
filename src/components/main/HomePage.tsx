@@ -3,12 +3,12 @@ import { getAllProjectEntity } from "../../test/TestVariables.ts";
 import { ProjectEntity } from "../../entity/ProjectEntity.ts";
 import { BestProjectList } from "../content/BestProjectList.tsx";
 import Introduce from "./introduce.tsx";
-import { useUserStore } from "../../shared/userStore.ts";
+import { useTokenStore } from "../../shared/userStore.ts";
 
 export default function HomeMain() {
 
   const [projects, setProjects] = useState<ProjectEntity[]>([]);
-  const {isLogin,user} = useUserStore((state) => state);
+  const {isLogin,user} = useTokenStore((state) => state);
 
 
   function loadProjects() {

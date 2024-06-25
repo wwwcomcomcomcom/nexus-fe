@@ -1,8 +1,7 @@
-import { useUserStore } from "../../shared/userStore";
+import { useTokenStore } from "../../shared/userStore";
 
 export default function ProfilePage() {
-  const {user,isLogin} = useUserStore((state) => state);
-  console.log(user);
+  const {isLogin} = useTokenStore((state) => state);
   console.log(isLogin);
   return <div className="flex flex-col items-center space-y-4">
     <div className="flex items-center space-x-4">

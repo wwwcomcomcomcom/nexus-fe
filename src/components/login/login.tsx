@@ -1,6 +1,6 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { OauthClientId, getAccessToken } from "../../shared/api";
-import { useUserStore } from "../../shared/userStore";
+import { useTokenStore } from "../../shared/userStore";
 import { useEffect } from "react";
 
 
@@ -8,7 +8,7 @@ export default function Login() {
   const [query] = useSearchParams();
   const navigate = useNavigate();
   const code = query.get('code');
-  const {setAccessToken} = useUserStore((state) => state);
+  const {setAccessToken} = useTokenStore((state) => state);
   
   useEffect(() => {
     if(code){
