@@ -15,7 +15,7 @@ export default function Header() {
           <button className="font-semibold" onClick={() => navigate("/")}>
             Home
           </button>
-          <button className="font-semibold" onClick={() => navigate("/")}>
+          <button className="font-semibold" onClick={() => navigate("/projects")}>
             Projects
           </button>
         </nav>
