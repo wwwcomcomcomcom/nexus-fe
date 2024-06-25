@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useTokenStore } from "../../shared/userStore";
-import ProfileButton from "./profileButton";
-import LoginButton from "./loginButton";
+import ProfileButton from "./ProfileButton";
+import LoginButton from "./LoginButton";
 
 export default function Header() {
   const navigate = useNavigate();

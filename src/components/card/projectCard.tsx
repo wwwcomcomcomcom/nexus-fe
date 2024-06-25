@@ -1,6 +1,6 @@
 import {FaRegFolder} from "react-icons/fa6";
-import ProjectStatus from "./projectStatusIndicator.tsx";
-import ProjectInteractButton from "./projectInteractButton.tsx";
+import ProjectStatus from "./ProjectStatusIndicator.tsx";
+import ProjectInteractButton from "./ProjectInteractButton.tsx";
 import { DivProps } from "../../utils/typedef.ts";
 import { ProjectEntity } from "../../entity/ProjectEntity.ts";
 

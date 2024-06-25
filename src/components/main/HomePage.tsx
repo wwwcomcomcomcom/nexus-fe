@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllProjectEntity } from "../../test/TestVariables.ts";
 import { ProjectEntity } from "../../entity/ProjectEntity.ts";
 import { BestProjectList } from "../content/BestProjectList.tsx";
-import Introduce from "./introduce.tsx";
+import Introduce from "./Introduce.tsx";
 
 export default function HomeMain() {
 

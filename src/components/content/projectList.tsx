@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import ProjectCard from "../card/projectCard.tsx";
-import Loading from "../loading.tsx";
+import ProjectCard from "../card/ProjectCard.tsx";
+import Loading from "../Loading.tsx";
 import { getAllProjectEntity } from "../../test/TestVariables.ts";
 import { ProjectEntity } from "../../entity/ProjectEntity.ts";
 import { useScroll, useMotionValueEvent } from "framer-motion";
