@@ -14,11 +14,7 @@ export default function Login() {
     if(code){
       getAccessToken(code).then((accessToken) => {
         setAccessToken(accessToken);
-        //TODO: use zustand persist
-        // getUserData(accessToken).then((user) => {
-        //   setUser(user);
-        //   navigate('/');
-        // });
+        navigate("/");
       });
     }
   },[code,setAccessToken,navigate]);
