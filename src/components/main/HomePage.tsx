@@ -8,7 +8,7 @@ import { useTokenStore } from "../../shared/userStore.ts";
 export default function HomeMain() {
 
   const [projects, setProjects] = useState<ProjectEntity[]>([]);
-  const {isLogin,user} = useTokenStore((state) => state);
+  const {isLogin} = useTokenStore((state) => state);
 
 
   function loadProjects() {
@@ -17,8 +17,8 @@ export default function HomeMain() {
     });
   }
   useEffect(()=>{
-    console.log(isLogin,user);
-  },[isLogin,user]);
+    console.log(isLogin);
+  },[isLogin]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(loadProjects,[]);
