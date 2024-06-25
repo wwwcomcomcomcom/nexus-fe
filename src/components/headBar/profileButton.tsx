@@ -13,9 +13,9 @@ export default function ProfileButton(){
       setImg(data.avatar_url as string);
     });
   },[user,accessToken]);
-
+  
   return <div
-    className={`w-8 h-8 rounded-full bg-gray-400`}
+    className={`w-10 h-10 rounded-full bg-gray-400 cursor-pointer`}
     style={{
       backgroundImage: `url('${img}')`,
       backgroundSize: "cover",
