@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { findUserData, useTokenStore, useUserStore } from "../../shared/userStore"
+import ProfileDropdown from "./ProfileDropdown";
 
 
 export default function ProfileButton(){
@@ -13,13 +14,19 @@ export default function ProfileButton(){
       setImg(data.avatar_url as string);
     });
   },[user,accessToken]);
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
   
   return <div
+    onClick={toggleDropdown}
     className={`w-10 h-10 rounded-full bg-gray-400 cursor-pointer`}
     style={{
       backgroundImage: `url('${img}')`,
       backgroundSize: "cover",
       backgroundPosition: "center",
     }}
-  />
+  >
+    {isDropdownOpen && <ProfileDropdown/>}
+  </div>;
 }
