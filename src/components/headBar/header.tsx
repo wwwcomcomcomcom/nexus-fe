@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import LoginControl from "./loginControl.tsx";
+import { useTokenStore } from "../../shared/userStore";
+import ProfileButton from "./profileButton";
+import LoginButton from "./loginButton";
 
 export default function Header() {
   const navigate = useNavigate();
+  const { accessToken } = useTokenStore();
   
   return <header
     className="flex items-center justify-between px-4 py-2 border-b border-gray-100 sm:py-4 md:py-6 dark:border-gray-800 w-full">
@@ -45,7 +48,7 @@ export default function Header() {
           type="text"
         />
       </div>
-      <LoginControl/>
+        {accessToken ? <ProfileButton /> : <LoginButton />}
     </div>
   </header>;
 }
