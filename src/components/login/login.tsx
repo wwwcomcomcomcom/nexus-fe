@@ -1,22 +1,26 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { OauthClientId, getAccessToken } from "../../shared/api";
+import { GauthOauthClientId, GithubOauthClientId, getAccessToken } from "../../shared/api";
 import { useTokenStore } from "../../shared/userStore";
 import { useEffect } from "react";
 
 export default function Login() {
   const [query] = useSearchParams();
   const navigate = useNavigate();
-  const code = query.get("code");
+  const githubCode = query.get("code");
+  const gauthCode = query.get("gauth?code");
   const { setAccessToken } = useTokenStore((state) => state);
 
   useEffect(() => {
-    if (code) {
-      getAccessToken(code).then((accessToken) => {
+    if (githubCode) {
+      getAccessToken(githubCode).then((accessToken) => {
         setAccessToken(accessToken);
         navigate("/");
       });
     }
-  }, [code, setAccessToken, navigate]);
+    if(gauthCode){
+      console.log(gauthCode);
+    }
+  }, [githubCode,gauthCode, setAccessToken, navigate]);
   return (
     <>
       <a
@@ -52,7 +56,7 @@ export default function Login() {
         <img src="/github-icon.png" alt="github" className="mx-auto w-64" />
         <a
           className="space-y-4 block"
-          href={`https://github.com/login/oauth/authorize?client_id=${OauthClientId}`}
+          href={`https://github.com/login/oauth/authorize?client_id=${GithubOauthClientId}`}
         >
           <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border transition-colors duration-300 hover:bg-black hover:text-white active:bg-gray-700 active:text-gray-300 h-10 px-4 py-2 w-full">
             <svg
@@ -76,7 +80,7 @@ export default function Login() {
 
         <a
           className="space-y-4 block"
-          href={`https://github.com/login/oauth/authorize?client_id=${OauthClientId}`}
+          href={`https://gauth.co.kr/login?client_id=${GauthOauthClientId}&redirect_uri=http://localhost:5173/login?gauth`}
         >
           <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border transition-colors duration-300 text-gauth-primary hover:bg-gauth-primary hover:text-white h-10 px-4 py-2 w-full">
             <svg
