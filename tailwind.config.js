@@ -8,6 +8,7 @@ export default {
       colors: {
         "primary": "#000000",
         "primary-foreground": "#FFFFFF",
+        "gauth-primary":"#557fc6"
       },
       screens: {
         "xxs": "375px",
