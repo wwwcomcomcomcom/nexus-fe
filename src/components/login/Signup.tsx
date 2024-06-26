@@ -1,8 +1,18 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { GauthOauthClientId } from "../../shared/guathApi";
+import { useEffect } from "react";
 
 export default function Signup() {
+  const [query] = useSearchParams();
   const navigate = useNavigate();
+  const gauthCode = query.get("code");
+
+  useEffect(() => {
+    if(gauthCode){
+      //TODO:regist access token to server
+    }
+  }, [gauthCode]);
+
   return(
     <>
       <a
@@ -38,7 +48,7 @@ export default function Signup() {
         <img src="/github-icon.png" alt="github" className="mx-auto w-64" />
         <a
           className="space-y-4 block"
-          href={`https://gauth.co.kr/login?client_id=${GauthOauthClientId}&redirect_uri=http://localhost:5173/login?gauth`}
+          href={`https://gauth.co.kr/login?client_id=${GauthOauthClientId}&redirect_uri=http://localhost:5173/signup`}
         >
           <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border transition-colors duration-300 text-gauth-primary hover:bg-gauth-primary hover:text-white h-10 px-4 py-2 w-full">
             <svg
