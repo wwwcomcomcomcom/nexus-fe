@@ -6,6 +6,7 @@ import Login from "./components/login/Login.tsx";
 import ProjectPage from "./components/main/ProjectPage.tsx";
 import ProfilePage from './components/main/ProfilePage.tsx';
 import ProjectListPage from './components/main/ProjectListPage.tsx';
+import Signup from './components/login/Signup.tsx';
 
 function App() {
   return <>
@@ -18,6 +19,7 @@ function App() {
           <Route path="/project/:id/" element={<ProjectPage/>}/>
         </Route>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/signup" element={<Signup/>}/>
       </Routes>
     </BrowserRouter>
   </>
