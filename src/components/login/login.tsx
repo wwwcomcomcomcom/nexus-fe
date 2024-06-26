@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { GithubOauthClientId, getAccessToken } from "../../shared/githubApi";
+import * as GithubApi from "../../shared/githubApi";
 import { useTokenStore } from "../../shared/userStore";
 import { useEffect } from "react";
 import { GauthOauthClientId } from "../../shared/guathApi";
@@ -13,7 +13,7 @@ export default function Login() {
 
   useEffect(() => {
     if (githubCode) {
-      getAccessToken(githubCode).then((accessToken) => {
+      GithubApi.getAccessToken(githubCode).then((accessToken) => {
         setAccessToken(accessToken);
         navigate("/");
       });
@@ -57,7 +57,7 @@ export default function Login() {
         <img src="/github-icon.png" alt="github" className="mx-auto w-64" />
         <a
           className="space-y-4 block"
-          href={`https://github.com/login/oauth/authorize?client_id=${GithubOauthClientId}`}
+          href={`https://github.com/login/oauth/authorize?client_id=${GithubApi.GithubOauthClientId}`}
         >
           <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border transition-colors duration-300 hover:bg-black hover:text-white active:bg-gray-700 active:text-gray-300 h-10 px-4 py-2 w-full">
             <svg
