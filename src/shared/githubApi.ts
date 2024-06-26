@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const GithubOauthClientId = "Ov23liUtVGUymJiEuINj";
 //this is default vite port (But for proxy)
-export const ApiBaseUrl = "http://localhost:5173";
+const ApiBaseUrl = "http://localhost:5173";
 
 
 export async function getAccessToken(code: string):Promise<string> {
