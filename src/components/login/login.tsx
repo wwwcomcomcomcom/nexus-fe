@@ -1,7 +1,8 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { GauthOauthClientId, GithubOauthClientId, getAccessToken } from "../../shared/api";
+import { GithubOauthClientId, getAccessToken } from "../../shared/githubApi";
 import { useTokenStore } from "../../shared/userStore";
 import { useEffect } from "react";
+import { GauthOauthClientId } from "../../shared/guathApi";
 
 export default function Login() {
   const [query] = useSearchParams();

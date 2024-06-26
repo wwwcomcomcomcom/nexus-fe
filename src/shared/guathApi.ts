@@ -1,0 +1,1 @@
+export const GauthOauthClientId = "872c10e9c0d74da18917049d033aa68e4a0edc5aeb0d4b7f97e28fe4a12da3c0";

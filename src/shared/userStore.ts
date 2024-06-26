@@ -1,6 +1,6 @@
 import {create} from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import { getUserData } from "./api";
+import { getUserData } from "./githubApi";
 
 interface TokenStore {
   accessToken: string|undefined;
