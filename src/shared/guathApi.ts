@@ -1,7 +1,7 @@
 import axios from "axios";
+import { ApiBaseUrl } from "./api";
 
 export const GauthOauthClientId = "872c10e9c0d74da18917049d033aa68e4a0edc5aeb0d4b7f97e28fe4a12da3c0";
-const ApiBaseUrl = "http://localhost:5173";
 
 export async function signup(accessCode: string):Promise<string> {
   return await axios.post(`${ApiBaseUrl}/api/user/signup?accessCode=${accessCode}`).then((res) => {
