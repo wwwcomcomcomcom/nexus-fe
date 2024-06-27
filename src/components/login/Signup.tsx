@@ -72,10 +72,10 @@ export default function Signup() {
             Sign up with Gauth
           </button>
         </a>
-        <div className="text-end px-4">
+        <div className="text-end px-4 text-gray-500">
           이미 계정을 가지고 있나요? <span
           className="text-blue-400 ml-2 cursor-pointer"
-          onClick={() => navigate("/login")}          
+          onClick={() => navigate("/login")}
           >로그인</span>
         </div>
       </div>

@@ -105,7 +105,7 @@ export default function Login() {
             Sign in with Gauth
           </button>
         </a>
-        <div className="text-end px-4">
+        <div className="text-end px-4 text-gray-500">
           새로운 유저인가요?{" "}
           <span
             className="text-blue-400 ml-2 cursor-pointer"
