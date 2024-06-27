@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import { useTokenStore } from "../../shared/userStore";
 import ProfileButton from "./ProfileButton";
 import LoginButton from "./LoginButton";
+import { useUserStore } from "../../shared/userStore";
 
 export default function Header() {
   const navigate = useNavigate();
-  const { accessToken } = useTokenStore();
+  const isLogin = useUserStore((state) => state.isLogin);
 
   return (
     <header className="flex items-center justify-between px-4 py-2 border-b border-gray-100 sm:py-4 md:py-6 dark:border-gray-800 w-full">
@@ -45,7 +45,7 @@ export default function Header() {
             type="text"
           />
         </div>
-        {accessToken ? <ProfileButton /> : <LoginButton />}
+        {isLogin() ? <ProfileButton /> : <LoginButton />}
       </div>
     </header>
   );

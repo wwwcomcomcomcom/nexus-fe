@@ -1,19 +1,16 @@
-// import {Props} from "../../utils/typedef.ts";
-
 import { useEffect, useState } from "react";
-import { findUserData, useTokenStore, useUserStore } from "../../shared/userStore"
+import { useUserStore } from "../../shared/userStore"
 import ProfileDropdown from "./ProfileDropdown";
 
 
 export default function ProfileButton(){
-  const accessToken = useTokenStore((s) => s.accessToken);
   const user = useUserStore((s) => s.user);
   const [img,setImg] = useState("");
   useEffect(()=>{
-    findUserData(user,accessToken!).then((data) => {
-      setImg(data.avatar_url as string);
-    });
-  },[user,accessToken]);
+    if(user?.name){
+      setImg(user.profileImageUrl as string);
+    }
+  },[user]);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);

@@ -1,13 +1,8 @@
-import { findUserData, useTokenStore, useUserStore } from "../../shared/userStore";
+import { useUserStore } from "../../shared/userStore";
 
 export default function ProfilePage() {
-  const {isLogin,accessToken} = useTokenStore((state) => state);
-  const user = useUserStore((state) => state.user);
-  if(isLogin()){
-    findUserData(user,accessToken!).then((newUser) => {
-      useUserStore.setState({user: newUser});
-    });
-  }
+  const {isLogin,user} = useUserStore((state) => state);
+  if(isLogin() === false) return <h1>You are not logged in</h1>;
   return <div className="flex flex-col items-center space-y-4">
     <div className="flex items-center space-x-4">
       <img
