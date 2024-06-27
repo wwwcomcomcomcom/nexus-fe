@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { GauthOauthClientId } from "../../shared/guathApi";
+import { GauthOauthClientId, signup } from "../../shared/guathApi";
 import { useEffect } from "react";
 
 export default function Signup() {
@@ -10,8 +10,11 @@ export default function Signup() {
   useEffect(() => {
     if(gauthCode){
       //TODO:regist access token to server
+      signup(gauthCode).then(() => navigate("/")).catch((e) => {
+        alert("Failed to signup" + e.message);
+      });
     }
-  }, [gauthCode]);
+  }, [gauthCode, navigate]);
 
   return(
     <>
