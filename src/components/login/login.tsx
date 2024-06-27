@@ -1,27 +1,30 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import * as GithubApi from "../../shared/githubApi";
-import { useTokenStore } from "../../shared/userStore";
 import { useEffect } from "react";
-import { GauthOauthClientId } from "../../shared/guathApi";
+import * as GauthApi from "../../shared/guathApi";
 
 export default function Login() {
   const [query] = useSearchParams();
   const navigate = useNavigate();
   const githubCode = query.get("code");
   const gauthCode = query.get("gauth?code");
-  const { setAccessToken } = useTokenStore((state) => state);
 
   useEffect(() => {
     if (githubCode) {
-      GithubApi.getAccessToken(githubCode).then((accessToken) => {
-        setAccessToken(accessToken);
-        navigate("/");
-      });
+      GithubApi.login(githubCode)
+        .then(() => navigate("/"))
+        .catch((e) => {
+          alert("Failed to login" + e.message);
+        });
     }
-    if(gauthCode){
-      console.log(gauthCode);
+    if (gauthCode) {
+      GauthApi.login(gauthCode)
+        .then(() => navigate("/"))
+        .catch((e) => {
+          alert("Failed to login" + e.message);
+        });
     }
-  }, [githubCode,gauthCode, setAccessToken, navigate]);
+  }, [githubCode, gauthCode, navigate]);
   return (
     <>
       <a
@@ -81,7 +84,7 @@ export default function Login() {
 
         <a
           className="space-y-4 block"
-          href={`https://gauth.co.kr/login?client_id=${GauthOauthClientId}&redirect_uri=http://localhost:5173/login?gauth`}
+          href={`https://gauth.co.kr/login?client_id=${GauthApi.GauthOauthClientId}&redirect_uri=http://localhost:5173/login?gauth`}
         >
           <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border transition-colors duration-300 text-gauth-primary hover:bg-gauth-primary hover:text-white h-10 px-4 py-2 w-full">
             <svg
@@ -103,10 +106,13 @@ export default function Login() {
           </button>
         </a>
         <div className="text-end px-4">
-          새로운 유저인가요? <span
-          className="text-blue-400 ml-2 cursor-pointer"
-          onClick={() => navigate("/signup")}          
-          >회원가입</span>
+          새로운 유저인가요?{" "}
+          <span
+            className="text-blue-400 ml-2 cursor-pointer"
+            onClick={() => navigate("/signup")}
+          >
+            회원가입
+          </span>
         </div>
       </div>
     </>
