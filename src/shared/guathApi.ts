@@ -13,22 +13,10 @@ export async function signup(accessCode: string):Promise<string> {
 }
 
 export async function login(accessCode: string):Promise<string> {
-  return await axios.get(`${ApiBaseUrl}/api/gauth/token?accessCode=${accessCode}`).then((res) => {
+  return await axios.get(`${ApiBaseUrl}/api/user/login/gauth?accessCode=${accessCode}`).then((res) => {
     if(res.status === 200 && typeof res.data === 'string'){
       return res.data;
     }
     throw new Error("Invalid response");
   });
-}
-export async function getUserData(accessToken: string):Promise<{[key:string]:unknown}> {
-  //todo: implement this
-  throw new Error("Not implemented");
-  // return await axios.get(`https://api.github.com/user`, {
-  //   headers: {
-  //     Authorization: `Bearer ${accessToken}`,
-  //     "X-GitHub-Api-Version": "2022-11-28"
-  //   },
-  // }).then((res) => {
-  //   return res.data as {[key:string]:unknown};
-  // });
 }
