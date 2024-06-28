@@ -10,9 +10,10 @@ export default function HomeMain() {
 
 
   function loadProjects() {
-    getAllProjectEntity(20).then((newProjects) => {
-      setProjects([...projects,...newProjects]);
-    });
+    setProjects([...projects,...getAllProjectEntity(20)]);
+    // getAllProjectEntity(20).then((newProjects) => {
+    //   setProjects([...projects,...newProjects]);
+    // });
   }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps

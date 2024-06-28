@@ -3,20 +3,18 @@ import {ProjectEntity} from "../entity/ProjectEntity.ts";
 // import axios from 'axios';
 
 
-export async function getAllProjectEntity(numberOfProjects:number=10): Promise<ProjectEntity[]> {
+export function getAllProjectEntity(numberOfProjects:number=10): ProjectEntity[] {
   const result: ProjectEntity[] = [];
-  const requests = [];
-  const allWords = await getRandomWords(numberOfProjects*13);
+  const allWords = getRandomWords(numberOfProjects*13);
   for (let i = 0; i < numberOfProjects; i++) {
-    requests.push(generateProjectEntity(allWords.slice(i*13)).then((project) => result.push(project)));
+    result.push(generateProjectEntity(allWords.slice(i*13)));
   }
-  await Promise.all(requests);
   return result;
 }
 
-export async function generateProjectEntity(words?:string[]): Promise<ProjectEntity> {
-  if (!words || words.length < 13) {
-    words = await getRandomWords(13);
+export function generateProjectEntity(words?:string[]): ProjectEntity {
+  if(!words){
+    words = getRandomWords(13);
   }
   const projectEntity: ProjectEntity = {
     id: randomId(),
@@ -38,12 +36,11 @@ function randomId(): string {
   return result;
 }
 
-async function getRandomWords(wordsLength: number): Promise<string[]> {
+function getRandomWords(wordsLength: number): string[] {
   const words:string[] = [];
   for(let i = 0; i < wordsLength; i++){
     words.push("word");
   }
-  // const words = await axios.get(`https://random-word-api.herokuapp.com/word?number=${wordsLength}&length=7`).then(res => res.data);
   return words;
 }
 

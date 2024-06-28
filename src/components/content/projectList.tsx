@@ -12,10 +12,13 @@ export default function ProjectList() {
 
   function loadProjects() {
     setLoading(true);
-    getAllProjectEntity(20).then((newProjects) => {
-      setProjects([...projects,...newProjects]);
-      setLoading(false);
-    });
+    
+    setProjects([...projects,...getAllProjectEntity(20)]);
+    setLoading(false);
+    // getAllProjectEntity(20).then((newProjects) => {
+    //   setProjects([...projects,...newProjects]);
+    //   setLoading(false);
+    // });
   }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
