@@ -12,7 +12,6 @@
   "dependencies": {
     "@egjs/flicking-plugins": "^4.7.1",
     "@egjs/react-flicking": "^4.11.2",
-    "@types/react-router-dom": "^6.22.3",
     "axios": "^1.6.8",
     "framer-motion": "^11.1.9",
     "react": "^18.2.0",
@@ -21,6 +20,7 @@
     "react-router-dom": "^6.22.3",
     "styled-component": "^2.8.0",
     "styled-reset": "^4.5.2",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
