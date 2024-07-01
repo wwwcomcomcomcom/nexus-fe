@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import LoginButton from "./LoginButton";
-import { useUserStore } from "../../shared/userStore";
+import { useUpdatedUserStore } from "../../shared/api";
 
 export default function Header() {
   const navigate = useNavigate();
-  const isLogin = useUserStore((state) => state.isLogin);
+  const {isLogin} = useUpdatedUserStore();
 
   return (
     <header className="flex items-center justify-between px-4 py-2 border-b bg-white border-gray-100 sm:py-4 md:py-6 dark:border-gray-800 w-full sticky top-0 z-10">
