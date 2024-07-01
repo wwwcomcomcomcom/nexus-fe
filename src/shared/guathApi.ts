@@ -13,7 +13,7 @@ export async function signup(accessCode: string):Promise<string> {
 }
 
 export async function login(accessCode: string):Promise<string> {
-  return await axios.get(`${ApiBaseUrl}/api/user/login/gauth?accessCode=${accessCode}`).then((res) => {
+  return await axios.post(`${ApiBaseUrl}/api/user/login/gauth?accessCode=${accessCode}`).then((res) => {
     if(res.status === 200 && typeof res.data === 'string'){
       return res.data;
     }
