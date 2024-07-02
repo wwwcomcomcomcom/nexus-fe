@@ -7,6 +7,7 @@ import ProjectPage from "./components/main/ProjectPage.tsx";
 import ProfilePage from './components/main/ProfilePage.tsx';
 import ProjectListPage from './components/main/ProjectListPage.tsx';
 import Signup from './components/login/Signup.tsx';
+import CreateProjectPage from './components/main/CreateProjectPage.tsx';
 
 function App() {
   return <>
@@ -17,6 +18,7 @@ function App() {
           <Route path="/projects" element={<ProjectListPage/>}/>
           <Route path="/profile" element={<ProfilePage/>}/>
           <Route path="/project/:id/" element={<ProjectPage/>}/>
+          <Route path='/createProject' element={<CreateProjectPage/>}/>
         </Route>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
