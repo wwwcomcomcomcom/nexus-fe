@@ -8,7 +8,7 @@ export default function Header() {
   const {isLogin} = useUpdatedUserStore();
 
   return (
-    <header className="flex items-center justify-between px-4 py-2 border-b bg-white border-gray-100 sm:py-4 md:py-6 dark:border-gray-800 w-full sticky top-0 z-10">
+    <header className="flex items-center justify-between px-4 py-2 border-b bg-white border-gray-100 sm:py-4 md:py-6 dark:border-gray-800 w-full sticky top-0 z-10 h-20">
       <div className="flex items-center space-x-4">
         <div className="rounded-lg bg-gray-100 w-10 h-10 dark:bg-gray-300 max-xxs:hidden"></div>
         <nav className="flex items-center space-x-4">
