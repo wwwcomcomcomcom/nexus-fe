@@ -9,7 +9,7 @@ interface ProjectCardProps extends DivProps {
 }
 
 export default function ProjectCard(props: ProjectCardProps) {
-  return <div className="p-5 rounded-lg border bg-card text-card-foreground shadow-sm" data-v0-t="card">
+  return <div className={"p-5 rounded-lg border bg-card text-card-foreground shadow-sm " + props.className} data-v0-t="card">
     <div className="space-y-1.5 flex flex-col md:flex-row md:items-center md:justify-between">
       <div style={{maxWidth:"70%"}} className="flex items-center space-x-4">
         <FaRegFolder size="24"/>
