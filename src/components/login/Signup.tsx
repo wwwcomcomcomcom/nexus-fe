@@ -2,6 +2,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { GauthOauthClientId, signup } from "../../shared/guathApi";
 import { useEffect } from "react";
 import GauthIcon from "../icons/GauthIcon";
+import GithubIcon from "../icons/GithubIcon";
 
 export default function Signup() {
   const [query] = useSearchParams();
@@ -49,7 +50,7 @@ export default function Signup() {
           role="none"
           className="shrink-0 bg-gray-100 h-[1px] w-full my-6"
         ></div>
-        <img src="/github-icon.png" alt="github" className="mx-auto w-64" />
+        <GithubIcon className="mx-auto w-64 h-64"/>
         <a
           className="space-y-4 block"
           href={`https://gauth.co.kr/login?client_id=${GauthOauthClientId}&redirect_uri=http://localhost:5173/signup`}
