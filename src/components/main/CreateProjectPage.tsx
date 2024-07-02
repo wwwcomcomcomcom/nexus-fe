@@ -9,13 +9,13 @@ export default function CreateProjectPage() {
     <CreateNewProject setViewPage={setViewPage}/>,
     <h1>Create from github repository</h1>
   ]
-  return <main className="flex justify-center pt-4 h-[calc(100vh-5rem)]">
+  return <main className="flex justify-center h-fit">
     {pages[viewPage]}
   </main>
 }
 
 function SelectCreateMode({setViewPage}:{setViewPage:(page:number)=>void}) {
-  return <div className="flex flex-col space-y-4 w-[min(60rem,100%)] px-10">
+  return <div className="flex flex-col space-y-4 w-[min(60rem,100%)] px-10 pt-10 h-[calc(100vh-5rem)]">
     <h1 className="text-2xl font-bold text-center">Create Project</h1>
     <div className="flex w-full gap-10">
       <div className="w-1/3 h-60 border rounded-lg border-gray-300 flex flex-col items-center grow">
@@ -38,6 +38,8 @@ function CreateNewProject({
 }: {
   setViewPage: (page: number) => void;
 }) {
+  // const template = <template className=""></template>;
+  const inputStyle:string = "transition-all duration-200 rounded-md border border-gray-300 text-xl focus:text-2xl";
   return (
     <>
       <div
@@ -60,26 +62,30 @@ function CreateNewProject({
           <path d="M19 12H5"></path>
         </svg>
       </div>
-      <div className="flex flex-col items-center">
-        <label htmlFor="projectName">Project Name</label>
-        <input id="projectName" type="text" className="border border-gray-300" required></input>
+      <div className="flex flex-col border rounded-xl border-gray-400 p-12 my-10 gap-4 h-fit">
+        <h1 className="text-[2rem] font-bold">새 프로젝트 만들기</h1>
+        <h2 className="text-xl text-gray-500 mb-4">새 프로젝트를 등록하고 팀원을 모집하세요</h2>
+        <label htmlFor="projectTitle">Project Title</label>
+        <input id="projectTitle" type="text" className={inputStyle} required></input>
         <label htmlFor="projectDescription">Project description</label>
-        <input id="projectDescription" type="text" className="border border-gray-300"></input>
-        <label>필요 인원</label>
+        <input id="projectDescription" type="text" className={inputStyle}></input>
+        <div className="flex flex-col gap-2">
+        <label className="font-semibold">필요 인원</label>
         <label htmlFor="frontend">프론트엔드</label>
-        <input id="frontend" type="number" className="border border-gray-300"></input>
+        <input id="frontend" type="number" className={inputStyle}></input>
         <label htmlFor="backend">백엔드</label>
-        <input id="backend" type="number" className="border border-gray-300"></input>
+        <input id="backend" type="number" className={inputStyle}></input>
         <label htmlFor="android">안드로이드</label>
-        <input id="android" type="number" className="border border-gray-300"></input>
+        <input id="android" type="number" className={inputStyle}></input>
         <label htmlFor="ios">IOS</label>
-        <input id="ios" type="number" className="border border-gray-300"></input>
+        <input id="ios" type="number" className={inputStyle}></input>
         <label htmlFor="flutter">플러터</label>
-        <input id="flutter" type="number" className="border border-gray-300"></input>
+        <input id="flutter" type="number" className={inputStyle}></input>
         <label htmlFor="ai">AI</label>
-        <input id="ai" type="number" className="border border-gray-300"></input>
+        <input id="ai" type="number" className={inputStyle}></input>
         <label htmlFor="design">디자인</label>
-        <input id="design" type="number" className="border border-gray-300"></input>
+        <input id="design" type="number" className={inputStyle}></input>
+        </div>
       </div>
     </>
   );
