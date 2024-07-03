@@ -19,8 +19,8 @@ export default function CreateNewProject({
   const formStore = useProjectFormStore();
 
   function submitProjectData(){
-    console.log(formStore);
-    setViewPage(2);
+    if(formStore.name === "") return alert("프로젝트 이름을 입력해주세요");
+    setViewPage(1);
   }
 
   return (
