@@ -64,27 +64,38 @@ function CreateNewProject({
       </div>
       <div className="flex flex-col border rounded-xl border-gray-400 p-12 my-10 gap-4 h-fit">
         <h1 className="text-[2rem] font-bold">새 프로젝트 만들기</h1>
-        <h2 className="text-xl text-gray-500 mb-4">새 프로젝트를 등록하고 팀원을 모집하세요</h2>
+        <h2 className="text-xl text-gray-500 mb-4">
+          새 프로젝트를 등록하고 팀원을 모집하세요
+        </h2>
         <label htmlFor="projectTitle">Project Title</label>
-        <input id="projectTitle" type="text" className={inputStyle} required></input>
+        <input
+          id="projectTitle"
+          type="text"
+          className={inputStyle}
+          required
+        ></input>
         <label htmlFor="projectDescription">Project description</label>
-        <input id="projectDescription" type="text" className={inputStyle}></input>
+        <input
+          id="projectDescription"
+          type="text"
+          className={inputStyle}
+        ></input>
         <div className="flex flex-col gap-2">
-        <label className="font-semibold">필요 인원</label>
-        <label htmlFor="frontend">프론트엔드</label>
-        <input id="frontend" type="number" className={inputStyle}></input>
-        <label htmlFor="backend">백엔드</label>
-        <input id="backend" type="number" className={inputStyle}></input>
-        <label htmlFor="android">안드로이드</label>
-        <input id="android" type="number" className={inputStyle}></input>
-        <label htmlFor="ios">IOS</label>
-        <input id="ios" type="number" className={inputStyle}></input>
-        <label htmlFor="flutter">플러터</label>
-        <input id="flutter" type="number" className={inputStyle}></input>
-        <label htmlFor="ai">AI</label>
-        <input id="ai" type="number" className={inputStyle}></input>
-        <label htmlFor="design">디자인</label>
-        <input id="design" type="number" className={inputStyle}></input>
+          <label className="font-semibold">필요 인원</label>
+          <label htmlFor="frontend">프론트엔드</label>
+          <input id="frontend" type="number" className={inputStyle}></input>
+          <label htmlFor="backend">백엔드</label>
+          <input id="backend" type="number" className={inputStyle}></input>
+          <label htmlFor="android">안드로이드</label>
+          <input id="android" type="number" className={inputStyle}></input>
+          <label htmlFor="ios">IOS</label>
+          <input id="ios" type="number" className={inputStyle}></input>
+          <label htmlFor="flutter">플러터</label>
+          <input id="flutter" type="number" className={inputStyle}></input>
+          <label htmlFor="ai">AI</label>
+          <input id="ai" type="number" className={inputStyle}></input>
+          <label htmlFor="design">디자인</label>
+          <input id="design" type="number" className={inputStyle}></input>
         </div>
       </div>
     </>
