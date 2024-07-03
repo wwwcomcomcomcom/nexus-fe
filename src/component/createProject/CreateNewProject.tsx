@@ -1,6 +1,7 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ProjectFormDto, useProjectFormStore } from "./projectFormStore";
 
-type RoleData = {
+type formStore = {
   frontend: number;
   backend: number;
   android: number;
@@ -14,20 +15,12 @@ export default function CreateNewProject({
 }: {
   setViewPage: (page: number) => void;
 }) {
-  const [roleData, setRoleData]:[RoleData,Dispatch<SetStateAction<RoleData>>] = useState({
-    frontend: 0,
-    backend: 0,
-    android: 0,
-    ios: 0,
-    flutter: 0,
-    ai: 0,
-    design: 0,
-  });
+  const navigate = useNavigate();
+  const formStore = useProjectFormStore();
 
   function submitProjectData(){
-    const projectName = (document.getElementById("projectName") as HTMLInputElement).value;
-    const projectDescription = (document.getElementById("projectDescription") as HTMLInputElement).value;
-    
+    console.log(formStore);
+    setViewPage(2);
   }
 
   return (
@@ -62,21 +55,25 @@ export default function CreateNewProject({
           id="projectName"
           type="text"
           className="transition-all duration-200 rounded-md border border-gray-300 text-lg p-1 focus:py-2"
+          value={formStore.name}
+          onInput={(e) => formStore.setProjectForm({ name: e.currentTarget.value })}
         ></input>
         <label htmlFor="projectDescription">Project description</label>
         <textarea
           id="projectDescription"
           className="transition-all duration-200 rounded-md border border-gray-300 p-1"
+          value={formStore.description}
+          onInput={(e) => formStore.setProjectForm({ description: e.currentTarget.value })}
         ></textarea>
         <div className="flex flex-col gap-3">
           <label className="font-semibold">필요 인원</label>
-          <RoleInput title="프론트엔드" targetRole="frontend" roleData={roleData} setRoleData={setRoleData}/>
-          <RoleInput title="백엔드" targetRole="backend" roleData={roleData} setRoleData={setRoleData}/>
-          <RoleInput title="안드로이드" targetRole="android" roleData={roleData} setRoleData={setRoleData}/>
-          <RoleInput title="IOS" targetRole="ios" roleData={roleData} setRoleData={setRoleData}/>
-          <RoleInput title="플러터" targetRole="flutter" roleData={roleData} setRoleData={setRoleData}/>
-          <RoleInput title="AI" targetRole="ai" roleData={roleData} setRoleData={setRoleData}/>
-          <RoleInput title="디자인" targetRole="design" roleData={roleData} setRoleData={setRoleData}/>
+          <RoleInput title="프론트엔드" targetRole="frontend" formData={formStore} />
+          <RoleInput title="백엔드" targetRole="backend" formData={formStore} />
+          <RoleInput title="안드로이드" targetRole="android" formData={formStore} />
+          <RoleInput title="IOS" targetRole="ios" formData={formStore} />
+          <RoleInput title="플러터" targetRole="flutter" formData={formStore} />
+          <RoleInput title="AI" targetRole="ai" formData={formStore} />
+          <RoleInput title="디자인" targetRole="design" formData={formStore} />
         </div>
         <button className="rounded-md h-10 px-6 relative bottom-0 text-lg bg-gray-200 mt-4 transition active:bg-gray-300 active:shadow-md shadow-black" onClick={submitProjectData}>
           Create Project
@@ -87,9 +84,8 @@ export default function CreateNewProject({
 }
 interface RoleInputProps{
   title:string;
-  targetRole:keyof RoleData;
-  roleData:RoleData;
-  setRoleData:Dispatch<SetStateAction<RoleData>>
+  targetRole:keyof formStore;
+  formData:ProjectFormDto;
 }
 function RoleInput(props:RoleInputProps){
   const inputStyle:string = "transition-all duration-200 rounded-md border border-gray-300 focus:py-1 outline-none px-2";
@@ -102,8 +98,8 @@ function RoleInput(props:RoleInputProps){
   return <div className="flex flex-col">
   <label htmlFor={props.targetRole}>
     {props.title}
-    <span className="transition duration-300" style={{opacity:+(props.roleData[props.targetRole] > 0)}}>✅</span>
+    <span className="transition duration-300" style={{opacity:+(props.formData[props.targetRole] > 0)}}>✅</span>
   </label>
-  <input id={props.targetRole} type="number" className={inputStyle} value={props.roleData[props.targetRole]} onInput={handleInput}></input>
+  <input id={props.targetRole} type="number" className={inputStyle} value={props.formData[props.targetRole]} onInput={handleInput}></input>
 </div>;
 }
