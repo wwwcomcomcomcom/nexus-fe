@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { Dispatch, SetStateAction, useState } from "react"
 import RocketIcon from "../icons/RocketIcon";
 import GithubIcon from "../icons/GithubIcon";
 
@@ -33,6 +33,15 @@ function SelectCreateMode({setViewPage}:{setViewPage:(page:number)=>void}) {
     </div>
   </div>
 }
+type RoleData = {
+  frontend: number;
+  backend: number;
+  android: number;
+  ios: number;
+  flutter: number;
+  ai: number;
+  design: number;
+}
 function CreateNewProject({
   setViewPage,
 }: {
@@ -40,6 +49,15 @@ function CreateNewProject({
 }) {
   // const template = <template className=""></template>;
   const inputStyle:string = "transition-all duration-200 rounded-md border border-gray-300 text-xl focus:text-2xl";
+  const [roleData, setRoleData]:[RoleData,Dispatch<SetStateAction<RoleData>>] = useState({
+    frontend: 0,
+    backend: 0,
+    android: 0,
+    ios: 0,
+    flutter: 0,
+    ai: 0,
+    design: 0,
+  });
   return (
     <>
       <div
@@ -72,7 +90,6 @@ function CreateNewProject({
           id="projectTitle"
           type="text"
           className={inputStyle}
-          required
         ></input>
         <label htmlFor="projectDescription">Project description</label>
         <input
@@ -82,8 +99,7 @@ function CreateNewProject({
         ></input>
         <div className="flex flex-col gap-2">
           <label className="font-semibold">필요 인원</label>
-          <label htmlFor="frontend">프론트엔드</label>
-          <input id="frontend" type="number" className={inputStyle}></input>
+          <RoleInput title="프론트엔드" targetRole="frontend" roleData={roleData} setRoleData={setRoleData}/>
           <label htmlFor="backend">백엔드</label>
           <input id="backend" type="number" className={inputStyle}></input>
           <label htmlFor="android">안드로이드</label>
@@ -100,4 +116,18 @@ function CreateNewProject({
       </div>
     </>
   );
+}
+interface RoleInputProps{
+  title:string;
+  targetRole:keyof RoleData;
+  roleData:RoleData;
+  setRoleData:Dispatch<SetStateAction<RoleData>>
+}
+function RoleInput(props:RoleInputProps){
+  const inputStyle:string = "transition-all duration-200 rounded-md border border-gray-300 text-l focus:py-1 outline-none";
+  
+  return <div className="flex flex-col">
+  <label htmlFor={props.targetRole}>{props.title}</label>
+  <input id={props.targetRole} type="number" className={inputStyle} value={props.roleData[props.targetRole]}></input>
+</div>;
 }
