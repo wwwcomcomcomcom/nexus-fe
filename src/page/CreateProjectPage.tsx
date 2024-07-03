@@ -6,8 +6,8 @@ import CreateFromGithub from "../component/createProject/CreateFromGithub.tsx";
 export default function CreateProjectPage() {
   const [viewPage,setViewPage] = useState(0);
   const pages:JSX.Element[] = [
-    <SelectCreateMode setViewPage={setViewPage}/>,
     <CreateNewProject setViewPage={setViewPage}/>,
+    <SelectCreateMode setViewPage={setViewPage}/>,
     <CreateFromGithub setViewPage={setViewPage}/>
   ]
   return <main className="flex justify-center h-fit">
