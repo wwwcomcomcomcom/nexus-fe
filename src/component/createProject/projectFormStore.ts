@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export interface ProjectFormDto {
+export interface CreateProjectDto {
   name: string;
   description: string;
   frontend: number;
@@ -10,10 +10,10 @@ export interface ProjectFormDto {
   flutter: number;
   ai: number;
   design: number;
-  setProjectForm: (projectForm:Partial<ProjectFormDto>) => void;
+  setProjectForm: (projectForm:Partial<CreateProjectDto>) => void;
 }
 
-export const useProjectFormStore = create<ProjectFormDto>(
+export const useProjectFormStore = create<CreateProjectDto>(
   (set,get) => ({
     name: "",
     description: "",
@@ -24,6 +24,6 @@ export const useProjectFormStore = create<ProjectFormDto>(
     flutter: 0,
     ai: 0,
     design: 0,
-    setProjectForm: (projectForm:Partial<ProjectFormDto>) => set({...get(),...projectForm }),
+    setProjectForm: (projectForm:Partial<CreateProjectDto>) => set({...get(),...projectForm }),
   }),
 );
