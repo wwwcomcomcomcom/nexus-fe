@@ -96,8 +96,8 @@ function RoleInput(props:RoleInputProps){
   
   function handleInput(e:React.ChangeEvent<HTMLInputElement>){
     let value = parseInt(e.target.value);
-    if(value < 0) value = 0;
-    props.setRoleData({...props.roleData,[props.targetRole]:value});
+    if(value < 0 || Number.isNaN(value)) value = 0;
+    props.formData.setProjectForm({...props.formData,[props.targetRole]:value});
   }
   return <div className="flex flex-col">
   <label htmlFor={props.targetRole}>
