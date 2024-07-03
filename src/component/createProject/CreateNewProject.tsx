@@ -34,7 +34,7 @@ export default function CreateNewProject({
     <>
       <div
         className="inline-flex items-center justify-center rounded-full bg-gray-100 p-3 m-2 absolute left-0"
-        onClick={() => setViewPage(0)}
+        onClick={() => navigate("/projects")}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
