@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ProjectFormDto, useProjectFormStore } from "./projectFormStore";
+import { CreateProjectDto, useProjectFormStore } from "./projectFormStore";
 
 type formStore = {
   frontend: number;
@@ -85,7 +85,7 @@ export default function CreateNewProject({
 interface RoleInputProps{
   title:string;
   targetRole:keyof formStore;
-  formData:ProjectFormDto;
+  formData:CreateProjectDto;
 }
 function RoleInput(props:RoleInputProps){
   const inputStyle:string = "transition-all duration-200 rounded-md border border-gray-300 focus:py-1 outline-none px-2";
