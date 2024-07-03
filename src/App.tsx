@@ -1,13 +1,13 @@
 import './App.css'
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Layout from "./components/Layout.tsx";
-import HomeMain from "./components/main/HomePage.tsx";
-import Login from "./components/login/Login.tsx";
-import ProjectPage from "./components/main/ProjectPage.tsx";
-import ProfilePage from './components/main/ProfilePage.tsx';
-import ProjectListPage from './components/main/ProjectListPage.tsx';
-import Signup from './components/login/Signup.tsx';
-import CreateProjectPage from './components/main/CreateProjectPage.tsx';
+import Layout from "./layout/Layout.tsx";
+import HomeMain from "./page/HomePage.tsx";
+import Login from "./page/Login.tsx";
+import ProjectPage from "./page/ProjectPage.tsx";
+import ProfilePage from './page/ProfilePage.tsx';
+import ProjectListPage from './page/ProjectListPage.tsx';
+import Signup from './page/Signup.tsx';
+import CreateProjectPage from './page/CreateProjectPage.tsx';
 
 function App() {
   return <>

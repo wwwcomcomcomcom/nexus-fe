@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { getAllProjectEntity } from "../../test/TestVariables.ts";
-import { ProjectEntity } from "../../entity/ProjectEntity.ts";
-import { BestProjectList } from "../content/BestProjectList.tsx";
-import Introduce from "./Introduce.tsx";
+import { getAllProjectEntity } from "../shared/apiMockup.ts";
+import { ProjectEntity } from "../entity/ProjectEntity.ts";
+import { BestProjectList } from "../component/BestProjectList.tsx";
+import Introduce from "../component/Introduce.tsx";
 
 export default function HomeMain() {
 

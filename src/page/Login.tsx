@@ -1,9 +1,9 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import * as GithubApi from "../../shared/githubApi";
+import * as GithubApi from "../shared/githubApi.ts";
 import { useEffect } from "react";
-import * as GauthApi from "../../shared/guathApi";
-import GauthIcon from "../icons/GauthIcon";
-import GithubIcon from "../icons/GithubIcon";
+import * as GauthApi from "../shared/guathApi.ts";
+import GauthIcon from "../component/icons/GauthIcon.tsx";
+import GithubIcon from "../component/icons/GithubIcon.tsx";
 
 export default function Login() {
   const [query] = useSearchParams();
@@ -31,7 +31,7 @@ export default function Login() {
     <>
       <a
         className="inline-flex items-center justify-center rounded-full bg-gray-100 p-3 m-2 absolute"
-        href=".."
+        href="../component"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

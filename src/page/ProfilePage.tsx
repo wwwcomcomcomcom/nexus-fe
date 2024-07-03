@@ -1,6 +1,6 @@
-import { useUpdatedUserStore } from "../../shared/api";
-import { getAllProjectEntity } from "../../test/TestVariables";
-import ProjectCard from "../card/ProjectCard";
+import { useUpdatedUserStore } from "../shared/api.ts";
+import { getAllProjectEntity } from "../shared/apiMockup.ts";
+import ProjectCard from "../component/projectCard/ProjectCard.tsx";
 
 export default function ProfilePage() {
   const { isLogin, user } = useUpdatedUserStore();

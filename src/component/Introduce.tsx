@@ -1,9 +1,9 @@
 import { useScroll, motion, useTransform, HTMLMotionProps, MotionValue } from "framer-motion";
-import ProjectCard from "../card/ProjectCard";
-import { generateProjectEntity } from "../../test/TestVariables";
+import ProjectCard from "./projectCard/ProjectCard.tsx";
+import { generateProjectEntity } from "../shared/apiMockup.ts";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import GauthIcon from "../icons/GauthIcon";
+import GauthIcon from "./icons/GauthIcon.tsx";
 
 interface ScrollPageProps extends HTMLMotionProps<"div">{
   childProps?:HTMLMotionProps<"div">

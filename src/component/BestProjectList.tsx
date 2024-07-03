@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import Flicking, { MoveEvent, ReadyEvent } from "@egjs/react-flicking";
-import ProjectCard from "../card/ProjectCard.tsx";
-import { ProjectEntity } from "../../entity/ProjectEntity.ts";
+import ProjectCard from "./projectCard/ProjectCard.tsx";
+import { ProjectEntity } from "../entity/ProjectEntity.ts";
 import "@egjs/react-flicking/dist/flicking.css";
 import { AutoPlay } from "@egjs/flicking-plugins";
 

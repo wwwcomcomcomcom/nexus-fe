@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import ProjectCard from "../card/ProjectCard.tsx";
-import Loading from "../Loading.tsx";
-import { getAllProjectEntity } from "../../test/TestVariables.ts";
-import { ProjectEntity } from "../../entity/ProjectEntity.ts";
+import ProjectCard from "./projectCard/ProjectCard.tsx";
+import Loading from "./Loading.tsx";
+import { getAllProjectEntity } from "../shared/apiMockup.ts";
+import { ProjectEntity } from "../entity/ProjectEntity.ts";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 
 export default function ProjectList() {
@@ -12,7 +12,7 @@ export default function ProjectList() {
 
   function loadProjects() {
     setLoading(true);
-    
+
     setProjects([...projects,...getAllProjectEntity(20)]);
     setLoading(false);
     // getAllProjectEntity(20).then((newProjects) => {

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react"
-import RocketIcon from "../icons/RocketIcon";
-import GithubIcon from "../icons/GithubIcon";
+import RocketIcon from "../component/icons/RocketIcon.tsx";
+import GithubIcon from "../component/icons/GithubIcon.tsx";
 
 export default function CreateProjectPage() {
   const [viewPage,setViewPage] = useState(0);

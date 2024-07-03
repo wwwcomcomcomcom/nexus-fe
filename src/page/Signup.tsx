@@ -1,8 +1,8 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { GauthOauthClientId, signup } from "../../shared/guathApi";
+import { GauthOauthClientId, signup } from "../shared/guathApi.ts";
 import { useEffect } from "react";
-import GauthIcon from "../icons/GauthIcon";
-import GithubIcon from "../icons/GithubIcon";
+import GauthIcon from "../component/icons/GauthIcon.tsx";
+import GithubIcon from "../component/icons/GithubIcon.tsx";
 
 export default function Signup() {
   const [query] = useSearchParams();
@@ -22,7 +22,7 @@ export default function Signup() {
     <>
       <a
         className="inline-flex items-center justify-center rounded-full bg-gray-100 p-3 m-2 absolute"
-        href=".."
+        href="../component"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

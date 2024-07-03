@@ -1,4 +1,4 @@
-import { Status } from "../components/card/projectStatus.ts";
+import { Status } from "../component/projectCard/projectStatus.ts";
 import {ProjectEntity} from "../entity/ProjectEntity.ts";
 // import axios from 'axios';
 

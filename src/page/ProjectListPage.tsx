@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import ProjectList from "../content/ProjectList";
+import ProjectList from "../component/ProjectList.tsx";
 
 export default function ProjectListPage() {
   const navigate = useNavigate();
