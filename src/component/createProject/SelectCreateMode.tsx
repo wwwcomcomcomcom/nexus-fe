@@ -2,7 +2,7 @@ import GithubIcon from "../icons/GithubIcon";
 import RocketIcon from "../icons/RocketIcon";
 
 export default function SelectCreateMode({setViewPage}:{setViewPage:(page:number)=>void}) {
-  return <div className="flex flex-col space-y-4 w-[min(60rem,100%)] px-10 pt-10 h-[calc(100vh-5rem)]">
+  return <div className="flex flex-col space-y-4 w-[min(60rem,100%)] px-10 h-[calc(100vh-5rem)] justify-center">
     <h1 className="text-2xl font-bold text-center">Create Project</h1>
     <div className="flex w-full gap-10">
       <div className="w-1/3 h-60 border rounded-lg border-gray-300 flex flex-col items-center grow">
