@@ -1,19 +1,11 @@
 import { create } from "zustand";
+import { CreateProjectDto } from "./createProjectApi";
 
-export interface CreateProjectDto {
-  name: string;
-  description: string;
-  frontend: number;
-  backend: number;
-  android: number;
-  ios: number;
-  flutter: number;
-  ai: number;
-  design: number;
-  setProjectForm: (projectForm:Partial<CreateProjectDto>) => void;
+export interface NewProjectStore extends CreateProjectDto {
+  setProjectForm: (projectForm:Partial<NewProjectStore>) => void;
 }
 
-export const useProjectFormStore = create<CreateProjectDto>(
+export const useProjectFormStore = create<NewProjectStore>(
   (set,get) => ({
     name: "",
     description: "",
@@ -24,6 +16,6 @@ export const useProjectFormStore = create<CreateProjectDto>(
     flutter: 0,
     ai: 0,
     design: 0,
-    setProjectForm: (projectForm:Partial<CreateProjectDto>) => set({...get(),...projectForm }),
+    setProjectForm: (projectForm:Partial<NewProjectStore>) => set({...get(),...projectForm }),
   }),
 );
