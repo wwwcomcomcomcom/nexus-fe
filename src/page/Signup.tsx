@@ -22,7 +22,7 @@ export default function Signup() {
     <>
       <a
         className="inline-flex items-center justify-center rounded-full bg-gray-100 p-3 m-2 absolute"
-        href="../component"
+        href="../"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
