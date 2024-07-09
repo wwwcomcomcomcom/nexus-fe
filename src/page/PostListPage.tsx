@@ -8,10 +8,9 @@ export default function PostsPage() {
 
   return (
     <div className="flex flex-col w-full h-full mt-2">
-      <div className="flex flex-row w-full px-10 place-content-between">
+      <div className="flex flex-row w-full px-10 place-content-between justify-center">
         <div>
-          <h1 className="text-4xl font-bold">Posts</h1>
-          <p className="text-lg text-gray-500">List of all posts</p>
+          <h1 className="text-2xl font-bold text-center my-5">Community</h1>
         </div>
         {userStore.isLogin() && (
           <div className="flex flex-row items-center">
