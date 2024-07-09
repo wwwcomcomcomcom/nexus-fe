@@ -21,6 +21,9 @@ export default function Header() {
           >
             Projects
           </button>
+          <button className="font-semibold" onClick={() => navigate("/posts")}>
+            Posts
+          </button>
         </nav>
       </div>
       <div className="flex items-center space-x-4">
