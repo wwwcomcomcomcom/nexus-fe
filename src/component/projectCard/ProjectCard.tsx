@@ -1,28 +1,41 @@
-import {FaRegFolder} from "react-icons/fa6";
 import ProjectStatus from "./ProjectStatusIndicator.tsx";
-import ProjectInteractButton from "./ProjectInteractButton.tsx";
 import { DivProps } from "../../utils/typedef.ts";
 import { ProjectEntity } from "../../entity/ProjectEntity.ts";
+import ProjectIcon from "../icons/ProjectIcon.tsx";
+import { getStatusColorSet } from "./projectStatus.ts";
 
 interface ProjectCardProps extends DivProps {
-  project:ProjectEntity
+  project: ProjectEntity;
 }
 
 export default function ProjectCard(props: ProjectCardProps) {
-  return <div className={"p-5 rounded-lg border bg-projectCard text-projectCard-foreground shadow-sm " + props.className} data-v0-t="card">
-    <div className="space-y-1.5 flex flex-col md:flex-row md:items-center md:justify-between">
-      <div style={{maxWidth:"70%"}} className="flex items-center space-x-4">
-        <FaRegFolder size="24"/>
-        <h2 style={{maxWidth:"70%"}} className="text-lg font-bold !mr-4 truncate">{props.project.name}</h2>
+  const colorSet = getStatusColorSet(props.project.status);
+  return (
+    <div
+      className={
+        "p-5 rounded-2xl border shadow-sm h-[400px] flex flex-col " +
+        props.className
+      }
+      data-v0-t="card"
+    >
+      <div className="grow flex items-center justify-center">
+        <div
+          className="bg-orange-100 p-4 rounded-3xl"
+          style={{ backgroundColor: colorSet[1] }}
+        >
+          <ProjectIcon color={colorSet[0]} />
+        </div>
       </div>
-      <ProjectInteractButton project={props.project}/>
+      <div className="grow flex flex-col items-center">
+        <h1 className="text-xl font-bold">{props.project.name}</h1>
+        <ProjectStatus status={props.project.status} />
+        <div className="grid grow gap-2 text-sm justify-center items-center">
+          {/* <p className="truncate">{props.project.description}</p> */}
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            Updated 2 days ago
+          </p>
+        </div>
+      </div>
     </div>
-    <ProjectStatus status={props.project.status}/>
-    <div className="grid w-full gap-2 text-sm">
-      <p className="truncate">
-        {props.project.description}
-      </p>
-      <p className="text-xs text-gray-500 dark:text-gray-400">Updated 2 days ago</p>
-    </div>
-  </div>;
+  );
 }
