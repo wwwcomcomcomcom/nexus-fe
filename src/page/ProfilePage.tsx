@@ -7,7 +7,7 @@ export default function ProfilePage() {
   if (isLogin() === false) return <h1>You are not logged in</h1>;
   return (
     <div className="flex justify-center pt-16">
-      <div className="flex flex-col items-center space-x-4 grow basis-0">
+      <div className="flex flex-col items-center space-x-4 grow basis-0 bg-[url('profile-bg.svg')]">
         <div className="flex flex-row w-full">
           <div className="grow flex items-center justify-center">
             <div className="flex flex-col">
@@ -18,7 +18,7 @@ export default function ProfilePage() {
           </div>
           <div className="grow">
             <img
-              className="w-52 h-52 rounded-full border-2 border-gray-300"
+              className="w-52 h-52 rounded-full shadow-inner"
               src={user.profileImageUrl as string}
               alt="profile"
             />
