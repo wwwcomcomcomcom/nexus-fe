@@ -1,19 +1,22 @@
 export enum Status {
-  Active = "Active",
-  Stopped = "Stopped",
-  Completed = "Completed",
-  Cancelled = "Cancelled"
+  Active = "진행중",
+  Recruit = "모집중",
+  Completed = "완료됨",
+  Cancelled = "중단됨",
 }
 
 //should be defined at ./tailwind.config.js/safelist
-export enum StatusColor {
-  Active = "green-400",
-  Stopped = "gray-400",
-  Completed = "blue-400",
-  // OnHold = "yellow-200",
-  Cancelled = "red-400"
-}
+export const StatusColorSet = {
+  Active: ["#73d67d", "#e7feef"],
+  Completed: ["#3f3de3", "#f3f7fe"],
+  Recruit: ["#e89d3a", "#fcf7e5"],
+  Cancelled: ["#df347a", "#fcf3f8"],
+};
 
-export function getStatusColor(status: Status) {
-  return StatusColor[status as keyof typeof StatusColor];
+export function getStatusColorSet(status: Status) {
+  return StatusColorSet[
+    Object.keys(Status)[
+      Object.values(Status).indexOf(status)
+    ] as keyof typeof StatusColorSet
+  ];
 }
