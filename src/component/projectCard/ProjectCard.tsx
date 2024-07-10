@@ -11,18 +11,9 @@ interface ProjectCardProps extends DivProps {
 export default function ProjectCard(props: ProjectCardProps) {
   const colorSet = getStatusColorSet(props.project.status);
   return (
-    <div
-      className={
-        "p-5 rounded-2xl border shadow-sm h-[400px] flex flex-col " +
-        props.className
-      }
-      data-v0-t="card"
-    >
+    <div className={"p-5 rounded-2xl border shadow-sm h-[400px] flex flex-col " + props.className} data-v0-t="card">
       <div className="grow flex items-center justify-center">
-        <div
-          className="bg-orange-100 p-4 rounded-3xl"
-          style={{ backgroundColor: colorSet[1] }}
-        >
+        <div className="bg-orange-100 p-4 rounded-3xl" style={{ backgroundColor: colorSet[1] }}>
           <ProjectIcon color={colorSet[0]} />
         </div>
       </div>
@@ -31,9 +22,7 @@ export default function ProjectCard(props: ProjectCardProps) {
         <ProjectStatus status={props.project.status} />
         <div className="grid grow gap-2 text-sm justify-center items-center">
           {/* <p className="truncate">{props.project.description}</p> */}
-          <p className="text-xs text-gray-500 dark:text-gray-400">
-            Updated 2 days ago
-          </p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">Updated 2 days ago</p>
         </div>
       </div>
     </div>

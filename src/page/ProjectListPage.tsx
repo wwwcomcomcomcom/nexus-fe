@@ -14,10 +14,7 @@ export default function ProjectListPage() {
         </div>
         {userStore.isLogin() && (
           <div className="flex flex-row items-center">
-            <button
-              className="bg-blue-400 rounded-md h-10 px-3"
-              onClick={() => navigate("/createProject")}
-            >
+            <button className="bg-blue-400 rounded-md h-10 px-3" onClick={() => navigate("/createProject")}>
               Create Project
             </button>
           </div>
