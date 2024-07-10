@@ -34,16 +34,17 @@ export default function PostList() {
       className="flex flex-1 overflow-y-auto justify-center max-h-[70vh]"
       ref={scrollRef}
     >
-      <div className="container grid  gap-4 px-4 py-6 md:gap-8 md:px-6 w-[50%] z-10">
-        {/* <div className="w-[500px] h-[500px] bg-[#FFF7E3] rounded-full relative z-0 "></div> */}
+      <div className="container grid gap-4 px-4 md:gap-8 md:px-6 w-[50%] z-10 relative">
+        <div className="w-[700px] h-[700px] bg-[#FFF7E3] rounded-full absolute top-0 -translate-x-[37rem] z-0"></div>
+        <div className="w-[350px] h-[350px] bg-[#DAE9FF] rounded-full absolute top-[400px] -translate-x-[10rem] z-0"></div>
+        {/* <div className="w-[700px] h-[700px] bg-[#E5AAB4] rounded-full absolute top-[800px] -translate-x-[37rem] z-0"></div> */}
+        <div className="w-[700px] h-[700px] bg-[#FFF7E3] rounded-full absolute top-[900px] translate-x-[40rem] z-0"></div>
 
-        {
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-9">
-            {posts.map((post) => (
-              <PostCard key={post.id} post={post} />
-            ))}
-          </div>
-        }
+        <div className="grid grid-cols-1 gap-9 relative z-10">
+          {posts.map((post) => (
+            <PostCard key={post.id} post={post} />
+          ))}
+        </div>
         {isloading ? <Loading /> : null}
       </div>
     </main>
