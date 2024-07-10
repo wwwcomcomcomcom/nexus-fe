@@ -9,7 +9,7 @@ export default function PostCard(props: PostCardProps) {
   return (
     <div
       className={
-        "p-5 rounded-lg border bg-projectCard text-projectCard-foreground shadow-sm " +
+        "p-5 py-10 rounded-2xl text-projectCard-foreground shadow-[0_10px_50px_0px_rgba(0,0,0,0.05)] border border-neutral-100 bg-white" +
         props.className
       }
       data-v0-t="card"
