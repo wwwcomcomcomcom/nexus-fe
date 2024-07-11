@@ -29,10 +29,7 @@ export default function Login() {
   }, [githubCode, gauthCode, navigate]);
   return (
     <>
-      <a
-        className="inline-flex items-center justify-center rounded-full bg-gray-100 p-3 m-2 absolute"
-        href="../"
-      >
+      <a className="inline-flex items-center justify-center rounded-full bg-gray-100 p-3 m-2 absolute" href="../">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -54,12 +51,8 @@ export default function Login() {
           <h1 className="text-3xl font-bold">Sign in</h1>
           <p className="text-gray-500">Sign in with your github account</p>
         </div>
-        <div
-          data-orientation="horizontal"
-          role="none"
-          className="shrink-0 bg-gray-100 h-[1px] w-full my-6"
-        ></div>
-        <GithubIcon className="mx-auto w-64 h-64"/>
+        <div data-orientation="horizontal" role="none" className="shrink-0 bg-gray-100 h-[1px] w-full my-6"></div>
+        <GithubIcon className="mx-auto w-64 h-64" />
         <a
           className="space-y-4 block"
           href={`https://github.com/login/oauth/authorize?client_id=${GithubApi.GithubOauthClientId}`}
@@ -95,10 +88,7 @@ export default function Login() {
         </a>
         <div className="text-end px-4 text-gray-500">
           새로운 유저인가요?{" "}
-          <span
-            className="text-blue-400 ml-2 cursor-pointer"
-            onClick={() => navigate("/signup")}
-          >
+          <span className="text-blue-400 ml-2 cursor-pointer" onClick={() => navigate("/signup")}>
             회원가입
           </span>
         </div>

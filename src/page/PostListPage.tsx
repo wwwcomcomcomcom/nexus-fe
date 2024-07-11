@@ -14,10 +14,7 @@ export default function PostsPage() {
         </div>
         {userStore.isLogin() && (
           <div className="flex flex-row items-center">
-            <button
-              className="bg-blue-400 rounded-md h-10 px-3"
-              onClick={() => navigate("/createPost")}
-            >
+            <button className="bg-blue-400 rounded-md h-10 px-3" onClick={() => navigate("/createPost")}>
               Create Post
             </button>
           </div>

@@ -5,9 +5,7 @@ interface ProjectInteractButtonProps {
   project: ProjectEntity;
 }
 
-export default function ProjectInteractButton(
-  props: ProjectInteractButtonProps
-) {
+export default function ProjectInteractButton(props: ProjectInteractButtonProps) {
   return (
     <button
       className={`bg-${getStatusColorSet(
