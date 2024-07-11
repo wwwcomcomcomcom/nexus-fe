@@ -3,6 +3,7 @@ import { DivProps } from "../../utils/typedef.ts";
 import { ProjectEntity } from "../../entity/ProjectEntity.ts";
 import ProjectIcon from "../icons/ProjectIcon.tsx";
 import { getStatusColorSet } from "./projectStatus.ts";
+import { useNavigate } from "react-router-dom";
 
 interface ProjectCardProps extends DivProps {
   project: ProjectEntity;
@@ -10,12 +11,14 @@ interface ProjectCardProps extends DivProps {
 
 export default function ProjectCard(props: ProjectCardProps) {
   const colorSet = getStatusColorSet(props.project.status);
+  const navigate = useNavigate();
   return (
     <div
       className={
-        "p-5 pb-10 rounded-2xl border shadow-sm h-[250px] w-[200px] flex flex-col bg-white z-10" +
+        "cursor-pointer p-5 pb-10 rounded-2xl border shadow-sm h-[250px] w-[200px] flex flex-col bg-white z-10" +
         (props.className !== undefined ? props.className : "")
       }
+      onClick={() => navigate(`/project/${props.project.id}`)}
       data-v0-t="card"
     >
       <div className="grow flex items-center justify-center">
