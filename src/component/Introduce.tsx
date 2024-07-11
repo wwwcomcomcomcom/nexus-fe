@@ -71,12 +71,19 @@ export default function Introduce() {
       </ScrollPage>
       <ScrollPage
         style={{ opacity: opacity2 }}
-        childProps={{ style: { y: offset2 } }}
+        childProps={{
+          style: {
+            y: offset2,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          },
+        }}
       >
-        <h1 className="font-bold p-4 text-center text-[2rem]">
+        <h1 className="font-bold p-4 text-center text-[2rem] ">
           프로젝트 인원 모집 / 관리
         </h1>
-        <ProjectCard project={generateProjectEntity()} />
+        <ProjectCard className="" project={generateProjectEntity()} />
       </ScrollPage>
       <ScrollPage
         style={{ opacity: opacity3 }}
