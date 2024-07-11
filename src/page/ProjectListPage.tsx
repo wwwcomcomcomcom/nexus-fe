@@ -16,10 +16,6 @@ export default function ProjectListPage() {
           </div>
         )}
       </div>
-      <div className="flex flex-col w-[99vw] ">
-        <h1 className="text-4xl font-bold">Projects</h1>
-        <p className="text-lg text-gray-500 ">List of all projects</p>
-      </div>
       <ProjectList />
     </div>
   );

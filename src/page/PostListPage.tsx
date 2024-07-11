@@ -9,9 +9,6 @@ export default function PostsPage() {
   return (
     <div className="flex flex-col w-full h-full mt-2">
       <div className="flex flex-row w-full px-10 place-content-between justify-center ">
-        <div>
-          <h1 className="text-2xl font-bold text-center my-5">Community</h1>
-        </div>
         {userStore.isLogin() && (
           <div className="flex flex-row items-center">
             <button className="bg-blue-400 rounded-md h-10 px-3" onClick={() => navigate("/createPost")}>
