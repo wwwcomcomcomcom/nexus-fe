@@ -56,10 +56,12 @@ export const BestProjectList: React.FC<BestProjectListProps> = ({
           </div>
         ))}
       </Flicking>
-      <div className="absolute inset-0 z-10">
-        <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white to-transparent"></div>
-        <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white to-transparent"></div>
-      </div>
+      {/* <div className="absolute inset-0 z-10">
+        <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white to-transparent z-10"></div>
+        <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white to-transparen z-10 "></div>
+      </div> */}
+      {/* <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white to-transparent inset-0 z-10"></div>
+      <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white to-transparent inset-0 z-10 translate-x-[64em]"></div> */}
     </div>
   );
 };
