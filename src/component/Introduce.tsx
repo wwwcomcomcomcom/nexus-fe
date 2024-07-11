@@ -58,7 +58,7 @@ export default function Introduce() {
   return (
     <motion.div
       ref={ref}
-      className="border-b border-gray-300 h-[90vh] overflow-scroll snap-y snap-mandatory scrollbar-hide"
+      className="border-none border-gray-300 h-[90vh] overflow-scroll snap-y snap-mandatory scrollbar-hide"
     >
       <ScrollPage
         style={{ opacity: opacity1 }}
