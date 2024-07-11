@@ -34,7 +34,7 @@ export default function ProjectList() {
       className="flex flex-1 overflow-y-auto max-h-[70vh] relative overflow-hidden"
       ref={scrollRef}
     >
-      <div className="w-[350px] h-[350px] bg-[#DAE9FF] rounded-full absolute top-[15rem] translate-x-[45rem] z-0"></div>
+      <div className="w-[350px] h-[350px] bg-[#DAE9FF] rounded-full absolute top-[10rem] translate-x-[45rem] z-0"></div>
       <div className="w-[400px] h-[400px] bg-[#DAE9FF] rounded-full absolute top-[50rem] -translate-x-[17rem] z-0"></div>
       {/* <div className="w-[200px] h-[200px] bg-[#DAE9FF] rounded-full absolute top-[95rem] translate-x-[67rem] z-10"></div> */}
       <div className="w-[650px] h-[650px] bg-[#e2ecfc] rounded-full absolute top-[90rem] translate-x-[85rem] z-0"></div>
