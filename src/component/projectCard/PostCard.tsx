@@ -8,10 +8,11 @@ interface PostCardProps extends DivProps {
 
 export default function PostCard(props: PostCardProps) {
   const navigate = useNavigate();
+
   return (
     <div
       className={
-        "cursor-pointer px-20 py-11 rounded-2xl text-projectCard-foreground shadow-[0_10px_50px_0px_rgba(0,0,0,0.05)] border border-neutral-100 bg-white z-0" +
+        "cursor-pointer px-20 py-11 rounded-2xl text-projectCard-foreground shadow-[0_10px_50px_0px_rgba(0,0,0,0.05)] border border-neutral-100 bg-white z-0 hover:scale-105 transition " +
         props.className
       }
       onClick={() => navigate(`/post/${props.post.id}`)}
