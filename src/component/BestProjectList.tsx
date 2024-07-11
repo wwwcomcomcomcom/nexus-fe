@@ -48,19 +48,12 @@ export const BestProjectList: React.FC<BestProjectListProps> = ({
         {projects.map((project) => (
           <div
             key={project.id}
-            // className="my-8 mx-0 w-[80%] sm:w-[70%] sm:mx-8 md:w-[40%] md:mx-6 lg:w-[25%] lg:mx-0 flex justify-center"
             className="my-10 mx-2 w-[16%] flex justify-center"
           >
             <ProjectCard project={project} />
           </div>
         ))}
       </Flicking>
-      {/* <div className="absolute inset-0 z-10">
-        <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white to-transparent z-10"></div>
-        <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white to-transparen z-10 "></div>
-      </div> */}
-      {/* <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white to-transparent inset-0 z-10"></div>
-      <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white to-transparent inset-0 z-10 translate-x-[64em]"></div> */}
     </div>
   );
 };
