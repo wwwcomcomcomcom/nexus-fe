@@ -33,7 +33,7 @@ export const BestProjectList: React.FC<BestProjectListProps> = ({
 
   return (
     <div className="border-none relative mb-5">
-      <div className="w-[200px] h-[200px] bg-[#FFF7E3] rounded-full top-20 translate-x-[55rem] z-0 absolute"></div>
+      {/* <div className="w-[200px] h-[200px] bg-[#FFF7E3] rounded-full top-20 translate-x-[55rem] z-0 absolute"></div> */}
       <div className="w-[390px] h-[95%] my-[20px] bg-[#F4F9FF] rounded-3xl top-0 left-1/2 transform -translate-x-1/2 z-0 absolute"></div>
       <h2 className="pt-10 text-2xl font-bold text-center z-20 relative">
         Best Projects
