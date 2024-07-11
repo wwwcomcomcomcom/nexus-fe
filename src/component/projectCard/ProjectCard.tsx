@@ -13,7 +13,7 @@ export default function ProjectCard(props: ProjectCardProps) {
   return (
     <div
       className={
-        "p-5 rounded-2xl border shadow-sm h-[350px] w-[280px] flex flex-col bg-white z-10" +
+        "p-5 pb-10 rounded-2xl border shadow-sm h-[250px] w-[200px] flex flex-col bg-white z-10" +
         (props.className !== undefined ? props.className : "")
       }
       data-v0-t="card"
@@ -27,7 +27,7 @@ export default function ProjectCard(props: ProjectCardProps) {
         </div>
       </div>
       <div className="grow flex flex-col items-center">
-        <h1 className="text-xl font-bold mb-5">{props.project.name}</h1>
+        <h1 className="text-lg font-semibold mt-5">{props.project.name}</h1>
         <ProjectStatus status={props.project.status} />
         <div className="grid grow gap-2 text-sm justify-center mt-5">
           {/* <p className="truncate">{props.project.description}</p> */}
