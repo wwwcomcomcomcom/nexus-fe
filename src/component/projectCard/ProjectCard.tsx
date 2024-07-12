@@ -19,7 +19,7 @@ export default function ProjectCard(props: ProjectCardProps) {
   return (
     <div
       className={
-        "cursor-pointer p-5 pb-10 rounded-2xl border shadow-sm flex flex-col bg-white z-10 " +
+        "cursor-pointer p-5 pb-10 rounded-2xl border shadow-md flex flex-col bg-white z-10 " +
         (props.className !== undefined ? props.className : "")
       }
       style={{
