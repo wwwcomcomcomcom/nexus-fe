@@ -7,17 +7,25 @@ import { useNavigate } from "react-router-dom";
 
 interface ProjectCardProps extends DivProps {
   project: ProjectEntity;
+  width?: number;
+  height?: number;
 }
 
 export default function ProjectCard(props: ProjectCardProps) {
   const colorSet = getStatusColorSet(props.project.status);
   const navigate = useNavigate();
+  const width = props.width ?? 200;
+  const height = props.height ?? 250;
   return (
     <div
       className={
         "cursor-pointer p-5 pb-10 rounded-2xl border shadow-sm flex flex-col bg-white z-10 " +
         (props.className !== undefined ? props.className : "")
       }
+      style={{
+        width: width + "px",
+        height: height + "px",
+      }}
       onClick={() => navigate(`/project/${props.project.id}`)}
       data-v0-t="card"
     >
@@ -26,7 +34,11 @@ export default function ProjectCard(props: ProjectCardProps) {
           className="bg-orange-100 p-4 rounded-3xl"
           style={{ backgroundColor: colorSet[1] }}
         >
-          <ProjectIcon color={colorSet[0]} />
+          <ProjectIcon
+            color={colorSet[0]}
+            width={width / 4}
+            height={width / 4}
+          />
         </div>
       </div>
       <div className="grow flex flex-col items-center">
