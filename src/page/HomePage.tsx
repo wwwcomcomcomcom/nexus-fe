@@ -3,6 +3,7 @@ import { getAllProjectEntity } from "../shared/apiMockup.ts";
 import { ProjectEntity } from "../entity/ProjectEntity.ts";
 import { BestProjectList } from "../component/BestProjectList.tsx";
 import Introduce from "../component/Introduce.tsx";
+import AboutUs from "../component/AboutUs.tsx";
 
 export default function HomeMain() {
   const [projects, setProjects] = useState<ProjectEntity[]>([]);
@@ -21,6 +22,7 @@ export default function HomeMain() {
     <main>
       <Introduce />
       <BestProjectList projects={projects} />
+      <AboutUs />
     </main>
   );
 }
