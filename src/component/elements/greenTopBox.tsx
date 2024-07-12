@@ -1,8 +1,8 @@
 export default function GreenTopBox(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      width="1015"
-      height="606"
+      width="700"
+      height="450"
       viewBox="0 0 1015 606"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
