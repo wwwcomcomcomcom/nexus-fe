@@ -12,7 +12,7 @@ export default function Search() {
 
         <input
           type="text"
-          className="h-16 w-[60%] translate-x-[40%] translate-y-[40%] border border-[#F1F1F1] rounded-full shadow-lg"
+          className="p-5 h-16 w-[60%] translate-x-[40%] translate-y-[40%] border border-[#F1F1F1] rounded-full shadow-lg"
         />
       </div>
     </div>
