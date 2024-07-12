@@ -2,7 +2,7 @@
 
 export default function Search() {
   return (
-    <div className="flex justify-center my-32">
+    <div className="flex justify-center my-52">
       {/* <SearchGreenBox className="translate-x-[70%]" /> */}
       <div className="bg-[#F4F9FF] w-[50%] h-[200px] rounded-[60px] p-10 flex place-content-between">
         <span className="translate-y-[30%]">
