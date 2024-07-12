@@ -48,9 +48,9 @@ export const BestProjectList: React.FC<BestProjectListProps> = ({
         {projects.map((project) => (
           <div
             key={project.id}
-            className="my-10 mx-2 w-[16%] flex justify-center"
+            className="my-10 mx-2 w-[250px] flex justify-center"
           >
-            <ProjectCard project={project} />
+            <ProjectCard project={project} width={250} height={320} />
           </div>
         ))}
       </Flicking>
