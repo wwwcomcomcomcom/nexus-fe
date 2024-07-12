@@ -9,6 +9,7 @@ export default function PostsPage() {
   return (
     <div className="flex flex-col w-full h-full ">
       <div className="flex flex-row w-full px-10 place-content-between justify-center ">
+        <h1 className="text-3xl font-bold text-center py-10">Community</h1>
         {userStore.isLogin() && (
           <div className="flex flex-row items-center">
             <button
