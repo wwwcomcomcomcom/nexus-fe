@@ -7,7 +7,8 @@ export default function ProjectListPage() {
   const userStore = useUpdatedUserStore();
   return (
     <div className="flex flex-col w-full h-full">
-      <div className="flex flex-row w-full px-10 place-content-between bg-transparent">
+      <div className="flex flex-row w-full px-10 place-content-center bg-transparent">
+        <h1 className="text-3xl font-bold text-center">Projects</h1>
         {userStore.isLogin() && (
           <div className="flex flex-row items-center">
             <button
