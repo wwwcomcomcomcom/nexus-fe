@@ -36,8 +36,11 @@ export default function ProjectList() {
   });
 
   return (
-    <main className="flex flex-1 relative overflow-x-hidden" ref={scrollRef}>
-      <div className="container grid w-[100%]  relative">
+    <main
+      className="flex flex-1 overflow-x-hidden place-content-center"
+      ref={scrollRef}
+    >
+      <div className="container grid w-[100%] relative">
         <div className="w-[1000px] h-[1000px] bg-[#e2ecfc] rounded-full absolute top-[5rem] -right-[25rem] z-0"></div>
         <div className="w-[600px] h-[600px] bg-[#FFF7E3] rounded-full absolute top-[70rem] -translate-x-[15rem] z-0"></div>
         {/* <div className="w-[200px] h-[200px] bg-[#FFF7E3] rounded-full absolute top-[75rem] -translate-x-[3rem] z-0"></div> */}
