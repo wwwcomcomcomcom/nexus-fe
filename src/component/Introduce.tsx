@@ -83,7 +83,11 @@ export default function Introduce() {
         <h1 className="font-bold p-4 text-center text-[2rem] ">
           프로젝트 인원 모집 / 관리
         </h1>
-        <ProjectCard className="" project={generateProjectEntity()} />
+        <ProjectCard
+          project={generateProjectEntity()}
+          width={300}
+          height={400}
+        />
       </ScrollPage>
       <ScrollPage
         style={{ opacity: opacity3 }}

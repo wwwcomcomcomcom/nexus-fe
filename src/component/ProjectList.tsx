@@ -19,21 +19,24 @@ export default function ProjectList() {
     //   setLoading(false);
     // });
   }
+  function resetScroll() {
+    window.scrollTo(0, 0);
+  }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(loadProjects, []);
+  useEffect(() => {
+    loadProjects();
+    resetScroll();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const scrollRef = useRef(null);
-  const { scrollYProgress } = useScroll({ container: scrollRef });
+  const { scrollYProgress } = useScroll();
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     if (latest >= 1) loadProjects();
   });
 
   return (
-    <main
-      className="flex flex-1 overflow-y-auto max-h-[70vh] relative overflow-hidden"
-      ref={scrollRef}
-    >
+    <main className="flex flex-1 relative overflow-x-hidden" ref={scrollRef}>
       <div className="container grid w-[100%]  relative">
         <div className="w-[1000px] h-[1000px] bg-[#e2ecfc] rounded-full absolute top-[5rem] -right-[25rem] z-0"></div>
         <div className="w-[600px] h-[600px] bg-[#FFF7E3] rounded-full absolute top-[70rem] -translate-x-[15rem] z-0"></div>
