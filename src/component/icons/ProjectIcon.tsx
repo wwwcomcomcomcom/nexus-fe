@@ -1,8 +1,14 @@
-export default function ProjectIcon(props: { color?: string }) {
+import { HTMLProps } from "react";
+
+interface ProjectIconProps extends HTMLProps<SVGSVGElement> {
+  color?: string;
+}
+
+export default function ProjectIcon(props: ProjectIconProps) {
   return (
     <svg
-      width="100"
-      height="100"
+      width={props.width ? props.width : "50"}
+      height={props.height ? props.height : "50"}
       viewBox="0 0 100 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

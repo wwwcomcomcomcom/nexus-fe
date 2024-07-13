@@ -58,7 +58,7 @@ export default function Introduce() {
   return (
     <motion.div
       ref={ref}
-      className="border-b border-gray-300 h-[90vh] overflow-scroll snap-y snap-mandatory scrollbar-hide"
+      className="border-none border-gray-300 h-[90vh] overflow-scroll snap-y snap-mandatory scrollbar-hide"
     >
       <ScrollPage
         style={{ opacity: opacity1 }}
@@ -71,12 +71,23 @@ export default function Introduce() {
       </ScrollPage>
       <ScrollPage
         style={{ opacity: opacity2 }}
-        childProps={{ style: { y: offset2 } }}
+        childProps={{
+          style: {
+            y: offset2,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          },
+        }}
       >
-        <h1 className="font-bold p-4 text-center text-[2rem]">
+        <h1 className="font-bold p-4 text-center text-[2rem] ">
           프로젝트 인원 모집 / 관리
         </h1>
-        <ProjectCard project={generateProjectEntity()} />
+        <ProjectCard
+          project={generateProjectEntity()}
+          width={300}
+          height={400}
+        />
       </ScrollPage>
       <ScrollPage
         style={{ opacity: opacity3 }}

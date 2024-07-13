@@ -17,7 +17,11 @@ export default function ProfilePage() {
             </div>
           </div>
           <div className="grow">
-            <img className="w-52 h-52 rounded-full shadow-inner" src={user.profileImageUrl as string} alt="profile" />
+            <img
+              className="w-52 h-52 rounded-full shadow-inner"
+              src={user.profileImageUrl as string}
+              alt="profile"
+            />
           </div>
         </div>
       </div>
@@ -26,7 +30,11 @@ export default function ProfilePage() {
           <h1 className="text-2xl font-bold">Projects</h1>
           <div className="grid grid-cols-2 gap-4 h-[17rem] overflow-y-scroll scrollbar-hide mb-4">
             {getAllProjectEntity(10).map((project) => (
-              <ProjectCard key={project.id} project={project} className="h-[8rem]" />
+              <ProjectCard
+                key={project.id}
+                project={project}
+                className="h-[8rem]"
+              />
             ))}
           </div>
         </div>

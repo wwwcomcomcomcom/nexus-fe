@@ -4,13 +4,15 @@ import { useEffect } from "react";
 import * as GauthApi from "../shared/guathApi.ts";
 import GauthIcon from "../component/icons/GauthIcon.tsx";
 import GithubIcon from "../component/icons/GithubIcon.tsx";
+import {useUserStore} from "../shared/userStore.ts";
 
 export default function Login() {
   const [query] = useSearchParams();
   const navigate = useNavigate();
   const githubCode = query.get("code");
   const gauthCode = query.get("gauth?code");
-
+  const store = useUserStore();
+  if(store.isLogin()) navigate("/");
   useEffect(() => {
     if (githubCode) {
       GithubApi.login(githubCode)
@@ -21,7 +23,10 @@ export default function Login() {
     }
     if (gauthCode) {
       GauthApi.login(gauthCode)
-        .then(() => navigate("/"))
+        .then((jwt) => {
+          store.setJwt(jwt);
+          navigate("/")
+        })
         .catch((e) => {
           alert("Failed to login" + e.message);
         });

@@ -14,9 +14,5 @@ export const StatusColorSet = {
 };
 
 export function getStatusColorSet(status: Status) {
-  return StatusColorSet[
-    Object.keys(Status)[
-      Object.values(Status).indexOf(status)
-    ] as keyof typeof StatusColorSet
-  ];
+  return StatusColorSet[Object.keys(Status)[Object.values(Status).indexOf(status)] as keyof typeof StatusColorSet];
 }

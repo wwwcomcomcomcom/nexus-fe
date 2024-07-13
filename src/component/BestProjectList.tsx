@@ -23,17 +23,23 @@ export const BestProjectList: React.FC<BestProjectListProps> = ({
     e.currentTarget.panels.forEach((panel) => {
       if (Math.abs(panel.progress) < 0.2) {
         panel.element.style.transform = `scale(${
-          1 - Math.abs(panel.progress) + 0.2
+          0.8 - Math.abs(panel.progress) + 0.2
         })`;
       } else {
-        panel.element.style.transform = "scale(1)";
+        panel.element.style.transform = "scale(0.8)";
       }
     });
   }
 
   return (
-    <div className="border-b border-gray-300">
-      <h2 className="text-2xl font-bold p-4 text-center">Best Projects</h2>
+    <div className="border-none relative mb-5">
+      <div className="w-[390px] h-[95%] my-[20px] bg-[#F4F9FF] rounded-3xl top-0 left-1/2 transform -translate-x-1/2 z-0 absolute"></div>
+      <h2 className="pt-10 text-2xl font-bold text-center z-20 relative">
+        Best Projects
+      </h2>
+      <h4 className="text-[#757575] text-xs p-2 text-center z-20 relative">
+        NEXUS에서 관리중인 훌륭한 Project들을 살펴보세요
+      </h4>
       <Flicking
         className="best-project-list"
         circular={true}
@@ -45,9 +51,9 @@ export const BestProjectList: React.FC<BestProjectListProps> = ({
         {projects.map((project) => (
           <div
             key={project.id}
-            className="my-8 mx-8 w-[80%] sm:w-[70%] sm:mx-8 md:w-[40%] md:mx-6 lg:w-[25%] lg:mx-6"
+            className="my-10 mx-2 w-[250px] flex justify-center"
           >
-            <ProjectCard project={project} />
+            <ProjectCard project={project} width={250} height={320} />
           </div>
         ))}
       </Flicking>
