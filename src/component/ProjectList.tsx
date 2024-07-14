@@ -1,11 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useState } from "react";
 import ProjectCard from "./projectCard/ProjectCard.tsx";
 import Loading from "./Loading.tsx";
 import { getAllProjectEntity } from "../shared/apiMockup.ts";
 import { ProjectEntity } from "../entity/ProjectEntity.ts";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 
-export default function ProjectList() {
+export default function ProjectList({
+  scrollRef,
+}: {
+  scrollRef: MutableRefObject<null | HTMLDivElement>;
+}) {
   const [isLoading, setLoading] = useState(true);
   const [projects, setProjects] = useState<ProjectEntity[]>([]);
 
@@ -28,11 +32,9 @@ export default function ProjectList() {
     resetScroll();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const scrollRef = useRef(null);
-  const { scrollYProgress } = useScroll();
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest >= 1) loadProjects();
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (scrollRef.current!.scrollHeight - latest < 1100) loadProjects();
   });
 
   return (
