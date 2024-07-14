@@ -7,13 +7,13 @@ export const ApiBaseUrl = "http://localhost:5173";
 export function useUpdatedUserStore() {
   const store = useUserStore();
   useEffect(() => {
-    if(!store.isLogin()){
+    if (!store.isLogin()) {
       store.resetStore();
       return;
     }
     axios
       .get(`${ApiBaseUrl}/api/user/info`, {
-        headers: { Authorization: `Bear ${store.jwt!}` },
+        headers: { Authorization: `Bearer ${store.jwt!}` },
       })
       .then((res) => {
         if (res.status === 200 && res.data.name) {
