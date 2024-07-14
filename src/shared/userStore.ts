@@ -20,7 +20,7 @@ export const useUserStore = create(
       setUser: (user) => set({ user }),
       isLogin: () =>
         get().jwt !== undefined &&
-        (parseJwt(get().jwt!).exp as number) > Date.now(),
+        (parseJwt(get().jwt!).exp as number) > Math.floor(Date.now() / 1000),
       resetStore: () => set({ user: {}, jwt: undefined }),
     }),
     {
