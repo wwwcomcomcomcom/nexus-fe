@@ -42,9 +42,9 @@ export default function ProjectList({
   const translateY2 = useMotionValue(0);
   const translateY3 = useMotionValue(0);
   useMotionValueEvent(scrollY, "change", (latest) => {
-    translateY1.set(latest * 0.9);
-    translateY2.set(latest * 1.2);
-    translateY3.set(latest * 0.7);
+    translateY1.set(latest + 5000 * sinPulse(latest / 2000));
+    translateY2.set(latest + 2500 * -sinPulse(latest / 3000));
+    translateY3.set(latest + 3000 * sinPulse(latest / 2000));
 
     if (scrollRef.current!.scrollHeight - latest < 1100) loadProjects();
   });
@@ -57,15 +57,15 @@ export default function ProjectList({
       <div className="container grid w-full relative">
         <div className="w-full h-full absolute overflow-hidden">
           <motion.div
-            className="w-[800px] h-[800px] bg-teal-200 rounded-full absolute"
+            className="w-[800px] h-[800px] bg-[#f6ca94] rounded-full absolute"
             style={{ translateY: translateY1 }}
           ></motion.div>
           <motion.div
-            className="w-[1000px] h-[1000px] bg-[#e2ecfc] rounded-full absolute top-[5rem] -right-[25rem] z-0"
+            className="w-[1000px] h-[1000px] bg-[#d9e7ff] rounded-full absolute top-[5rem] -right-[25rem] z-0"
             style={{ translateY: translateY2 }}
           ></motion.div>
           <motion.div
-            className="w-[600px] h-[600px] bg-[#FFF7E3] rounded-full absolute top-[70rem] -translate-x-[15rem] z-0"
+            className="w-[600px] h-[600px] bg-[#f9efd5] rounded-full absolute top-[40rem] -translate-x-[15rem] z-0"
             style={{ translateY: translateY3 }}
           ></motion.div>
         </div>
@@ -81,4 +81,9 @@ export default function ProjectList({
       </div>
     </main>
   );
+}
+
+function sinPulse(x: number) {
+  const pulse = Math.ceil(Math.cos(x)) * 2 - 1;
+  return (Math.sin(x) * pulse) / 2;
 }
