@@ -1,11 +1,11 @@
 export default function AboutUs() {
   return (
-    <div className="w-[100%] px-[250px] py-[100px]">
-      <div className="pl-20">
+    <div className="w-full flex flex-col items-center">
+      <div className="w-full pl-20">
         <h1 className="font-bold text-2xl">About us</h1>
         <p className="text-[#757575] my-1">NEXUS를 만든 사람들이에요</p>
       </div>
-      <div className="grid grid-cols-3 py-10 gap-6">
+      <div className="grid grid-cols-3 py-10 gap-6 w-full max-w-7xl">
         <div className="flex flex-col items-center">
           <img
             src="https://avatars.githubusercontent.com/u/162972723?v=4"
@@ -13,7 +13,7 @@ export default function AboutUs() {
           ></img>
 
           <h2 className="font-semibold pb-6">김담율</h2>
-          <div className="flex flex-col gap-4 w-1/4">
+          <div className="flex flex-col gap-4 w-1/4 min-w-20">
             <Label text="APP" className="bg-sky-400"></Label>
             {/* <Label text="Backend" className="bg-orange-400"></Label> */}
           </div>
@@ -24,7 +24,7 @@ export default function AboutUs() {
             className="rounded-full w-48"
           ></img>
           <h2 className="font-semibold pb-6">이서희</h2>
-          <div className="flex flex-col gap-4 w-1/4">
+          <div className="flex flex-col gap-4 w-1/4 min-w-20">
             <Label text="Backend" className="bg-orange-400"></Label>
           </div>
         </div>
@@ -34,7 +34,7 @@ export default function AboutUs() {
             className="rounded-full w-48"
           ></img>
           <h2 className="font-semibold pb-6">이세민</h2>
-          <div className="flex flex-col gap-4 w-1/4">
+          <div className="flex flex-col gap-4 w-1/4 min-w-20">
             <Label text="FrontEnd" className="bg-yellow-400"></Label>
             <Label text="Backend" className="bg-orange-400"></Label>
             <Label text="APP" className="bg-sky-400"></Label>
@@ -46,7 +46,7 @@ export default function AboutUs() {
             className="rounded-full w-48"
           ></img>
           <h2 className="font-semibold pb-6">이영서</h2>
-          <div className="flex flex-col gap-4 w-1/4">
+          <div className="flex flex-col gap-4 w-1/3 min-w-20">
             <Label text="APP" className="bg-sky-400"></Label>
           </div>
         </div>
@@ -56,7 +56,7 @@ export default function AboutUs() {
             className="rounded-full w-48"
           ></img>
           <h2 className="font-semibold pb-6">정효주</h2>
-          <div className="flex flex-col gap-4 w-1/4">
+          <div className="flex flex-col gap-4 w-1/4 min-w-20">
             <Label text="Frontend" className="bg-yellow-400"></Label>
             <Label text="Design" className="bg-emerald-400"></Label>
           </div>
@@ -67,7 +67,7 @@ export default function AboutUs() {
             className="rounded-full w-48"
           ></img>
           <h2 className="font-semibold pb-6">송재욱</h2>
-          <div className="flex flex-col gap-4 w-1/4">
+          <div className="flex flex-col gap-4 w-1/4 min-w-20">
             <Label text="Frontend" className="bg-yellow-400"></Label>
             <Label text="Design" className="bg-emerald-400"></Label>
             <Label text="AI" className="bg-purple-400"></Label>
