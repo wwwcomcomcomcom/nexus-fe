@@ -27,8 +27,8 @@ export default function ProfilePage() {
       </div>
       <div className="grow basis-0 flex flex-col gap-4 px-10">
         <div>
-          <h1 className="text-2xl font-bold">Projects</h1>
-          <div className="grid grid-cols-2 gap-y-4 h-[17rem] overflow-y-scroll scrollbar-hide mb-4 ">
+          <h1 className="text-2xl font-bold px-2">Projects</h1>
+          <div className="grid grid-cols-2 gap-y-4 h-[33rem] w-3/4 overflow-y-scroll scrollbar-hide mb-4 p-2">
             {getAllProjectEntity(10).map((project) => (
               <ProjectCard
                 key={project.id}
