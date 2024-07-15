@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import * as GauthApi from "../shared/guathApi.ts";
 import GauthIcon from "../component/icons/GauthIcon.tsx";
 import GithubIcon from "../component/icons/GithubIcon.tsx";
-import {useUserStore} from "../shared/userStore.ts";
+import { useUserStore } from "../shared/userStore.ts";
 
 export default function Login() {
   const [query] = useSearchParams();
@@ -12,7 +12,7 @@ export default function Login() {
   const githubCode = query.get("code");
   const gauthCode = query.get("gauth?code");
   const store = useUserStore();
-  if(store.isLogin()) navigate("/");
+  if (store.isLogin()) navigate("/");
   useEffect(() => {
     if (githubCode) {
       GithubApi.login(githubCode)
@@ -25,7 +25,7 @@ export default function Login() {
       GauthApi.login(gauthCode)
         .then((jwt) => {
           store.setJwt(jwt);
-          navigate("/")
+          navigate("/");
         })
         .catch((e) => {
           alert("Failed to login" + e.message);
@@ -34,7 +34,10 @@ export default function Login() {
   }, [githubCode, gauthCode, navigate]);
   return (
     <>
-      <a className="inline-flex items-center justify-center rounded-full bg-gray-100 p-3 m-2 absolute" href="../">
+      <a
+        className="inline-flex items-center justify-center rounded-full bg-gray-100 p-3 m-2 absolute"
+        href="../"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -53,10 +56,16 @@ export default function Login() {
       </a>
       <div className="mx-auto max-w-md space-y-6 py-12">
         <div className="text-center">
-          <h1 className="text-3xl font-bold">Sign in</h1>
-          <p className="text-gray-500">Sign in with your github account</p>
+          <h1 className="text-3xl font-bold">로그인</h1>
+          <p className="text-gray-500">
+            Gauth 또는 Github 계정을 이용하여 간편하게 로그인하세요!
+          </p>
         </div>
-        <div data-orientation="horizontal" role="none" className="shrink-0 bg-gray-100 h-[1px] w-full my-6"></div>
+        <div
+          data-orientation="horizontal"
+          role="none"
+          className="shrink-0 bg-gray-100 h-[1px] w-full my-6"
+        ></div>
         <GithubIcon className="mx-auto w-64 h-64" />
         <a
           className="space-y-4 block"
@@ -93,7 +102,10 @@ export default function Login() {
         </a>
         <div className="text-end px-4 text-gray-500">
           새로운 유저인가요?{" "}
-          <span className="text-blue-400 ml-2 cursor-pointer" onClick={() => navigate("/signup")}>
+          <span
+            className="text-blue-400 ml-2 cursor-pointer"
+            onClick={() => navigate("/signup")}
+          >
             회원가입
           </span>
         </div>
