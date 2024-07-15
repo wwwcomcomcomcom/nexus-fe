@@ -57,7 +57,7 @@ export default function Signup() {
         <GithubIcon className="mx-auto w-64 h-64" />
         <a
           className="space-y-4 block"
-          href={`https://gauth.co.kr/login?client_id=${GauthOauthClientId}&redirect_uri=${window.location.origin}signup`}
+          href={`https://gauth.co.kr/login?client_id=${GauthOauthClientId}&redirect_uri=${window.location.origin}/signup`}
         >
           <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border transition-colors duration-300 text-gauth-primary hover:bg-gauth-primary hover:text-white h-10 px-4 py-2 w-full">
             <GauthIcon className="w-4 h-4 mr-2" />
