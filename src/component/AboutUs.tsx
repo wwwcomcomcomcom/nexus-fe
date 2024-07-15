@@ -46,7 +46,7 @@ export default function AboutUs() {
             className="rounded-full w-48"
           ></img>
           <h2 className="font-semibold pb-6">이영서</h2>
-          <div className="flex flex-col gap-4 w-1/3 min-w-20">
+          <div className="flex flex-col gap-4 w-1/4 min-w-20">
             <Label text="APP" className="bg-sky-400"></Label>
           </div>
         </div>
