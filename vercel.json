@@ -1,11 +1,9 @@
 {
-  "routes": [
+  "rewrites": [
     {
       "src": "/[^.]+",
       "dest": "/"
-    }
-  ],
-  "rewrites": [
+    },
     {
       "source": "/api/:path*",
 
