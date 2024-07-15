@@ -15,7 +15,7 @@ function ProjectPage(/*props: DivProps*/) {
           height="auto"
           className="absolute top-[-50px] left-[50px] z-10"
         />
-        <div className="absolute top-[100px] left-[150px] z-20 flex items-center space-x-4">
+        <div className="absolute top-[100px] left-[150px] z-20 flex items-center space-x-4 ">
           <h1 className="inline-block text-5xl font-extrabold bg-white p-4 px-6 rounded-full border-[#F1F1F1] border-[1px] shadow-lg">
             NEXUS
           </h1>
