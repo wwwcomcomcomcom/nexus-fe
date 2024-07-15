@@ -30,10 +30,7 @@ export default function PostList() {
   });
 
   return (
-    <main
-      className="flex flex-1 overflow-x-hidden place-content-center"
-      ref={scrollRef}
-    >
+    <main className="flex flex-1 overflow-x-hidden place-content-center" ref={scrollRef}>
       <div className="container grid gap-4 px-4 md:gap-8 md:px-6 w-[50%] z-10 relative">
         <div className="w-[700px] h-[700px] bg-[#FFF7E3] rounded-full absolute top-0 -translate-x-[37rem] z-0"></div>
         <div className="w-[350px] h-[350px] bg-[#DAE9FF] rounded-full absolute top-[400px] -translate-x-[10rem] z-0"></div>
