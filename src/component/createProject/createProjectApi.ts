@@ -16,13 +16,16 @@ export interface CreateProjectDto {
   design: number;
 }
 export function submitProjectData(projectData: CreateProjectDto) {
-  axios.post(`${ApiBaseUrl}/api/project`,projectData).then((res)=>{
-    if(res.status === 200){
-      console.log("Project created");
-    }
-  }).catch(e=>{
-    
-  });
+  axios
+    .post(`${ApiBaseUrl}/api/project`, projectData)
+    .then((res) => {
+      if (res.status === 200) {
+        console.log("Project created");
+      }
+    })
+    .catch((e) => {
+      console.log(e);
+    });
   //axios
   return null;
 }
