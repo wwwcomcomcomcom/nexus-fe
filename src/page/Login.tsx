@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import * as GauthApi from "../shared/guathApi.ts";
 import GauthIcon from "../component/icons/GauthIcon.tsx";
 import GithubIcon from "../component/icons/GithubIcon.tsx";
-import {useUserStore} from "../shared/userStore.ts";
+import { useUserStore } from "../shared/userStore.ts";
 
 export default function Login() {
   const [query] = useSearchParams();
@@ -12,7 +12,7 @@ export default function Login() {
   const githubCode = query.get("code");
   const gauthCode = query.get("gauth?code");
   const store = useUserStore();
-  if(store.isLogin()) navigate("/");
+  if (store.isLogin()) navigate("/");
   useEffect(() => {
     if (githubCode) {
       GithubApi.login(githubCode)
@@ -25,7 +25,7 @@ export default function Login() {
       GauthApi.login(gauthCode)
         .then((jwt) => {
           store.setJwt(jwt);
-          navigate("/")
+          navigate("/");
         })
         .catch((e) => {
           alert("Failed to login" + e.message);
@@ -34,7 +34,10 @@ export default function Login() {
   }, [githubCode, gauthCode, navigate]);
   return (
     <>
-      <a className="inline-flex items-center justify-center rounded-full bg-gray-100 p-3 m-2 absolute" href="../">
+      <a
+        className="inline-flex items-center justify-center rounded-full bg-gray-100 p-3 m-2 absolute"
+        href="../"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -56,7 +59,11 @@ export default function Login() {
           <h1 className="text-3xl font-bold">Sign in</h1>
           <p className="text-gray-500">Sign in with your github account</p>
         </div>
-        <div data-orientation="horizontal" role="none" className="shrink-0 bg-gray-100 h-[1px] w-full my-6"></div>
+        <div
+          data-orientation="horizontal"
+          role="none"
+          className="shrink-0 bg-gray-100 h-[1px] w-full my-6"
+        ></div>
         <GithubIcon className="mx-auto w-64 h-64" />
         <a
           className="space-y-4 block"
@@ -84,7 +91,7 @@ export default function Login() {
 
         <a
           className="space-y-4 block"
-          href={`https://gauth.co.kr/login?client_id=${GauthApi.GauthOauthClientId}&redirect_uri=http://localhost:5173/login?gauth`}
+          href={`https://gauth.co.kr/login?client_id=${GauthApi.GauthOauthClientId}&redirect_uri=${window.location.origin}/login?gauth`}
         >
           <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border transition-colors duration-300 text-gauth-primary hover:bg-gauth-primary hover:text-white h-10 px-4 py-2 w-full">
             <GauthIcon className="h-4 w-4 mr-2" />
@@ -93,7 +100,10 @@ export default function Login() {
         </a>
         <div className="text-end px-4 text-gray-500">
           새로운 유저인가요?{" "}
-          <span className="text-blue-400 ml-2 cursor-pointer" onClick={() => navigate("/signup")}>
+          <span
+            className="text-blue-400 ml-2 cursor-pointer"
+            onClick={() => navigate("/signup")}
+          >
             회원가입
           </span>
         </div>
