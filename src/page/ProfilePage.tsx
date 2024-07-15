@@ -4,7 +4,7 @@ import ProjectCard from "../component/projectCard/ProjectCard.tsx";
 
 export default function ProfilePage() {
   const { isLogin, user } = useUpdatedUserStore();
-  if (isLogin() === false) return <h1>You are not logged in</h1>;
+  if (isLogin() !== false) return <h1>You are not logged in</h1>;
   return (
     <div className="flex justify-center pt-16">
       <div className="flex flex-col items-center space-x-4 grow basis-0 bg-[url('profile-bg.svg')]">
@@ -28,7 +28,7 @@ export default function ProfilePage() {
       <div className="grow basis-0 flex flex-col gap-4 px-10">
         <div>
           <h1 className="text-2xl font-bold">Projects</h1>
-          <div className="grid grid-cols-2 gap-4 h-[17rem] overflow-y-scroll scrollbar-hide mb-4">
+          <div className="grid grid-cols-2 gap-y-4 h-[17rem] overflow-y-scroll scrollbar-hide mb-4 ">
             {getAllProjectEntity(10).map((project) => (
               <ProjectCard
                 key={project.id}
