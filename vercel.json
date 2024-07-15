@@ -1,0 +1,17 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+
+      "destination": "https://port-0-nexus-avengers-lyma34av040a79c3.sel5.cloudtype.app/:path*"
+    },
+    {
+      "source": "/api/:path*/",
+      "destination": "https://port-0-nexus-avengers-lyma34av040a79c3.sel5.cloudtype.app/:path*/"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/"
+    }
+  ]
+}

@@ -2,7 +2,7 @@ import axios from "axios";
 import { ApiBaseUrl } from "./api";
 
 export const GauthOauthClientId =
-  "872c10e9c0d74da18917049d033aa68e4a0edc5aeb0d4b7f97e28fe4a12da3c0";
+  "8766b0ff0cf54ac0baa9af5ba384185647ecbf5ee8754cbeb799fd15f7b9b78b";
 
 export async function signup(accessCode: string): Promise<string> {
   return await axios
