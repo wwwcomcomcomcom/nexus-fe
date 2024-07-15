@@ -57,7 +57,7 @@ export default function ProjectList({
       <div className="container grid w-full relative">
         <div className="w-full h-full absolute overflow-hidden">
           <motion.div
-            className="w-[800px] h-[800px] bg-[#ffe2bf] rounded-full absolute"
+            className="w-[800px] h-[800px] bg-[#feead2] rounded-full absolute right-3/4"
             style={{ translateY: translateY1 }}
           ></motion.div>
           <motion.div
@@ -65,7 +65,7 @@ export default function ProjectList({
             style={{ translateY: translateY2 }}
           ></motion.div>
           <motion.div
-            className="w-[600px] h-[600px] bg-[#fff3c5] rounded-full absolute top-[40rem] -translate-x-[15rem] z-0"
+            className="w-[500px] h-[500px] bg-[#fff3c5] rounded-full absolute top-[40rem] right- z-0"
             style={{ translateY: translateY3 }}
           ></motion.div>
         </div>

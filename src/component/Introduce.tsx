@@ -65,7 +65,7 @@ export default function Introduce() {
         childProps={{ style: { y: offset1 } }}
       >
         <h1 className="font-bold p-4 text-center text-[4rem]">Nexus</h1>
-        <h1 className="font-bold p-4 text-center text-[2rem]">
+        <h1 className="font-semibold p-4 text-center text-[20px] text-[#757575]">
           Nexus는 교내 프로젝트 관리 & 지식공유 플랫폼입니다.
         </h1>
       </ScrollPage>
@@ -96,7 +96,7 @@ export default function Introduce() {
         <h1 className="font-bold p-4 text-center text-[2rem]">
           개발 정보 공유 커뮤니티
         </h1>
-        <h2 className="text-[1.5rem]">
+        <h2 className="text-[20px] text-[#757575]">
           AI 추천기반 최신 기술정보 | 자유로운 정보공유 게시판
         </h2>
       </ScrollPage>
