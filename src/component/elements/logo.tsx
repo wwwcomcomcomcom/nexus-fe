@@ -1,4 +1,4 @@
-export default function SearchYellowBox(props: React.SVGProps<SVGSVGElement>) {
+export default function Logo(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="500"

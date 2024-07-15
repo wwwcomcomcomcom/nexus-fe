@@ -3,8 +3,8 @@ import * as GithubApi from "../shared/githubApi.ts";
 import { useEffect } from "react";
 import * as GauthApi from "../shared/guathApi.ts";
 import GauthIcon from "../component/icons/GauthIcon.tsx";
-import GithubIcon from "../component/icons/GithubIcon.tsx";
 import { useUserStore } from "../shared/userStore.ts";
+import Logo from "../component/elements/Logo.tsx";
 
 export default function Login() {
   const [query] = useSearchParams();
@@ -66,7 +66,7 @@ export default function Login() {
           role="none"
           className="shrink-0 bg-gray-100 h-[1px] w-full my-6"
         ></div>
-        <GithubIcon className="mx-auto w-64 h-64" />
+        <Logo className="py-3 mx-auto w-64 h-64" />
         <a
           className="space-y-4 block"
           href={`https://github.com/login/oauth/authorize?client_id=${GithubApi.GithubOauthClientId}`}
