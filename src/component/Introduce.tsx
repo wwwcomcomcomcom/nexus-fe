@@ -64,10 +64,12 @@ export default function Introduce() {
         style={{ opacity: opacity1 }}
         childProps={{ style: { y: offset1 } }}
       >
-        <h1 className="font-bold p-4 text-center text-[4rem]">Nexus</h1>
-        <h1 className="font-semibold p-4 text-center text-[20px] text-[#757575]">
-          Nexus는 교내 프로젝트 관리 & 지식공유 플랫폼입니다.
-        </h1>
+        <div className="-translate-y-16">
+          <h1 className="font-bold p-4 text-center text-[4rem]">Nexus</h1>
+          <h1 className="font-semibold p-4 text-center text-[20px] text-[#757575]">
+            Nexus는 교내 프로젝트 관리 & 지식공유 플랫폼입니다.
+          </h1>
+        </div>
       </ScrollPage>
       <ScrollPage
         style={{ opacity: opacity2 }}
@@ -80,13 +82,13 @@ export default function Introduce() {
           },
         }}
       >
-        <h1 className="font-bold p-4 text-center text-[2rem] ">
+        <h1 className="font-bold p-6 text-center text-[2rem] -translate-y-10 ">
           프로젝트 인원 모집 / 관리
         </h1>
         <ProjectCard
           project={generateProjectEntity()}
-          width={300}
-          height={400}
+          width={240}
+          height={320}
         />
       </ScrollPage>
       <ScrollPage
