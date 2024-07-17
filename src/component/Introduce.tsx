@@ -95,12 +95,14 @@ export default function Introduce() {
         style={{ opacity: opacity3 }}
         childProps={{ style: { y: offset3 } }}
       >
-        <h1 className="font-bold p-4 text-center text-[2rem]">
-          개발 정보 공유 커뮤니티
-        </h1>
-        <h2 className="text-[20px] text-[#757575]">
-          AI 추천기반 최신 기술정보 | 자유로운 정보공유 게시판
-        </h2>
+        <div className="-translate-y-14">
+          <h1 className="font-bold p-4 text-center text-[2rem]">
+            개발 정보 공유 커뮤니티
+          </h1>
+          <h2 className="text-[20px] text-[#757575]">
+            AI 추천기반 최신 기술정보 | 자유로운 정보공유 게시판
+          </h2>
+        </div>
       </ScrollPage>
       <ScrollPage
         childProps={{ className: "flex flex-col items-center gap-5" }}
