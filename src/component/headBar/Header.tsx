@@ -15,7 +15,7 @@ export default function Header() {
 
   return (
     <header className="flex items-center justify-between px-10 w-full sticky top-0 z-50 h-16 bg-white ">
-      <nav className="flex flex-row w-full h-full border-b border-gray-300 py-4">
+      <nav className="flex flex-row w-full h-full border-b border-[#E4E4E4] py-4">
         <div className="flex items-center justify-start space-x-4 grow">
           <h1 className="font-bold text-xl">Nexus</h1>
         </div>
