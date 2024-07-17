@@ -82,7 +82,7 @@ export default function Introduce() {
           },
         }}
       >
-        <h1 className="font-bold p-6 text-center text-[2rem] -translate-y-10 ">
+        <h1 className="font-bold p-6 text-center text-[2rem] -translate-y-6 ">
           프로젝트 인원 모집 / 관리
         </h1>
         <ProjectCard
