@@ -37,7 +37,7 @@ export const BestProjectList: React.FC<BestProjectListProps> = ({
       <h2 className="pt-10 text-2xl font-bold text-center z-20 relative">
         Best Projects
       </h2>
-      <h4 className="text-[#757575] text-xs p-2 text-center z-20 relative">
+      <h4 className="text-[#757575] text-sm p-2 text-center z-20 relative">
         NEXUS에서 관리중인 훌륭한 Project들을 살펴보세요
       </h4>
       <Flicking
