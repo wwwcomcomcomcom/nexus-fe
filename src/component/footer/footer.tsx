@@ -18,11 +18,13 @@ export default function Footer() {
         <div className="flex ">
           <a className="flex cursor-pointer">
             <DiscordIcon className="w-8 mt-2" />
-            <p className="pr-10 text-sm mt-2.5 ml-1">@depressedpatient</p>
+            <p className="pr-10 text-sm mt-2.5 ml-1 text-[#565656]">
+              @depressedpatient
+            </p>
           </a>
           <a className="cursor-pointer flex" onClick={InquiryInstagram}>
             <InstagramIcon className="w-8 mt-2" />
-            <p className="text-sm mt-2.5 ml-1">@semin._2</p>
+            <p className="text-sm mt-2.5 ml-1 text-[#565656]">@semin._2</p>
           </a>
         </div>
       </div>
