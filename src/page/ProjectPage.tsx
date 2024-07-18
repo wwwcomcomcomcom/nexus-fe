@@ -13,16 +13,16 @@ function ProjectPage(/*props: DivProps*/) {
         <div className="relative ">
           <GreenTopBox className="absolute top-[-70px] ml-64 z-10 h-auto w-[30%]" />
           <div className="absolute top-[100px] left-[300px] z-30 flex items-center space-x-4 ">
-            <a className="grid text-[#757575] text-sm">
-              NEXUS 안의 NEXUS ?? 뿌슝빠슝
-            </a>
             <h1 className="inline-block gird text-5xl font-extrabold bg-white p-4 px-6 rounded-full border-[#F1F1F1] border-[1px] shadow-lg">
               NEXUS
             </h1>
-            <span className="bg-green-500 text-white py-2 px-4 rounded-full grid">
+            <span className="bg-green-500 text-white py-2 px-4 rounded-full ">
               진행중
             </span>
           </div>
+          <a className="grid text-[#757575] text-sm">
+            NEXUS 안의 NEXUS ?? 뿌슝빠슝
+          </a>
           <section className="block bg-[#F4F9FF] rounded-l-3xl ml-[25%] align-start py-28 pl-[20%] max-h-[70vh] overflow-y-auto z-50">
             <h2 className="text-xs pb-7 pt-1 text-[#565656] z-20">
               프로젝트 내용
