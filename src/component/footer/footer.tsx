@@ -16,7 +16,7 @@ export default function Footer() {
           </p>
         </div>
         <div className="flex ">
-          <a className="flex cursor-pointer">
+          <a className="flex">
             <DiscordIcon className="w-8 mt-2" />
             <p className="pr-10 text-sm mt-2.5 ml-1 text-[#565656]">
               @depressedpatient
