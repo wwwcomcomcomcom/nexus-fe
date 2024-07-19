@@ -7,11 +7,11 @@ export default function Footer() {
   };
 
   return (
-    <footer className="flex items-center justify-center w-full p-4 px-10">
+    <footer className="flex items-center justify-center w-full py-4 xs:px-10">
       <div className="border-t border-[#E4E4E4] w-full flex place-content-between">
-        <div className="flex">
+        <div className="flex max-xs:px-4">
           <p className="text-xl pt-2 pr-10">NEXUS</p>
-          <p className="text-sm text-center text-[#565656] pt-3">
+          <p className="text-sm text-center text-[#565656] pt-3 max-md:hidden">
             Copyright 2024 NEXUS. All Rights Reserved
           </p>
         </div>
@@ -22,7 +22,10 @@ export default function Footer() {
               @depressedpatient
             </p>
           </a>
-          <a className="cursor-pointer flex" onClick={InquiryInstagram}>
+          <a
+            className="cursor-pointer flex max-sm:hidden"
+            onClick={InquiryInstagram}
+          >
             <InstagramIcon className="w-8 mt-2" />
             <p className="text-sm mt-2.5 ml-1 text-[#565656]">@semin._2</p>
           </a>
