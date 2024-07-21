@@ -8,7 +8,8 @@ import ProfilePage from "./page/ProfilePage.tsx";
 import ProjectListPage from "./page/ProjectListPage.tsx";
 import Signup from "./page/Signup.tsx";
 import CreateProjectPage from "./page/CreateProjectPage.tsx";
-import PostsPage from "./page/PostListPage.tsx";
+import PostListPage from "./page/PostListPage.tsx";
+import PostPage from "./page/PostPage.tsx";
 
 function App() {
   return (
@@ -20,8 +21,9 @@ function App() {
             <Route path="/projects" element={<ProjectListPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/project/:id/" element={<ProjectPage />} />
+            <Route path="/post/:id/" element={<PostPage />} />
             <Route path="/createProject" element={<CreateProjectPage />} />
-            <Route path="/posts" element={<PostsPage />} />
+            <Route path="/posts" element={<PostListPage />} />
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
