@@ -20,9 +20,13 @@ export default function Header() {
           <h1 className="font-bold text-xl">Nexus</h1>
         </div>
         <div className="flex items-center justify-center space-x-8 grow">
-          {navigations.map((nav) => {
+          {navigations.map((nav, i) => {
             let style = "font-semibold";
-            if (window.location.pathname === nav.path)
+            if (
+              window.location.pathname === nav.path ||
+              (i === 2 && window.location.pathname.startsWith("/post")) ||
+              (i === 1 && window.location.pathname.startsWith("/project"))
+            )
               style += " !font-bold text-blue-500";
             return (
               <button
