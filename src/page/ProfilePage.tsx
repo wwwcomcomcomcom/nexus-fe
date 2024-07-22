@@ -12,10 +12,21 @@ export default function ProfilePage() {
       <div className="flex flex-col items-center space-x-4 grow basis-0 bg-[url('profile-bg.svg')]">
         <div className="flex flex-row w-full">
           <div className="grow flex items-center justify-center">
-            <div className="flex flex-col">
-              <h1 className="text-2xl">FrontEnd</h1>
+            <div className="flex flex-col pt-10">
+              <h1 className="text-3xl">FrontEnd</h1>
+              <h1 className="text-3xl font-extrabold pt-1">송재욱</h1>
               <h1 className="text-2xl font-bold">{user.name as string}</h1>
-              <p className="text-gray-500 mt-10">한마디 ㅋ</p>
+              <p className="text-gray-500 my-9">한마디 ㅋ</p>
+              <div className="flex gap-6 text-center">
+                <div className="flex flex-col">
+                  <a className="font-bold">Follower</a>
+                  <a>514</a>
+                </div>
+                <div className="flex flex-col">
+                  <a className="font-bold">Following</a>
+                  <a>519</a>
+                </div>
+              </div>
             </div>
           </div>
           <div className="grow">
