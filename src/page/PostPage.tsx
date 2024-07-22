@@ -21,7 +21,7 @@ function PostPage() {
         <LeftArrowIcon />
       </div>
       <div className="mx-[10%] items-center">
-        <div className="flex justify-center rounded-[40px] shadow-xl bg-white border z-50  px-16 w-[80%] ml-36 pt-[29rem] pb-[6rem] translate-y-16">
+        <div className="flex justify-center rounded-[40px] shadow-xl bg-white border border-[#F2F2F2] z-50  px-16 w-[80%] ml-36 pt-[29rem] pb-[6rem] translate-y-16">
           <p className="">
             임시로 적는 게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
             게시글임시로 적는 게시글임시로 적는 게시글임시로 적는 게시글임시로
