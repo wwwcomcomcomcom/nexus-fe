@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import GreenTopBox from "../component/elements/greenTopBox";
 import LeftArrowIcon from "../component/elements/LeftArrowIcon";
-import PostUnderGreenBox from "../component/elements/PostUnderGreenBox";
+import GreenBottomBox from "../component/elements/GreenBottomBox";
 
 function PostPage() {
   const param = useParams();
@@ -39,7 +39,7 @@ function PostPage() {
               게시글 게시글임시로 적는 게시글 게시글임시로 적는 게시글
               게시글임시로 적는 게시글
             </p>
-            <PostUnderGreenBox />
+            <GreenBottomBox />
           </div>
         </div>
         {/* <div className="grid gap-4 px-4 md:gap-8 md:px-6 w-[40%] z-0 relative ">
