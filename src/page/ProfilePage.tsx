@@ -51,7 +51,7 @@ export default function ProfilePage() {
             ))}
           </div>
         </div>
-        <div className="pb-14">
+        <div className="py-14">
           <h1 className="text-2xl font-bold pb-3">Posts</h1>
           <div className="grid gap-y-4 h-[24rem] overflow-y-scroll scrollbar-hide p-4 w-[80%]">
             {getAllPostEntity(10).map((post) => (
