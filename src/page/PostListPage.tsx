@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../shared/userStore";
 import PostList from "../component/PostList";
 
-export default function PostsPage() {
+export default function PostListPage() {
   const userStore = useUserStore();
   const navigate = useNavigate();
 

@@ -2,7 +2,9 @@ import axios from "axios";
 import { useUserStore } from "./userStore";
 import { useEffect } from "react";
 
-export const ApiBaseUrl = "http://localhost:5173";
+export const ApiBaseUrl =
+  // "https://port-0-nexus-avengers-lyma34av040a79c3.sel5.cloudtype.app";
+  window.location.origin;
 
 export function useUpdatedUserStore() {
   const store = useUserStore();
