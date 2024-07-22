@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import GreenTopBox from "../component/elements/greenTopBox";
 import LeftArrowIcon from "../component/elements/LeftArrowIcon";
 import GreenBottomBox from "../component/elements/GreenBottomBox";
+import PencilIcon from "../component/icons/PencilIcon";
 
 function PostPage() {
   const param = useParams();
@@ -17,8 +18,9 @@ function PostPage() {
         </span>
       </div>
       <main className="flex flex-col pt-10 items-center">
-        <div className="w-4/5">
-          <div className="bg-white border border-[#F2F2F2] rounded-xl w-full shadow-xl">
+        <div className="w-[700px] h-[700px] rounded-full absolute bg-[#FFF5DB] left-0 -z-10 -translate-x-1/2"></div>
+        <div className="w-2/3 flex flex-col">
+          <div className="bg-white border border-[#F2F2F2] rounded-xl w-full shadow-xl mb-24">
             <GreenTopBox className="relative -top-16 -left-16" />
             <p className="mx-16">
               임시로 적는 게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
@@ -39,8 +41,22 @@ function PostPage() {
               게시글 게시글임시로 적는 게시글 게시글임시로 적는 게시글
               게시글임시로 적는 게시글
             </p>
-            <GreenBottomBox />
+            <div className="flex justify-end">
+              <GreenBottomBox className=" translate-x-8 translate-y-24" />
+            </div>
           </div>
+          <label
+            className="w-full flex mt-10 border border-[#F2F2F2] rounded-full px-6 py-1 shadow-md"
+            htmlFor="commentInput"
+          >
+            <input
+              id="commentInput"
+              type="text"
+              placeholder="댓글을 입력해!"
+              className="grow outline-none"
+            ></input>
+            <PencilIcon className="w-6" />
+          </label>
         </div>
         {/* <div className="grid gap-4 px-4 md:gap-8 md:px-6 w-[40%] z-0 relative ">
           <div className="flex bg-[#FFF5DB] w-[700px] h-[700px] rounded-full z-0 absolute top-56 -translate-x-64"></div>
