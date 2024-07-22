@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import GreenTopBox from "../component/elements/greenTopBox";
+import LeftArrowIcon from "../component/elements/LeftArrowIcon";
 
 function PostPage() {
   const param = useParams();
@@ -7,10 +8,18 @@ function PostPage() {
     window.location.href = "/notfound";
   }
 
+  const handleClick = () => {
+    window.history.back();
+  };
+
   return (
     <main>
-      <div>Post Page</div>
-      <GreenTopBox />
+      <div className="mx-[5%] py-10 cursor-pointer" onClick={handleClick}>
+        <LeftArrowIcon />
+      </div>
+      <div className="mx-[10%]">
+        <GreenTopBox />
+      </div>
     </main>
   );
 }
