@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import GreenTopBox from "../component/elements/greenTopBox";
+import LeftArrowIcon from "../component/elements/LeftArrowIcon";
 
 function ProjectPage(/*props: DivProps*/) {
   const param = useParams();
@@ -9,6 +10,9 @@ function ProjectPage(/*props: DivProps*/) {
 
   return (
     <main className="flex flex-col pt-20">
+      <div className="">
+        <LeftArrowIcon className="w-3 h-auto" />
+      </div>
       <div className="w-full h-[70vh] flex justify-end">
         <div className="md:w-2/3 w-full h-full bg-[#F4F9FF] rounded-3xl relative">
           <div className="absolute w-full h-fit flex justify-start items-start -translate-x-10 -translate-y-10 max-md:translate-x-0">
