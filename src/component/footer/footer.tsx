@@ -7,7 +7,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="flex items-center justify-center w-full pt-4 pb-2 xs:px-10">
+    <footer className="flex items-center justify-center w-full pt-4 pb-2 xs:px-10 z-50">
       <div className="border-t border-[#E4E4E4] w-full flex place-content-between">
         <div className="flex max-xs:px-4">
           <p className="text-xl pt-2 pr-10">NEXUS</p>
