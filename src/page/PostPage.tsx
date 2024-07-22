@@ -14,6 +14,8 @@ function PostPage() {
 
   return (
     <main>
+      <div className="flex bg-[#FFF5DB] w-[30%] h-96 rounded-full"></div>
+
       <div className="mx-[5%] py-10 cursor-pointer" onClick={handleClick}>
         <LeftArrowIcon />
       </div>
