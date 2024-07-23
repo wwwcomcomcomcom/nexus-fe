@@ -13,7 +13,10 @@ function PostPage() {
   return (
     <>
       <div className="p-8">
-        <span className="inline-block p-2" onClick={() => navigate(-1)}>
+        <span
+          className="inline-block p-2 cursor-pointer "
+          onClick={() => navigate(-1)}
+        >
           <LeftArrowIcon className="w-3 h-auto" />
         </span>
       </div>
