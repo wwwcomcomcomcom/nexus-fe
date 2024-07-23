@@ -43,7 +43,13 @@ function PostPage() {
               게시글임시로 적는 게시글 게시글
             </p>
             <div className="flex justify-end">
-              <PostGreenBottomBox className=" translate-x-8 translate-y-16 w-[50%]" />
+              <div className="translate-x-8 translate-y-16 w-[50%] relative h-36 flex justify-center items-center">
+                <PostGreenBottomBox className="absolute w-full" />
+                <div className="w-full flex gap-7 items-center content-center justify-center ml-3">
+                  <div className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative"></div>
+                  <div className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative"></div>
+                </div>
+              </div>
             </div>
           </div>
           <label
