@@ -1,13 +1,11 @@
 export default function PostGreenTopBox(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      width="959"
-      height="550"
       viewBox="0 0 959 550"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       style={{
-        filter: "drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.25))",
+        filter: "drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.15))",
       }}
       {...props}
     >
