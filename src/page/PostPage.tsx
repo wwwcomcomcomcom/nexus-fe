@@ -21,7 +21,7 @@ function PostPage() {
         <div className="w-[700px] h-[700px] rounded-full absolute bg-[#FFF5DB] left-0 -z-10 -translate-x-1/2"></div>
         <div className="w-2/3 flex flex-col">
           <div className="bg-white border border-[#F2F2F2] rounded-xl w-full shadow-xl mb-24">
-            <PostGreenTopBox className="relative -top-16 -left-16" />
+            <PostGreenTopBox className="relative -top-32 -left-16 w-[70%]" />
             <p className="mx-16">
               임시로 적는 게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
               게시글임시로 적는 게시글임시로 적는 게시글임시로 적는 게시글임시로
