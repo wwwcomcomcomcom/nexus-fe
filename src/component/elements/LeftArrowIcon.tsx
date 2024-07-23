@@ -1,8 +1,8 @@
 export default function LeftArrowIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      width="19"
-      height="36"
+      width="10"
+      height="20"
       viewBox="0 0 19 36"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
