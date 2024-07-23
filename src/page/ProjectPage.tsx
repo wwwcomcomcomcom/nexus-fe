@@ -20,8 +20,14 @@ function ProjectPage(/*props: DivProps*/) {
           imgUrl: "https://avatars.githubusercontent.com/u/164720957?v=4",
           role: "FrontEnd",
         }}
-        className=""
       />
+      {/* {getAllProjectEntity(10).map((project) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              className="h-[8rem]"
+            />
+          ))} */}
       <div className="p-8">
         <span
           className="inline-block p-2 cursor-pointer "
