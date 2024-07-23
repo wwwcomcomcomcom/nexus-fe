@@ -19,10 +19,10 @@ function PostPage() {
       </div>
       <main className="flex flex-col pt-10 items-center">
         <div className="w-[700px] h-[700px] rounded-full absolute bg-[#FFF5DB] left-0 -z-10 -translate-x-1/2"></div>
-        <div className="w-2/3 flex flex-col">
-          <div className="bg-white border border-[#F2F2F2] rounded-xl w-full shadow-xl mb-24">
-            <PostGreenTopBox className="relative -top-32 -left-16 w-[70%]" />
-            <p className="mx-16">
+        <div className="w-1/2 flex flex-col">
+          <div className="bg-white border border-[#F2F2F2] rounded-3xl w-full shadow-xl mb-24">
+            <PostGreenTopBox className="relative -top-9 -left-8 w-[75%]" />
+            <p className="mx-16 mt-3">
               임시로 적는 게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
               게시글임시로 적는 게시글임시로 적는 게시글임시로 적는 게시글임시로
               적는 게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
@@ -43,7 +43,7 @@ function PostPage() {
               게시글임시로 적는 게시글 게시글
             </p>
             <div className="flex justify-end">
-              <PostGreenBottomBox className=" translate-x-8 translate-y-24" />
+              <PostGreenBottomBox className=" translate-x-8 translate-y-16 w-[50%]" />
             </div>
           </div>
           <label
