@@ -8,6 +8,9 @@ export default function ProjectGreenTopBox(
       viewBox="0 0 625 458"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{
+        filter: "drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.15))",
+      }}
       {...props}
     >
       <path
