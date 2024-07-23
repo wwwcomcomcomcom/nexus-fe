@@ -1,16 +1,17 @@
 export default function LeftArrowIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      width="12"
-      height="22"
-      viewBox="0 0 12 22"
+      width="10"
+      height="20"
+      viewBox="0 0 19 36"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
       <path
-        d="M11 21L1.70711 11.7071C1.31658 11.3166 1.31658 10.6834 1.70711 10.2929L11 1.00001"
-        stroke="black"
+        d="M18 35L1.70711 18.7071C1.31658 18.3166 1.31658 17.6834 1.70711 17.2929L18 1.00001"
+        stroke="#343434"
+        stroke-width="2"
         stroke-linecap="round"
       />
     </svg>
