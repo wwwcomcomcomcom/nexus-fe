@@ -1,5 +1,6 @@
 import { Status } from "../component/projectCard/projectStatus.ts";
 import { PostEntity } from "../entity/PostEntity.ts";
+import { ProfileEntity } from "../entity/ProfileEntity.ts";
 import { ProjectEntity } from "../entity/ProjectEntity.ts";
 // import axios from 'axios';
 
@@ -26,6 +27,32 @@ export function generateProjectEntity(words?: string[]): ProjectEntity {
     githubUrl: `https://github.com/${words[1]}/${words[2]}`,
   };
   return projectEntity;
+}
+
+// 여기 부분 확인
+export function getAllProfileEntity(
+  numberOfProfiles: number = 10
+): ProfileEntity[] {
+  const result: ProfileEntity[] = [];
+  const allWords = getRandomWords(numberOfProfiles * 13);
+  for (let i = 0; i < numberOfProfiles; i++) {
+    result.push(generateProfileEntity(allWords.slice(i * 13)));
+  }
+  return result;
+}
+
+// 여기 부분 확인
+export function generateProfileEntity(words?: string[]): ProfileEntity {
+  if (!words) {
+    words = getRandomWords(13);
+  }
+  const profileEntity: ProfileEntity = {
+    name: words[0],
+    url: `https://github.com/${words[1]}`,
+    imgUrl: `https://avatars.githubusercontent.com/u/${words[2]}`,
+    role: words[3],
+  };
+  return profileEntity;
 }
 
 export function getAllPostEntity(numberOfPosts: number = 10): PostEntity[] {

@@ -2,17 +2,19 @@ import { useNavigate, useParams } from "react-router-dom";
 import LeftArrowIcon from "../component/elements/LeftArrowIcon";
 import ProjectGreenTopBox from "../component/elements/ProjectGreenTopBox";
 import ProfileCard from "../component/projectCard/ProfileCard";
+import { getAllProfileEntity } from "../shared/apiMockup";
 
 function ProjectPage(/*props: DivProps*/) {
   const param = useParams();
+  const navigate = useNavigate();
+
   if (param.id === undefined) {
     window.location.href = "/notfound";
   }
 
-  const navigate = useNavigate();
-
   return (
     <main className="flex flex-col gap-24">
+      {/* 여기 부분 확인 */}
       <ProfileCard
         profile={{
           name: "정효주",
@@ -21,13 +23,10 @@ function ProjectPage(/*props: DivProps*/) {
           role: "FrontEnd",
         }}
       />
-      {/* {getAllProjectEntity(10).map((project) => (
-            <ProjectCard
-              key={project.id}
-              project={project}
-              className="h-[8rem]"
-            />
-          ))} */}
+      {/* {getAllProfileEntity(10).map((project) => (
+        <ProfileCard profile={project} className="h-[8rem]" />
+      ))} */}
+
       <div className="p-8">
         <span
           className="inline-block p-2 cursor-pointer "
