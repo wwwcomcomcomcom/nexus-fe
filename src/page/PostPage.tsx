@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
-import GreenTopBox from "../component/elements/greenTopBox";
 import LeftArrowIcon from "../component/elements/LeftArrowIcon";
-import GreenBottomBox from "../component/elements/GreenBottomBox";
 import PencilIcon from "../component/icons/PencilIcon";
+import PostGreenTopBox from "../component/elements/PostGreenTopBox";
+import PostGreenBottomBox from "../component/elements/PostGreenBottomBox";
 
 function PostPage() {
   const param = useParams();
@@ -21,7 +21,7 @@ function PostPage() {
         <div className="w-[700px] h-[700px] rounded-full absolute bg-[#FFF5DB] left-0 -z-10 -translate-x-1/2"></div>
         <div className="w-2/3 flex flex-col">
           <div className="bg-white border border-[#F2F2F2] rounded-xl w-full shadow-xl mb-24">
-            <GreenTopBox className="relative -top-16 -left-16" />
+            <PostGreenTopBox className="relative -top-16 -left-16" />
             <p className="mx-16">
               임시로 적는 게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
               게시글임시로 적는 게시글임시로 적는 게시글임시로 적는 게시글임시로
@@ -39,10 +39,11 @@ function PostPage() {
               게시글 게시글임시로 적는 게시글 게시글임시로 적는 게시글
               게시글임시로 적는 게시글 게시글임시로 적는 게시글임시로 적는
               게시글 게시글임시로 적는 게시글 게시글임시로 적는 게시글
-              게시글임시로 적는 게시글
+              게시글임시로 적는 게시글임시로 적는 게시글임시로 적는 게시글
+              게시글임시로 적는 게시글 게시글
             </p>
             <div className="flex justify-end">
-              <GreenBottomBox className=" translate-x-8 translate-y-24" />
+              <PostGreenBottomBox className=" translate-x-8 translate-y-24" />
             </div>
           </div>
           <label
