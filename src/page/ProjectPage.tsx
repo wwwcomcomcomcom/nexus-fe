@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LeftArrowIcon from "../component/elements/LeftArrowIcon";
 import ProjectGreenTopBox from "../component/elements/ProjectGreenTopBox";
 
@@ -8,9 +8,11 @@ function ProjectPage(/*props: DivProps*/) {
     window.location.href = "/notfound";
   }
 
+  const navigate = useNavigate();
+
   return (
-    <main className="flex flex-col pt-20">
-      <div className="">
+    <main className="flex flex-col pt-20 cursor-pointer">
+      <div className="" onClick={() => navigate(-1)}>
         <LeftArrowIcon className="w-3 h-auto" />
       </div>
       <div className="w-full h-[70vh] flex justify-end">
