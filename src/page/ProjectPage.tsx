@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import LeftArrowIcon from "../component/elements/LeftArrowIcon";
 import ProjectGreenTopBox from "../component/elements/ProjectGreenTopBox";
+import ProfileCard from "../component/projectCard/ProfileCard";
 
 function ProjectPage(/*props: DivProps*/) {
   const param = useParams();
@@ -12,6 +13,14 @@ function ProjectPage(/*props: DivProps*/) {
 
   return (
     <main className="flex flex-col gap-24">
+      <ProfileCard
+        profile={{
+          id: "효주 아이디인뎅",
+          name: "효준뎅",
+          url: "https://github.com/jhj080802",
+          role: "front end",
+        }}
+      />
       <div className="p-8">
         <span
           className="inline-block p-2 cursor-pointer "
