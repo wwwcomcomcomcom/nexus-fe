@@ -15,11 +15,12 @@ function ProjectPage(/*props: DivProps*/) {
     <main className="flex flex-col gap-24">
       <ProfileCard
         profile={{
-          id: "효주 아이디인뎅",
-          name: "효준뎅",
+          name: "정효주",
           url: "https://github.com/jhj080802",
-          role: "front end",
+          imgUrl: "https://avatars.githubusercontent.com/u/164720957?v=4",
+          role: "Front End",
         }}
+        className=""
       />
       <div className="p-8">
         <span
