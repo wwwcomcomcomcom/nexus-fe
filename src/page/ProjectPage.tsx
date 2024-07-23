@@ -11,9 +11,14 @@ function ProjectPage(/*props: DivProps*/) {
   const navigate = useNavigate();
 
   return (
-    <main className="flex flex-col pt-20 cursor-pointer">
-      <div className="" onClick={() => navigate(-1)}>
-        <LeftArrowIcon className="w-3 h-auto" />
+    <main className="flex flex-col">
+      <div className="p-8">
+        <span
+          className="inline-block p-2 cursor-pointer "
+          onClick={() => navigate(-1)}
+        >
+          <LeftArrowIcon className="w-3 h-auto" />
+        </span>
       </div>
       <div className="w-full h-[70vh] flex justify-end">
         <div className="md:w-2/3 w-full h-full bg-[#F4F9FF] rounded-3xl relative">
