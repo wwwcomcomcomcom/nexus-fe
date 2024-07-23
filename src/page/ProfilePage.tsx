@@ -18,11 +18,11 @@ export default function ProfilePage() {
               <h1 className="text-2xl font-bold">{user.name as string}</h1>
               <p className="text-gray-500 my-9">한마디 ㅋ</p>
               <div className="flex gap-6 text-center">
-                <div className="flex flex-col">
+                <div className="flex flex-col cursor-pointer">
                   <a className="font-bold">Follower</a>
                   <a>514</a>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col cursor-pointer">
                   <a className="font-bold">Following</a>
                   <a>519</a>
                 </div>
@@ -31,7 +31,7 @@ export default function ProfilePage() {
           </div>
           <div className="grow">
             <img
-              className="w-64 h-64 rounded-full shadow-inner"
+              className="w-64 h-64 rounded-full shadow-inner translate-x-3"
               src={user.profileImageUrl as string}
               alt="profile"
             />
