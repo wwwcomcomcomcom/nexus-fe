@@ -18,7 +18,7 @@ function ProjectPage(/*props: DivProps*/) {
           name: "정효주",
           url: "https://github.com/jhj080802",
           imgUrl: "https://avatars.githubusercontent.com/u/164720957?v=4",
-          role: "Front End",
+          role: "FrontEnd",
         }}
         className=""
       />
