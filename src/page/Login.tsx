@@ -76,7 +76,7 @@ export default function Login() {
         <Logo className="py-3 mx-auto w-64 h-64" />
         <a
           className="space-y-4 block"
-          href={`https://github.com/login/oauth/authorize?client_id=${GithubApi.GithubOauthClientId}`}
+          href={`https://github.com/login/oauth/authorize?client_id=${GithubApi.GithubOauthClientId}&redirect_uri=${window.location.origin}/login?github`}
         >
           <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border transition-colors duration-300 hover:bg-black hover:text-white active:bg-gray-700 active:text-gray-300 h-10 px-4 py-2 w-full">
             <svg
