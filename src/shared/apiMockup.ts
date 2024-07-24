@@ -47,10 +47,10 @@ export function generateProfileEntity(words?: string[]): ProfileEntity {
     words = getRandomWords(13);
   }
   const profileEntity: ProfileEntity = {
-    name: words[0],
-    url: `https://github.com/${words[1]}`,
-    imgUrl: `https://avatars.githubusercontent.com/u/${words[2]}`,
-    role: words[3],
+    name: "정효주",
+    url: "https://github.com/jhj080802",
+    imgUrl: "https://avatars.githubusercontent.com/u/164720957?v=4",
+    role: "FrontEnd",
   };
   return profileEntity;
 }
