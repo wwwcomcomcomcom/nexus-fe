@@ -28,8 +28,8 @@ function ProjectPage(/*props: DivProps*/) {
           <div className="absolute w-full h-fit flex justify-start items-start -translate-x-10 -translate-y-10 max-md:translate-x-0">
             <ProjectGreenTopBox className="w-1/2 max-w-[30rem] h-fit max-md:w-1/2" />
             <div className="grid grid-cols-2 gap-6 translate-y-28 translate-x-16">
-              {/* 임시로 profile card 갯수 5개로 지정해둔 상태   */}
-              {getAllProfileEntity(5).map((profile) => (
+              {/* 임시로 profile card 갯수 6개로 지정해둔 상태   */}
+              {getAllProfileEntity(6).map((profile) => (
                 <ProfileCard profile={profile} className="h-[8rem]" />
               ))}
             </div>
