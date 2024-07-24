@@ -2,7 +2,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import LeftArrowIcon from "../component/elements/LeftArrowIcon";
 import ProjectGreenTopBox from "../component/elements/ProjectGreenTopBox";
 import ProfileCard from "../component/projectCard/ProfileCard";
-import { getAllProfileEntity } from "../shared/apiMockup";
+import { getAllNededEntity, getAllProfileEntity } from "../shared/apiMockup";
+import NeedCard from "../component/projectCard/NeedCard";
 
 function ProjectPage(/*props: DivProps*/) {
   const param = useParams();
@@ -14,6 +15,12 @@ function ProjectPage(/*props: DivProps*/) {
 
   return (
     <main className="flex flex-col gap-24">
+      <div className="grid grid-cols-2">
+        {/* 임시*/}
+        {getAllNededEntity(2).map((need) => (
+          <NeedCard need={need} className="h-[8rem]" />
+        ))}
+      </div>
       <div className="p-8">
         <span
           className="inline-block p-2 cursor-pointer "
