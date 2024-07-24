@@ -7,7 +7,7 @@ interface NeedCardProps extends DivProps {
 
 export default function NeedCard(props: NeedCardProps) {
   return (
-    <div className="bg-white rounded-3xl shadow-md w-fit p-6 ">
+    <div className="bg-white rounded-3xl shadow-md w-fit p-6 pr-20">
       <div className="grid gap-1">
         <div className="grid grid-flow-col justify-start">
           <div className="flex">모집 분야</div>
@@ -19,7 +19,7 @@ export default function NeedCard(props: NeedCardProps) {
         </div>
         <div>
           <div>지원 자격</div>
-          // 스택 벳지 넣는 곳<div></div>
+          <div>스택 벳지 넣는 곳</div>
         </div>
       </div>
     </div>
