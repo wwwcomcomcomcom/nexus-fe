@@ -7,7 +7,7 @@ interface ProfileCardProps extends DivProps {
 
 export default function ProfileCard(props: ProfileCardProps) {
   return (
-    <div className="flex w-fit h-16 relative rounded-full shadow-lg">
+    <div className="flex w-fit h-16 relative rounded-full bg-white shadow-lg">
       <img
         className="flex rounded-full h-full w-auto cursor-pointer"
         onClick={() => (window.location.href = `${props.profile.url}`)}
