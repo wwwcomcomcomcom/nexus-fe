@@ -1,4 +1,5 @@
 import { Status } from "../component/projectCard/projectStatus.ts";
+import { NeedEntity } from "../entity/NeedEntity.ts";
 import { PostEntity } from "../entity/PostEntity.ts";
 import { ProfileEntity } from "../entity/ProfileEntity.ts";
 import { ProjectEntity } from "../entity/ProjectEntity.ts";
@@ -53,6 +54,28 @@ export function generateProfileEntity(words?: string[]): ProfileEntity {
     role: "FrontEnd",
   };
   return profileEntity;
+}
+
+//여기 부분 확인
+export function getAllNededEntity(numberOfNeeds: number = 10): NeedEntity[] {
+  const result: NeedEntity[] = [];
+  const allWords = getRandomWords(numberOfNeeds * 13);
+  for (let i = 0; i < numberOfNeeds; i++) {
+    result.push(generateNeedEntity(allWords.slice(i * 13)));
+  }
+  return result;
+}
+
+// 여기 부분 확인
+export function generateNeedEntity(words?: string[]): NeedEntity {
+  if (!words) {
+    words = getRandomWords(13);
+  }
+  const NeedEntity: NeedEntity = {
+    role: "FrontEnd",
+    number: "2",
+  };
+  return NeedEntity;
 }
 
 export function getAllPostEntity(numberOfPosts: number = 10): PostEntity[] {
