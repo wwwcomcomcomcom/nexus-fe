@@ -22,11 +22,13 @@ function ProjectPage(/*props: DivProps*/) {
           <LeftArrowIcon className="w-3 h-auto" />
         </span>
       </div>
+      {/* profile card 갯수에 맞도록 파랑색 배경 늘려야 함  */}
       <div className="w-full h-[70vh] flex justify-end">
-        <div className="md:w-2/3 w-full h-full bg-[#F4F9FF] rounded-[3rem] relative rounded-r-none">
+        <div className="md:w-3/4 w-full h-full bg-[#F4F9FF] rounded-[3rem] relative rounded-r-none">
           <div className="absolute w-full h-fit flex justify-start items-start -translate-x-10 -translate-y-10 max-md:translate-x-0">
             <ProjectGreenTopBox className="w-1/2 max-w-[30rem] h-fit max-md:w-1/2" />
-            <div className="grid grid-cols-2 gap-6 translate-y-28">
+            <div className="grid grid-cols-2 gap-6 translate-y-28 translate-x-16">
+              {/* 임시로 profile card 갯수 5개로 지정해둔 상태   */}
               {getAllProfileEntity(5).map((profile) => (
                 <ProfileCard profile={profile} className="h-[8rem]" />
               ))}
