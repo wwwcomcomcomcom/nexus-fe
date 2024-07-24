@@ -14,19 +14,6 @@ function ProjectPage(/*props: DivProps*/) {
 
   return (
     <main className="flex flex-col gap-24">
-      {/* 여기 부분 확인 */}
-      <ProfileCard
-        profile={{
-          name: "정효주",
-          url: "https://github.com/jhj080802",
-          imgUrl: "https://avatars.githubusercontent.com/u/164720957?v=4",
-          role: "FrontEnd",
-        }}
-      />
-      {/* {getAllProfileEntity(10).map((project) => (
-        <ProfileCard profile={project} className="h-[8rem]" />
-      ))} */}
-
       <div className="p-8">
         <span
           className="inline-block p-2 cursor-pointer "
@@ -39,6 +26,11 @@ function ProjectPage(/*props: DivProps*/) {
         <div className="md:w-2/3 w-full h-full bg-[#F4F9FF] rounded-[3rem] relative rounded-r-none">
           <div className="absolute w-full h-fit flex justify-start items-start -translate-x-10 -translate-y-10 max-md:translate-x-0">
             <ProjectGreenTopBox className="w-1/2 max-w-[30rem] h-fit max-md:w-1/2" />
+            <div className="grid grid-cols-2 gap-6 translate-y-28">
+              {getAllProfileEntity(5).map((profile) => (
+                <ProfileCard profile={profile} className="h-[8rem]" />
+              ))}
+            </div>
             <div className="absolute text-[#757575] top-[25%] left-[8%]">
               NEXUS 안에 NEXUS ?? 뿌슝빠슝
             </div>
