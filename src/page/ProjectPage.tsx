@@ -15,12 +15,6 @@ function ProjectPage(/*props: DivProps*/) {
 
   return (
     <main className="flex flex-col gap-24">
-      <div className="grid grid-cols-2">
-        {/* 임시*/}
-        {getAllNededEntity(2).map((need) => (
-          <NeedCard need={need} className="h-[8rem]" />
-        ))}
-      </div>
       <div className="p-8">
         <span
           className="inline-block p-2 cursor-pointer "
@@ -34,13 +28,21 @@ function ProjectPage(/*props: DivProps*/) {
         <div className="md:w-3/4 w-full h-full bg-[#F4F9FF] rounded-[3rem] relative rounded-r-none">
           <div className="absolute w-full h-fit flex justify-start items-start -translate-x-10 -translate-y-10 max-md:translate-x-0">
             <ProjectGreenTopBox className="w-1/2 max-w-[30rem] h-fit max-md:w-1/2" />
-            <div className="grid grid-cols-2 gap-6 translate-y-28 translate-x-16">
-              {/* 임시로 profile card 갯수 6개로 지정해둔 상태   */}
-              {getAllProfileEntity(6).map((profile) => (
-                <ProfileCard profile={profile} className="h-[8rem]" />
-              ))}
+            <div className="translate-y-28 translate-x-16 ">
+              <div className="grid grid-cols-2 mb-8">
+                {/* 임시*/}
+                {getAllNededEntity(2).map((need) => (
+                  <NeedCard need={need} className="h-[8rem]" />
+                ))}
+              </div>
+              <div className="grid grid-cols-2 gap-6">
+                {/* 임시로 profile card 갯수 4개로 지정해둔 상태   */}
+                {getAllProfileEntity(4).map((profile) => (
+                  <ProfileCard profile={profile} className="h-[8rem]" />
+                ))}
+              </div>
             </div>
-            <div className="absolute text-[#757575] top-[25%] left-[8%]">
+            <div className="text-sm absolute text-[#757575] top-[25%] left-[8%]">
               NEXUS 안에 NEXUS ?? 뿌슝빠슝
             </div>
             <div className="absolute bg-white rounded-full text-6xl font-extrabold py-5 px-10 translate-y-1/2 -translate-x-[80%] shadow-xl">
