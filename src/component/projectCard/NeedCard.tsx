@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { NeedEntity } from "../../entity/NeedEntity";
 import { DivProps } from "../../utils/typedef";
 import JavascriptBadge from "../badge/JavascriptBadge";
