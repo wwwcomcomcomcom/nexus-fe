@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import * as GithubApi from "../shared/githubApi.ts";
 import GauthIcon from "../component/icons/GauthIcon.tsx";
 import GithubIcon from "../component/icons/GithubIcon.tsx";
+import LeftArrowIcon from "../component/elements/LeftArrowIcon.tsx";
 
 export default function Signup() {
   const [query] = useSearchParams();
@@ -30,7 +31,13 @@ export default function Signup() {
 
   return (
     <>
-      <a
+      <div
+        className="inline-flex items-center justify-center cursor-pointer top-7 ml-10 p-3 m-2 absolute"
+        onClick={() => navigate(-1)}
+      >
+        <LeftArrowIcon />
+      </div>
+      {/* <a
         className="inline-flex items-center justify-center rounded-full bg-gray-100 p-3 m-2 absolute"
         href="../"
       >
@@ -49,7 +56,7 @@ export default function Signup() {
           <path d="m12 19-7-7 7-7"></path>
           <path d="M19 12H5"></path>
         </svg>
-      </a>
+      </a> */}
       <div className="mx-auto max-w-md space-y-6 py-12">
         <div className="text-center">
           <h1 className="text-3xl font-bold">회원가입</h1>
