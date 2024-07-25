@@ -1,11 +1,16 @@
+import { useState } from "react";
 import { NeedEntity } from "../../entity/NeedEntity";
 import { DivProps } from "../../utils/typedef";
+import JavascriptBadge from "../badge/JavascriptBadge";
+import ReactBadge from "../badge/ReactBadge";
 
 interface NeedCardProps extends DivProps {
   need: NeedEntity;
 }
 
 export default function NeedCard(props: NeedCardProps) {
+  const [needs, setNeeds] = useState<NeedEntity[]>([]);
+
   return (
     <div className="bg-white rounded-3xl shadow-md w-fit p-5 pr-16">
       <div className="grid gap-2">
@@ -23,7 +28,13 @@ export default function NeedCard(props: NeedCardProps) {
         </div>
         <div>
           <div className="text-sm">지원 자격</div>
-          <div className="">스택 벳지 넣는 곳</div>
+          <div className="flex">
+            {/* {needs.map((need) => (
+              <NeedCard need={need} />
+            ))} */}
+            <JavascriptBadge />
+            <ReactBadge />
+          </div>
         </div>
       </div>
     </div>
