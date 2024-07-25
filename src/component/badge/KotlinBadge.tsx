@@ -6,6 +6,9 @@ export default function KotlinBadge(props: React.SVGProps<SVGSVGElement>) {
       viewBox="0 0 109 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      style={{
+        filter: "drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.1))",
+      }}
       {...props}
     >
       <rect width="109" height="40" rx="20" fill="white" />

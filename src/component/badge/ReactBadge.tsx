@@ -7,6 +7,9 @@ export default function ReactBadge(props: React.SVGProps<SVGSVGElement>) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
+      style={{
+        filter: "drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.1))",
+      }}
       {...props}
     >
       <rect width="100" height="40" rx="20" fill="white" />
