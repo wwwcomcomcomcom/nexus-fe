@@ -15,8 +15,6 @@ interface NeedCardProps extends DivProps {
 }
 
 export default function NeedCard(props: NeedCardProps) {
-  const [needs, setNeeds] = useState<NeedEntity[]>([]);
-
   return (
     <div className="bg-white rounded-3xl shadow-md w-fit p-5 pr-16">
       <div className="grid gap-2">
