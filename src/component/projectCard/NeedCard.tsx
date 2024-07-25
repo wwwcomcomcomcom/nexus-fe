@@ -15,9 +15,9 @@ interface NeedCardProps extends DivProps {
 
 export default function NeedCard(props: NeedCardProps) {
   return (
-    <div className="bg-white rounded-3xl shadow-md w-fit p-5 pr-16">
-      <div className="grid gap-2">
-        <div className="grid grid-flow-col justify-start">
+    <div className="bg-white rounded-3xl shadow-md w-[70%] p-5">
+      <div className="w-fit grid gap-2">
+        <div className="grid grid-flow-col justify-start w-fit">
           <div className="flex text-sm">모집 분야</div>
           <div className="flex font-semibold pl-2 text-sm">
             {props.need.role}
@@ -29,27 +29,27 @@ export default function NeedCard(props: NeedCardProps) {
             {props.need.number}인
           </div>
         </div>
-        <div>
-          <div className="text-sm">지원 자격</div>
-          <div className="flex">
+        <div className="">
+          <div className="text-sm pb-2">지원 자격</div>
+          <div className="flex flex-wrap gap-2 ">
             {props.need.stack.map((stack) => {
               switch (stack) {
                 case "Figma":
-                  return <FigmaBadge />;
+                  return <FigmaBadge className=" h-8 w-auto" />;
                 case "Flutter":
-                  return <FlutterBadge />;
+                  return <FlutterBadge className=" h-8 w-auto" />;
                 case "Java":
-                  return <JavaBadge />;
+                  return <JavaBadge className=" h-8 w-auto" />;
                 case "Javascript":
-                  return <JavascriptBadge />;
+                  return <JavascriptBadge className=" h-8 w-auto" />;
                 case "Kotlin":
-                  return <KotlinBadge />;
+                  return <KotlinBadge className=" h-8 w-auto" />;
                 case "React":
-                  return <ReactBadge />;
+                  return <ReactBadge className=" h-8 w-auto" />;
                 case "Spring":
-                  return <SpringBadge />;
+                  return <SpringBadge className=" h-8 w-auto" />;
                 case "Typescript":
-                  return <TypescriptBadge />;
+                  return <TypescriptBadge className=" h-8 w-auto" />;
                 default:
                   return "ERR";
               }
