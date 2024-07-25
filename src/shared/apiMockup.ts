@@ -74,7 +74,7 @@ export function generateNeedEntity(words?: string[]): NeedEntity {
   const NeedEntity: NeedEntity = {
     role: "FrontEnd",
     number: "2",
-    stack: ["Javascript", "React"],
+    stack: ["Javascript", "React", "Java", "Figma"],
   };
   return NeedEntity;
 }
