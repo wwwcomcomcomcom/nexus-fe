@@ -1,6 +1,6 @@
 export interface ProfileEntity {
-  id: string;
   name: string;
   url: string;
+  imgUrl: string;
   role: string;
 }

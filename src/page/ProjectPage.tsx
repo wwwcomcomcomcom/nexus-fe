@@ -2,25 +2,19 @@ import { useNavigate, useParams } from "react-router-dom";
 import LeftArrowIcon from "../component/elements/LeftArrowIcon";
 import ProjectGreenTopBox from "../component/elements/ProjectGreenTopBox";
 import ProfileCard from "../component/projectCard/ProfileCard";
+import { getAllNededEntity, getAllProfileEntity } from "../shared/apiMockup";
+import NeedCard from "../component/projectCard/NeedCard";
 
 function ProjectPage(/*props: DivProps*/) {
   const param = useParams();
+  const navigate = useNavigate();
+
   if (param.id === undefined) {
     window.location.href = "/notfound";
   }
 
-  const navigate = useNavigate();
-
   return (
     <main className="flex flex-col gap-24">
-      <ProfileCard
-        profile={{
-          id: "효주 아이디인뎅",
-          name: "효준뎅",
-          url: "https://github.com/jhj080802",
-          role: "front end",
-        }}
-      />
       <div className="p-8">
         <span
           className="inline-block p-2 cursor-pointer "
@@ -29,11 +23,26 @@ function ProjectPage(/*props: DivProps*/) {
           <LeftArrowIcon className="w-3 h-auto" />
         </span>
       </div>
+      {/* profile card 갯수에 맞도록 파랑색 배경 늘려야 함  */}
       <div className="w-full h-[70vh] flex justify-end">
-        <div className="md:w-2/3 w-full h-full bg-[#F4F9FF] rounded-[3rem] relative rounded-r-none">
+        <div className="md:w-3/4 w-full h-full bg-[#F4F9FF] rounded-[3rem] relative rounded-r-none">
           <div className="absolute w-full h-fit flex justify-start items-start -translate-x-10 -translate-y-10 max-md:translate-x-0">
             <ProjectGreenTopBox className="w-1/2 max-w-[30rem] h-fit max-md:w-1/2" />
-            <div className="absolute text-[#757575] top-[25%] left-[8%]">
+            <div className="translate-y-28 translate-x-16 ">
+              <div className="grid grid-cols-2 mb-8">
+                {/* 임시*/}
+                {getAllNededEntity(2).map((need) => (
+                  <NeedCard need={need} className="h-[8rem]" />
+                ))}
+              </div>
+              <div className="grid grid-cols-2 gap-6">
+                {/* 임시로 profile card 갯수 4개로 지정해둔 상태   */}
+                {getAllProfileEntity(4).map((profile) => (
+                  <ProfileCard profile={profile} className="h-[8rem]" />
+                ))}
+              </div>
+            </div>
+            <div className="text-sm absolute text-[#757575] top-[25%] left-[8%]">
               NEXUS 안에 NEXUS ?? 뿌슝빠슝
             </div>
             <div className="absolute bg-white rounded-full text-6xl font-extrabold py-5 px-10 translate-y-1/2 -translate-x-[80%] shadow-xl">

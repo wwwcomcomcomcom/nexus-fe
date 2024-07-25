@@ -1,5 +1,7 @@
 import { Status } from "../component/projectCard/projectStatus.ts";
+import { NeedEntity } from "../entity/NeedEntity.ts";
 import { PostEntity } from "../entity/PostEntity.ts";
+import { ProfileEntity } from "../entity/ProfileEntity.ts";
 import { ProjectEntity } from "../entity/ProjectEntity.ts";
 // import axios from 'axios';
 
@@ -26,6 +28,55 @@ export function generateProjectEntity(words?: string[]): ProjectEntity {
     githubUrl: `https://github.com/${words[1]}/${words[2]}`,
   };
   return projectEntity;
+}
+
+// 여기 부분 확인
+export function getAllProfileEntity(
+  numberOfProfiles: number = 10
+): ProfileEntity[] {
+  const result: ProfileEntity[] = [];
+  const allWords = getRandomWords(numberOfProfiles * 13);
+  for (let i = 0; i < numberOfProfiles; i++) {
+    result.push(generateProfileEntity(allWords.slice(i * 13)));
+  }
+  return result;
+}
+
+// 여기 부분 확인
+export function generateProfileEntity(words?: string[]): ProfileEntity {
+  if (!words) {
+    words = getRandomWords(13);
+  }
+  const profileEntity: ProfileEntity = {
+    name: "정효주",
+    url: "https://github.com/jhj080802",
+    imgUrl: "https://avatars.githubusercontent.com/u/164720957?v=4",
+    role: "FrontEnd",
+  };
+  return profileEntity;
+}
+
+//여기 부분 확인
+export function getAllNededEntity(numberOfNeeds: number = 10): NeedEntity[] {
+  const result: NeedEntity[] = [];
+  const allWords = getRandomWords(numberOfNeeds * 13);
+  for (let i = 0; i < numberOfNeeds; i++) {
+    result.push(generateNeedEntity(allWords.slice(i * 13)));
+  }
+  return result;
+}
+
+// 여기 부분 확인
+export function generateNeedEntity(words?: string[]): NeedEntity {
+  if (!words) {
+    words = getRandomWords(13);
+  }
+  const NeedEntity: NeedEntity = {
+    role: "FrontEnd",
+    number: "2",
+    stack: ["Javascript", "React", "Java", "Figma"],
+  };
+  return NeedEntity;
 }
 
 export function getAllPostEntity(numberOfPosts: number = 10): PostEntity[] {
