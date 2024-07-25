@@ -25,6 +25,17 @@ function PostPage() {
         <div className="w-1/2 flex flex-col">
           <div className="bg-white border border-[#F2F2F2] rounded-3xl w-full shadow-xl mb-24">
             <PostGreenTopBox className="relative -top-9 -left-8 w-[75%]" />
+            <div className="gird absolute -translate-y-[20rem]">
+              <p className="text-3xl font-bold">임시로 만든 제목</p>
+              <div className="flex  py-5">
+                <p className="">프로필</p>
+                <p className="text-2xl font-normal">송재욱</p>
+              </div>
+              <div className="text-sm text-[#757575]">
+                <p>2024년 7월 29일</p>
+                <p>오후 12:04</p>
+              </div>
+            </div>
             <p className="mx-16 mt-3">
               임시로 적는 게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
               게시글임시로 적는 게시글임시로 적는 게시글임시로 적는 게시글임시로
