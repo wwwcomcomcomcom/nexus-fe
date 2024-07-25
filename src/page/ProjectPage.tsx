@@ -29,13 +29,13 @@ function ProjectPage(/*props: DivProps*/) {
           <div className="absolute w-full h-fit flex justify-start items-start -translate-x-10 -translate-y-10 max-md:translate-x-0">
             <ProjectGreenTopBox className="w-1/2 max-w-[30rem] h-fit max-md:w-1/2" />
             <div className="translate-y-28 translate-x-16 ">
-              <div className="grid grid-cols-2 mb-8">
+              <div className="grid grid-cols-2 mb-8 gap-6 w-fit">
                 {/* 임시*/}
                 {getAllNededEntity(2).map((need) => (
                   <NeedCard need={need} className="h-[8rem]" />
                 ))}
               </div>
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-6 w-fit">
                 {/* 임시로 profile card 갯수 4개로 지정해둔 상태   */}
                 {getAllProfileEntity(4).map((profile) => (
                   <ProfileCard profile={profile} className="h-[8rem]" />
