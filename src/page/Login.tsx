@@ -17,7 +17,10 @@ export default function Login() {
   useEffect(() => {
     if (githubCode) {
       GithubApi.login(githubCode)
-        .then(() => navigate("/"))
+        .then((jwt) => {
+          store.setJwt(jwt);
+          navigate("/");
+        })
         .catch((e) => {
           alert("Failed to login" + e.message);
         });

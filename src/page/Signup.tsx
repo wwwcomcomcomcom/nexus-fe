@@ -26,7 +26,7 @@ export default function Signup() {
           alert("Failed to signup" + e.message);
         });
     }
-  }, [gauthCode, navigate]);
+  }, [gauthCode, githubCode, navigate]);
 
   return (
     <>
