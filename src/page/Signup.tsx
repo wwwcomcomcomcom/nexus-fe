@@ -3,7 +3,7 @@ import * as GauthApi from "../shared/guathApi.ts";
 import { useEffect } from "react";
 import * as GithubApi from "../shared/githubApi.ts";
 import GauthIcon from "../component/icons/GauthIcon.tsx";
-import GithubIcon from "../component/icons/GithubIcon.tsx";
+// import GithubIcon from "../component/icons/GithubIcon.tsx";
 import LeftArrowIcon from "../component/elements/LeftArrowIcon.tsx";
 import Logo from "../component/elements/Logo.tsx";
 
