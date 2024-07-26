@@ -5,6 +5,7 @@ import * as GithubApi from "../shared/githubApi.ts";
 import GauthIcon from "../component/icons/GauthIcon.tsx";
 import GithubIcon from "../component/icons/GithubIcon.tsx";
 import LeftArrowIcon from "../component/elements/LeftArrowIcon.tsx";
+import Logo from "../component/elements/Logo.tsx";
 
 export default function Signup() {
   const [query] = useSearchParams();
@@ -69,7 +70,7 @@ export default function Signup() {
           role="none"
           className="shrink-0 bg-gray-100 h-[1px] w-full my-6"
         ></div>
-        <GithubIcon className="mx-auto w-64 h-64" />
+        <Logo className="py-3 mx-auto w-64 h-64" />
         <a
           className="space-y-4 block"
           href={`https://github.com/login/oauth/authorize?client_id=${GithubApi.GithubOauthClientId}&redirect_uri=${window.location.origin}/signup`}
