@@ -64,11 +64,11 @@ function PostPage() {
                 <div className="w-full flex gap-7 items-center content-center justify-center ml-3">
                   <div className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative flex justify-between">
                     <HeartIcon className=" pl-[1rem] pt-[0.7rem] cursor-pointer " />
-                    <p className="pr-[1rem] pt-[0.7rem]">37</p>
+                    <p className="pr-[1rem] pt-[0.7rem] text-lg">37</p>
                   </div>
                   <div className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative flex justify-between">
                     <CommentIcon className="  pt-[0.7rem] cursor-pointer  " />
-                    <p className="pr-[1rem] pt-[0.7rem]">4</p>
+                    <p className="pr-[1rem] pt-[0.7rem] text-lg">4</p>
                   </div>
                 </div>
               </div>
