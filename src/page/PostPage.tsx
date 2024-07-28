@@ -3,6 +3,8 @@ import LeftArrowIcon from "../component/elements/LeftArrowIcon";
 import PencilIcon from "../component/icons/PencilIcon";
 import PostGreenTopBox from "../component/elements/PostGreenTopBox";
 import PostGreenBottomBox from "../component/elements/PostGreenBottomBox";
+import HeartIcon from "../component/elements/HeartIcon";
+import CommentIcon from "../component/elements/CommentIcon";
 
 function PostPage() {
   const param = useParams();
@@ -60,8 +62,14 @@ function PostPage() {
               <div className="translate-x-8 translate-y-16 w-[50%] relative h-36 flex justify-center items-center">
                 <PostGreenBottomBox className="absolute w-full" />
                 <div className="w-full flex gap-7 items-center content-center justify-center ml-3">
-                  <div className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative"></div>
-                  <div className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative"></div>
+                  <div className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative flex justify-between">
+                    <HeartIcon className=" pl-[1rem] pt-[0.7rem] cursor-pointer " />
+                    <p className="pr-[1rem] pt-[0.7rem]">37</p>
+                  </div>
+                  <div className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative flex justify-between">
+                    <CommentIcon className="  pt-[0.7rem] cursor-pointer  " />
+                    <p className="pr-[1rem] pt-[0.7rem]">4</p>
+                  </div>
                 </div>
               </div>
             </div>
