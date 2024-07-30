@@ -24,24 +24,10 @@ function ProjectPage(/*props: DivProps*/) {
         </span>
       </div>
       {/* profile card 갯수에 맞도록 파랑색 배경 늘려야 함  */}
-      <div className="w-full h-[70vh] flex justify-end">
+      <div className="w-full h-[100vh] flex justify-end">
         <div className="md:w-3/4 w-full h-full bg-[#F4F9FF] rounded-[3rem] relative rounded-r-none">
           <div className="absolute w-full h-fit flex justify-start items-start -translate-x-10 -translate-y-10 max-md:translate-x-0">
             <ProjectGreenTopBox className="w-1/2 max-w-[30rem] h-fit max-md:w-1/2" />
-            <div className="translate-y-28 translate-x-16 ">
-              <div className="grid grid-cols-2 mb-8">
-                {/* 임시*/}
-                {getAllNededEntity(2).map((need) => (
-                  <NeedCard need={need} className="h-[8rem]" />
-                ))}
-              </div>
-              <div className="grid grid-cols-2 gap-6">
-                {/* 임시로 profile card 갯수 4개로 지정해둔 상태   */}
-                {getAllProfileEntity(4).map((profile) => (
-                  <ProfileCard profile={profile} className="h-[8rem]" />
-                ))}
-              </div>
-            </div>
             <div className="text-sm absolute text-[#757575] top-[25%] left-[8%]">
               NEXUS 안에 NEXUS ?? 뿌슝빠슝
             </div>
@@ -50,6 +36,26 @@ function ProjectPage(/*props: DivProps*/) {
               <div className="absolute bg-white shadow-xl flex items-center gap-2 rounded-full p-2 pr-4 border border-gray-200 translate-x-[115%]">
                 <div className="w-8 h-8 rounded-full bg-orange-400"></div>
                 <div className="text-2xl">모집중</div>
+              </div>
+            </div>
+          </div>
+          <div className="w-full flex justify-end pt-16 pr-[5%]">
+            <div className="w-1/2">
+              <div className="flex mb-8 w-full pr-8 gap-8">
+                {/* 임시*/}
+                {getAllNededEntity(2).map((need) => (
+                  <NeedCard need={need} className="h-[8rem]" />
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="w-full flex justify-end pr-[5%]">
+            <div className="w-1/2">
+              <div className="grid grid-cols-2 gap-x-[30%] gap-y-6 w-fit">
+                {/* 임시로 profile card 갯수 4개로 지정해둔 상태   */}
+                {getAllProfileEntity(4).map((profile) => (
+                  <ProfileCard profile={profile} className="h-[8rem]" />
+                ))}
               </div>
             </div>
           </div>
