@@ -3,6 +3,8 @@ import LeftArrowIcon from "../component/elements/LeftArrowIcon";
 import PencilIcon from "../component/icons/PencilIcon";
 import PostGreenTopBox from "../component/elements/PostGreenTopBox";
 import PostGreenBottomBox from "../component/elements/PostGreenBottomBox";
+import HeartIcon from "../component/elements/HeartIcon";
+import CommentIcon from "../component/elements/CommentIcon";
 
 function PostPage() {
   const param = useParams();
@@ -20,11 +22,24 @@ function PostPage() {
           <LeftArrowIcon className="w-3 h-auto" />
         </span>
       </div>
-      <main className="flex flex-col pt-10 items-center">
+      <main className="flex flex-col pt-10 items-center overflow-hidden relative">
         <div className="w-[700px] h-[700px] rounded-full absolute bg-[#FFF5DB] left-0 -z-10 -translate-x-1/2"></div>
+        <div className="w-[600px] h-[600px] rounded-full absolute bg-[#FFF5DB] right-0 -z-10 translate-x-1/3 "></div>
+
         <div className="w-1/2 flex flex-col">
           <div className="bg-white border border-[#F2F2F2] rounded-3xl w-full shadow-xl mb-24">
             <PostGreenTopBox className="relative -top-9 -left-8 w-[75%]" />
+            <div className="gird absolute -translate-y-[300px] pl-3">
+              <p className="text-3xl font-bold">임시로 만든 제목</p>
+              <div className="flex  py-5">
+                <p className="cursor-pointer">프로필 사진</p>
+                <p className="text-2xl font-normal">송재욱</p>
+              </div>
+              <div className="text-sm text-[#757575]">
+                <p>2024년 7월 29일</p>
+                <p>오후 12:04</p>
+              </div>
+            </div>
             <p className="mx-16 mt-3">
               임시로 적는 게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
               게시글임시로 적는 게시글임시로 적는 게시글임시로 적는 게시글임시로
@@ -49,8 +64,14 @@ function PostPage() {
               <div className="translate-x-8 translate-y-16 w-[50%] relative h-36 flex justify-center items-center">
                 <PostGreenBottomBox className="absolute w-full" />
                 <div className="w-full flex gap-7 items-center content-center justify-center ml-3">
-                  <div className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative"></div>
-                  <div className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative"></div>
+                  <div className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative flex justify-between">
+                    <HeartIcon className=" pl-[1rem] pt-[0.7rem] cursor-pointer " />
+                    <p className="pr-[1rem] pt-[0.7rem] text-lg">37</p>
+                  </div>
+                  <div className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative flex justify-between">
+                    <CommentIcon className="  pt-[0.7rem] cursor-pointer  " />
+                    <p className="pr-[1rem] pt-[0.7rem] text-lg">4</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -62,47 +83,12 @@ function PostPage() {
             <input
               id="commentInput"
               type="text"
-              placeholder="댓글을 입력해!"
+              placeholder="댓글을 최대 500자까지 입력할 수 있어요."
               className="grow outline-none"
             ></input>
             <PencilIcon className="w-6" />
           </label>
         </div>
-        {/* <div className="grid gap-4 px-4 md:gap-8 md:px-6 w-[40%] z-0 relative ">
-          <div className="flex bg-[#FFF5DB] w-[700px] h-[700px] rounded-full z-0 absolute top-56 -translate-x-64"></div>
-        </div>
-        <div className="mx-[10%] items-center relative ">
-          <div className="relative">
-            <div className="flex-col absolute flex z-40 ">
-              <GreenTopBox />
-            </div>
-            <div className=" flex justify-center rounded-[40px] shadow-xl bg-white border border-[#F2F2F2] z-0 px-16 w-[80%] ml-36 pt-[29rem] pb-[6rem] translate-y-16">
-              <p className="">
-                임시로 적는 게시글임시로 적는 게시글임시로 적는 게시글임시로
-                적는 게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
-                게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
-                게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
-                게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
-                게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
-                게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
-                게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
-                게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
-                게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
-                게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
-                게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
-                게시글임시로 적는 게시글임시로 적는 게시글임시로 적는
-                게시글임시로 적는 게시글임시로 적는 게시글 게시글임시로 적는
-                게시글임시로 적는 게시글 게시글임시로 적는 게시글 게시글임시로
-                적는 게시글 게시글임시로 적는 게시글 게시글임시로 적는 게시글
-                게시글임시로 적는 게시글임시로 적는 게시글 게시글임시로 적는
-                게시글 게시글임시로 적는 게시글 게시글임시로 적는 게시글
-              </p>
-              <div className="absolute flex flex-col z-40 translate-x-[40%] translate-y-[10rem] ">
-                <PostUnderGreenBox />
-              </div>
-            </div>
-          </div>
-        </div> */}
       </main>
     </>
   );
