@@ -22,15 +22,17 @@ function PostPage() {
           <LeftArrowIcon className="w-3 h-auto" />
         </span>
       </div>
-      <main className="flex flex-col pt-10 items-center">
+      <main className="flex flex-col pt-10 items-center overflow-hidden relative">
         <div className="w-[700px] h-[700px] rounded-full absolute bg-[#FFF5DB] left-0 -z-10 -translate-x-1/2"></div>
+        <div className="w-[600px] h-[600px] rounded-full absolute bg-[#FFF5DB] right-0 -z-10 translate-x-1/3 "></div>
+
         <div className="w-1/2 flex flex-col">
           <div className="bg-white border border-[#F2F2F2] rounded-3xl w-full shadow-xl mb-24">
             <PostGreenTopBox className="relative -top-9 -left-8 w-[75%]" />
-            <div className="gird absolute -translate-y-[20rem]">
+            <div className="gird absolute -translate-y-[300px] pl-3">
               <p className="text-3xl font-bold">임시로 만든 제목</p>
               <div className="flex  py-5">
-                <p className="">프로필</p>
+                <p className="cursor-pointer">프로필 사진</p>
                 <p className="text-2xl font-normal">송재욱</p>
               </div>
               <div className="text-sm text-[#757575]">
@@ -81,7 +83,7 @@ function PostPage() {
             <input
               id="commentInput"
               type="text"
-              placeholder="댓글을 입력해!"
+              placeholder="댓글을 최대 500자까지 입력할 수 있어요."
               className="grow outline-none"
             ></input>
             <PencilIcon className="w-6" />
