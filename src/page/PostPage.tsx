@@ -24,7 +24,7 @@ function PostPage() {
       </div>
       <main className="flex flex-col pt-10 items-center overflow-hidden relative">
         <div className="w-[700px] h-[700px] rounded-full absolute bg-[#FFF5DB] left-0 -z-10 -translate-x-1/2"></div>
-        <div className="w-[600px] h-[600px] rounded-full absolute bg-[#FFF5DB] right-0 -z-10 translate-x-1/3 "></div>
+        <div className="w-[600px] h-[600px] rounded-full absolute bg-[#FFF5DB] right-0 -z-10 translate-x-1/3 top-[60rem]"></div>
 
         <div className="w-1/2 flex flex-col">
           <div className="bg-white border border-[#F2F2F2] rounded-3xl w-full shadow-xl mb-24">
