@@ -6,7 +6,7 @@ import PostCard from "../component/projectCard/PostCard.tsx";
 
 export default function ProfilePage() {
   const { isLogin, user } = useUpdatedUserStore();
-  if (isLogin() === false) return <h1>You are not logged in</h1>;
+  if (isLogin() !== false) return <h1>You are not logged in</h1>;
   return (
     <div className="flex justify-center pt-20">
       <div className="flex flex-col items-center space-x-4 grow basis-0 bg-[url('profile-bg.svg')]">
