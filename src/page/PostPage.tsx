@@ -86,7 +86,7 @@ function PostPage() {
               placeholder="댓글을 최대 500자까지 입력할 수 있어요."
               className="grow outline-none"
             ></input>
-            <PencilIcon className="w-6" />
+            <PencilIcon className="w-6 cursor-pointer" />
           </label>
         </div>
       </main>
