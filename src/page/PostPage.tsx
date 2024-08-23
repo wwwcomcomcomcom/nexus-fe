@@ -77,7 +77,7 @@ function PostPage() {
             </div>
           </div>
           <label
-            className="w-full flex mt-10 border border-[#F2F2F2] rounded-full px-6 py-1 shadow-md"
+            className="w-full flex mb-3 mt-10 border border-[#F2F2F2] rounded-full px-6 py-1 shadow-md"
             htmlFor="commentInput"
           >
             <input
