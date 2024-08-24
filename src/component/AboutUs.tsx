@@ -3,7 +3,7 @@ export default function AboutUs() {
     window.location.href = "https://github.com/wwwcomcomcomcom";
   };
   const hyojooGitHubProfileLink = () => {
-    window.location.href = "https://github.com/jhj080802";
+    window.location.href = "https://github.com/h-0y28";
   };
   const youngSeoGitHubProfileLink = () => {
     window.location.href = "https://github.com/ysl0331";

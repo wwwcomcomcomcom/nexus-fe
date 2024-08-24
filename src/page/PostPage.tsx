@@ -77,7 +77,7 @@ function PostPage() {
             </div>
           </div>
           <label
-            className="w-full flex mt-10 border border-[#F2F2F2] rounded-full px-6 py-1 shadow-md"
+            className="w-full flex mb-3 mt-10 border border-[#F2F2F2] rounded-full px-6 py-1 shadow-md"
             htmlFor="commentInput"
           >
             <input
@@ -86,7 +86,7 @@ function PostPage() {
               placeholder="댓글을 최대 500자까지 입력할 수 있어요."
               className="grow outline-none"
             ></input>
-            <PencilIcon className="w-6" />
+            <PencilIcon className="w-6 cursor-pointer" />
           </label>
         </div>
       </main>
@@ -94,3 +94,45 @@ function PostPage() {
   );
 }
 export default PostPage;
+
+// import React from "react";
+// import PostGreenTopBox from "../component/elements/PostGreenTopBox";
+// import PostGreenBottomBox from "../component/elements/PostGreenBottomBox";
+// import HeartIcon from "../component/elements/HeartIcon";
+// import CommentIcon from "../component/elements/CommentIcon";
+
+// function PostContent({ title, author, date, content, likes, comments }) {
+//   return (
+//     <div className="bg-white border border-[#F2F2F2] rounded-3xl w-full shadow-xl mb-24">
+//       <PostGreenTopBox className="relative -top-9 -left-8 w-[75%]" />
+//       <div className="gird absolute -translate-y-[300px] pl-3">
+//         <p className="text-3xl font-bold">{title}</p>
+//         <div className="flex py-5">
+//           <p className="cursor-pointer">프로필 사진</p>
+//           <p className="text-2xl font-normal">{author}</p>
+//         </div>
+//         <div className="text-sm text-[#757575]">
+//           <p>{date}</p>
+//         </div>
+//       </div>
+//       <p className="mx-16 mt-3">{content}</p>
+//       <div className="flex justify-end">
+//         <div className="translate-x-8 translate-y-16 w-[50%] relative h-36 flex justify-center items-center">
+//           <PostGreenBottomBox className="absolute w-full" />
+//           <div className="w-full flex gap-7 items-center content-center justify-center ml-3">
+//             <div className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative flex justify-between">
+//               <HeartIcon className="pl-[1rem] pt-[0.7rem] cursor-pointer" />
+//               <p className="pr-[1rem] pt-[0.7rem] text-lg">{likes}</p>
+//             </div>
+//             <div className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative flex justify-between">
+//               <CommentIcon className="pt-[0.7rem] cursor-pointer" />
+//               <p className="pr-[1rem] pt-[0.7rem] text-lg">{comments}</p>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default PostContent;
