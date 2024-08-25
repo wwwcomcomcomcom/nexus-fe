@@ -12,7 +12,7 @@ export default function PostCard(props: PostCardProps) {
   return (
     <div
       className={
-        "cursor-pointer px-10 py-12 rounded-2xl text-projectCard-foreground shadow-[0px_0.5px_15px_1px_rgb(0,0,0,0.05)] border border-neutral-100 bg-white z-0 hover:scale-105 transition justify-items-center " +
+        "cursor-pointer px-10 mt-4 pt-10 pb-14 rounded-2xl text-projectCard-foreground shadow-[0px_0.5px_15px_1px_rgb(0,0,0,0.05)] border border-neutral-100 bg-white z-0 hover:scale-105 transition justify-items-center " +
         props.className
       }
       onClick={() => navigate(`/post/${props.post.id}`)}
@@ -23,8 +23,8 @@ export default function PostCard(props: PostCardProps) {
           style={{ maxWidth: "70%" }}
           className="flex items-center space-x-4"
         >
-          <h2 style={{ maxWidth: "70%" }} className="text-xl font-bold !mr-4">
-            {props.post.name}
+          <h2 style={{ maxWidth: "70%" }} className=" text-xl font-bold !mr-4">
+            {props.post.name} | {props.post.user}
           </h2>
         </div>
       </div>
