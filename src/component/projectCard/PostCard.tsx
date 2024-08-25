@@ -23,8 +23,10 @@ export default function PostCard(props: PostCardProps) {
           style={{ maxWidth: "70%" }}
           className="flex items-center space-x-4"
         >
-          <h2 style={{ maxWidth: "70%" }} className=" text-xl font-bold !mr-4">
-            {props.post.name} | {props.post.user}
+          <h2 style={{ maxWidth: "70%" }} className="text-xl font-bold !mr-4">
+            <span className="mr-2">{props.post.name}</span>
+            <span>|</span>
+            <span className="ml-2">{props.post.user}</span>
           </h2>
         </div>
       </div>
