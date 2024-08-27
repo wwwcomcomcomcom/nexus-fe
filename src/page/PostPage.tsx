@@ -70,7 +70,7 @@ function PostPage() {
                     <p className="pr-[1rem] pt-[0.7rem] text-lg">{likeCount}</p>
                   </div>
                   <div className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative flex justify-between">
-                    <CommentIcon className="pt-[0.7rem] cursor-pointer" />
+                    <CommentIcon className="pt-[0.7rem] ml-[0.5rem] cursor-pointer" />
                     <p className="pr-[1rem] pt-[0.7rem] text-lg">4</p>
                   </div>
                 </div>
