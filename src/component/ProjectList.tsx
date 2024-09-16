@@ -54,7 +54,7 @@ export default function ProjectList({
       className="flex flex-1 overflow-x-hidden place-content-center"
       ref={scrollRef}
     >
-      <div className="container grid w-full relative">
+      <div className="grid w-full relative">
         <div className="w-full h-full absolute overflow-hidden">
           <motion.div
             className="w-[800px] h-[800px] bg-[#feead2] rounded-full absolute right-3/4"
@@ -69,7 +69,6 @@ export default function ProjectList({
             style={{ translateY: translateY3 }}
           ></motion.div>
         </div>
-        {/* <div className="w-[200px] h-[200px] bg-[#FFF7E3] rounded-full absolute top-[75rem] -translate-x-[3rem] z-0"></div> */}
         <div className="grid px-4 py-6 md:gap-8 md:px-6 justify-center w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
             {projects.map((project) => (
