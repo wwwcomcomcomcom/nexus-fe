@@ -69,7 +69,7 @@ export default function ProjectList({
             style={{ translateY: translateY3 }}
           ></motion.div>
         </div>
-        <div className="grid px-4 py-6 md:gap-8 md:px-6 justify-center w-full">
+        <div className="grid px-4 py-6 md:px-6 justify-center w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
             {projects.map((project) => (
               <ProjectCard key={project.id} project={project} />

@@ -65,7 +65,7 @@ export default function PostList({
             style={{ translateY: translateY3 }}
           ></motion.div>
         </div>
-        <div className="grid px-10 py-6 md:gap-8 justify-center w-full place-items-center">
+        <div className="grid px-10 py-6 justify-center w-full place-items-center">
           <div className="grid grid-cols-1 gap-9 relative z-10 w-full max-w-screen-md">
             {posts.map((post) => (
               <PostCard key={post.id} post={post} />
