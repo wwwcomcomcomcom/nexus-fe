@@ -1,11 +1,15 @@
 import PostCard from "./projectCard/PostCard";
-import { useEffect, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useState } from "react";
 import Loading from "./Loading.tsx";
 import { getAllPostEntity } from "../shared/apiMockup.ts";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import { PostEntity } from "../entity/PostEntity.ts";
-
-export default function PostList() {
+import { motion, useMotionValue } from "framer-motion";
+export default function PostList({
+  scrollRef,
+}: {
+  scrollRef: MutableRefObject<null | HTMLDivElement>;
+}) {
   const [isloading, setLoading] = useState(true);
   const [posts, setPosts] = useState<PostEntity[]>([]);
 
@@ -19,14 +23,26 @@ export default function PostList() {
     //   setLoading(false);
     // });
   }
+  function resetScroll() {
+    window.scrollTo(0, 0);
+  }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(loadPosts, []);
+  useEffect(() => {
+    loadPosts();
+    resetScroll();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const scrollRef = useRef(null);
-  const { scrollYProgress } = useScroll({ container: scrollRef });
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest >= 1) loadPosts();
+  const { scrollY } = useScroll();
+  const translateY1 = useMotionValue(0);
+  const translateY2 = useMotionValue(0);
+  const translateY3 = useMotionValue(0);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    translateY1.set(latest + 5000 * sinPulse(latest / 2000));
+    translateY2.set(latest + 2500 * -sinPulse(latest / 3000));
+    translateY3.set(latest + 3000 * sinPulse(latest / 2000));
+
+    if (scrollRef.current!.scrollHeight - latest < 1100) loadPosts();
   });
 
   return (
@@ -34,19 +50,35 @@ export default function PostList() {
       className="flex flex-1 overflow-x-hidden place-content-center"
       ref={scrollRef}
     >
-      <div className="container grid gap-4 px-4 md:gap-8 md:px-6 w-[40%] z-10 relative">
-        <div className="w-[700px] h-[700px] bg-[#FFF7E3] rounded-full absolute top-0 -translate-x-[37rem] z-0"></div>
-        <div className="w-[350px] h-[350px] bg-[#DAE9FF] rounded-full absolute top-[400px] -translate-x-[10rem] z-0"></div>
-        {/* <div className="w-[700px] h-[700px] bg-[#E5AAB4] rounded-full absolute top-[800px] -translate-x-[37rem] z-0"></div> */}
-        <div className="w-[700px] h-[700px] bg-[#FFF7E3] rounded-full absolute top-[900px] translate-x-[40rem] z-0"></div>
-
-        <div className="grid grid-cols-1 gap-9 relative z-10 ">
-          {posts.map((post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
+      <div className="grid w-full relative">
+        <div className="w-full h-full absolute overflow-hidden">
+          <motion.div
+            className="w-[800px] h-[800px] bg-[#feead2] rounded-full absolute right-3/4"
+            style={{ translateY: translateY1 }}
+          ></motion.div>
+          <motion.div
+            className="w-[1000px] h-[1000px] bg-[#d9e7ff] rounded-full absolute top-[5rem] -right-[25rem] z-0"
+            style={{ translateY: translateY2 }}
+          ></motion.div>
+          <motion.div
+            className="w-[500px] h-[500px] bg-[#fff3c5] rounded-full absolute top-[40rem] right- z-0"
+            style={{ translateY: translateY3 }}
+          ></motion.div>
         </div>
-        {isloading ? <Loading /> : null}
+        <div className="grid px-10 py-6 md:gap-8 justify-center w-full place-items-center">
+          <div className="grid grid-cols-1 gap-9 relative z-10 w-full max-w-screen-md">
+            {posts.map((post) => (
+              <PostCard key={post.id} post={post} />
+            ))}
+          </div>
+          {isloading ? <Loading /> : null}
+        </div>
       </div>
     </main>
   );
+}
+
+function sinPulse(x: number) {
+  const pulse = Math.ceil(Math.cos(x)) * 2 - 1;
+  return (Math.sin(x) * pulse) / 2;
 }
