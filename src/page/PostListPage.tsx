@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../shared/userStore";
 import PostList from "../component/PostList";
+import { useRef } from "react";
 
 export default function PostListPage() {
   const userStore = useUserStore();
   const navigate = useNavigate();
-
+  const scrollRef = useRef(null);
   return (
     <div className="flex flex-col w-full h-full ">
       <div className="flex flex-row w-full px-10 place-content-between justify-center ">
@@ -21,7 +22,7 @@ export default function PostListPage() {
           </div>
         )}
       </div>
-      <PostList />
+      <PostList scrollRef={scrollRef} />
     </div>
   );
 }
