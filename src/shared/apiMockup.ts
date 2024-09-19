@@ -49,7 +49,7 @@ export function generateProfileEntity(words?: string[]): ProfileEntity {
   }
   const profileEntity: ProfileEntity = {
     name: "정효주",
-    url: "https://github.com/jhj080802",
+    url: "https://github.com/h-0y28",
     imgUrl: "https://avatars.githubusercontent.com/u/164720957?v=4",
     role: "FrontEnd",
   };
