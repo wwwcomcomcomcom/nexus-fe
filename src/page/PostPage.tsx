@@ -5,7 +5,7 @@ import PostGreenTopBox from "../component/elements/PostGreenTopBox";
 import PostGreenBottomBox from "../component/elements/PostGreenBottomBox";
 import HeartIcon from "../component/icons/HeartIcon";
 import CommentIcon from "../component/icons/CommentIcon";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import FilledHeartIcon from "../component/icons/FilledHeartIcon";
 import { generateProfileEntity } from "../shared/apiMockup";
 
@@ -17,76 +17,74 @@ interface Comment {
 
 function PostPage() {
   const param = useParams();
-  if (param.id === undefined) {
+  const navigate = useNavigate();
+
+  // param.id가 undefined인지 확인하고 /notfound로 리다이렉션
+  if (!param.id) {
     window.location.href = "/notfound";
   }
-  const navigate = useNavigate();
 
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(37);
-
-  const handleLikeToggle = () => {
-    setLiked((prevLiked) => !prevLiked);
-    setLikeCount((prevCount) => (liked ? prevCount - 1 : prevCount + 1));
-  };
-
-  const profile = generateProfileEntity();
-
-  // 댓글과 대댓글 관리
   const [comments, setComments] = useState<Comment[]>([]);
   const [commentInput, setCommentInput] = useState("");
   const [replyInputs, setReplyInputs] = useState<{ [key: number]: string }>({});
 
-  // 댓글 추가 함수
-  const handleAddComment = () => {
-    if (commentInput.trim() !== "") {
-      setComments((prevComments) => [
-        ...prevComments,
-        { id: prevComments.length, text: commentInput, replies: [] },
-      ]);
+  const profile = generateProfileEntity();
+
+  // handleLikeToggle를 메모이제이션하기 위해 useCallback
+  const handleLikeToggle = useCallback(() => {
+    setLiked((prevLiked) => !prevLiked);
+    setLikeCount((prevCount) => (liked ? prevCount - 1 : prevCount + 1));
+  }, [liked]);
+
+  // handleAddComment를 메모이제이션하기 위해 useCallback
+  const handleAddComment = useCallback(() => {
+    if (commentInput.trim()) {
+      setComments((prevComments) => [...prevComments, { id: prevComments.length, text: commentInput, replies: [] }]);
       setCommentInput(""); // 댓글 입력 필드 초기화
     }
-  };
+  }, [commentInput]);
 
-  // 대댓글 입력 핸들러
-  const handleReplyInputChange = (id: number, value: string) => {
+  // handleReplyInputChange를 메모이제이션하기 위해 useCallback
+  const handleReplyInputChange = useCallback((id: number, value: string) => {
     setReplyInputs((prevInputs) => ({
       ...prevInputs,
       [id]: value,
     }));
-  };
+  }, []);
 
-  // 대댓글 추가 함수
-  const handleAddReply = (id: number) => {
-    if (replyInputs[id]?.trim()) {
-      setComments((prevComments) =>
-        prevComments.map((comment) =>
-          comment.id === id
-            ? {
-                ...comment,
-                replies: [
-                  ...comment.replies,
-                  {
-                    id: comment.replies.length,
-                    text: replyInputs[id],
-                    replies: [],
-                  },
-                ],
-              }
-            : comment
-        )
-      );
-      setReplyInputs((prevInputs) => ({ ...prevInputs, [id]: "" })); // 대댓글 입력 필드 초기화
-    }
-  };
+  // handleAddReply를 메모이제이션하기 위해 useCallback
+  const handleAddReply = useCallback(
+    (id: number) => {
+      if (replyInputs[id]?.trim()) {
+        setComments((prevComments) =>
+          prevComments.map((comment) =>
+            comment.id === id
+              ? {
+                  ...comment,
+                  replies: [
+                    ...comment.replies,
+                    {
+                      id: comment.replies.length,
+                      text: replyInputs[id],
+                      replies: [],
+                    },
+                  ],
+                }
+              : comment
+          )
+        );
+        setReplyInputs((prevInputs) => ({ ...prevInputs, [id]: "" })); // 대댓글 입력 필드 초기화
+      }
+    },
+    [replyInputs]
+  );
 
   return (
     <>
       <div className="px-8 py-4">
-        <span
-          className="inline-block p-2 cursor-pointer"
-          onClick={() => navigate(-1)}
-        >
+        <span className="inline-block p-2 cursor-pointer" onClick={() => navigate(-1)}>
           <LeftArrowIcon className="w-3 h-auto" />
         </span>
       </div>
@@ -113,9 +111,7 @@ function PostPage() {
                 <p>오후 12:04</p>
               </div>
             </div>
-            <p className="mx-16 mt-3 font-thin leading-7 text-gray-800 text-sm">
-              임시로 적는 본문입니다...
-            </p>
+            <p className="mx-16 mt-3 font-thin leading-7 text-gray-800 text-sm">임시로 적는 본문입니다...</p>
             <div className="flex justify-end">
               <div className="translate-x-8 translate-y-16 w-[50%] relative h-36 flex justify-center items-center">
                 <PostGreenBottomBox className="absolute w-full" />
@@ -133,9 +129,7 @@ function PostPage() {
                   </div>
                   <div className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative flex justify-between">
                     <CommentIcon className="pt-[0.7rem] ml-[0.5rem] " />
-                    <p className="pr-[1rem] pt-[0.7rem] text-lg">
-                      {comments.length}
-                    </p>
+                    <p className="pr-[1rem] pt-[0.7rem] text-lg">{comments.length}</p>
                   </div>
                 </div>
               </div>
@@ -155,10 +149,7 @@ function PostPage() {
               value={commentInput}
               onChange={(e) => setCommentInput(e.target.value)}
             />
-            <PencilIcon
-              className="w-6 cursor-pointer"
-              onClick={handleAddComment}
-            />
+            <PencilIcon className="w-6 cursor-pointer" onClick={handleAddComment} />
           </label>
 
           {/* 댓글 리스트 */}
@@ -183,11 +174,7 @@ function PostPage() {
                 </div>
 
                 {/* 여기 부분 확인 */}
-                <div
-                  className={`mt-2 ml-[50%] ${
-                    comment.replies.length > 0 ? "-translate-y-10 -mb-10" : ""
-                  }`}
-                >
+                <div className={`mt-2 ml-[50%] ${comment.replies.length > 0 ? "-translate-y-10 -mb-10" : ""}`}>
                   {/* 대댓글 목록 */}
                   <div className="z-30">
                     {comment.replies.map((reply) => (
@@ -197,16 +184,12 @@ function PostPage() {
                       >
                         <div className="flex">
                           <img
-                            onClick={() =>
-                              (window.location.href = `${profile.url}`)
-                            }
+                            onClick={() => (window.location.href = `${profile.url}`)}
                             src={profile.imgUrl}
                             alt="profile"
                             className="cursor-pointer flex h-7 relative rounded-full bg-white shadow-md mt-1"
                           />
-                          <p className="text-md font-[200] p-2 ">
-                            {profile.name}
-                          </p>
+                          <p className="text-md font-[200] p-2 ">{profile.name}</p>
                         </div>
                         {reply.text}
                       </li>
@@ -223,14 +206,9 @@ function PostPage() {
                       placeholder="대댓글을 입력하세요"
                       className="grow outline-none"
                       value={replyInputs[comment.id] || ""}
-                      onChange={(e) =>
-                        handleReplyInputChange(comment.id, e.target.value)
-                      }
+                      onChange={(e) => handleReplyInputChange(comment.id, e.target.value)}
                     />
-                    <PencilIcon
-                      className="w-6 cursor-pointer"
-                      onClick={() => handleAddReply(comment.id)}
-                    />
+                    <PencilIcon className="w-6 cursor-pointer" onClick={() => handleAddReply(comment.id)} />
                   </label>
                 </div>
               </li>
