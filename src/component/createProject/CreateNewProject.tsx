@@ -21,7 +21,11 @@ const ROLES = [
   { title: "디자인", targetRole: "design" },
 ];
 
-export default function CreateNewProject({ setViewPage }: { setViewPage: (page: number) => void }) {
+export default function CreateNewProject({
+  setViewPage,
+}: {
+  setViewPage: (page: number) => void;
+}) {
   const navigate = useNavigate();
   const formStore = useProjectFormStore();
 
@@ -57,23 +61,31 @@ export default function CreateNewProject({ setViewPage }: { setViewPage: (page: 
       </div>
       <div className="flex flex-col border rounded-xl border-gray-400 p-12 my-10 gap-4 h-fit">
         <h1 className="text-[2rem] font-bold">새 프로젝트 만들기</h1>
-        <h2 className="text-xl text-gray-500 mb-4">새 프로젝트를 등록하고 팀원을 모집하세요</h2>
+        <h2 className="text-xl text-gray-500 mb-4">
+          새 프로젝트를 등록하고 팀원을 모집하세요
+        </h2>
 
-        <label htmlFor="projectName">Project Name</label>
+        <label htmlFor="projectName">프로젝트 이름</label>
         <input
           id="projectName"
           type="text"
           className="transition-all duration-200 rounded-md border border-gray-300 text-lg p-1 focus:py-2"
+          placeholder="프로젝트 이름을 입력해주세요"
           value={formStore.name}
-          onInput={(e) => formStore.setProjectForm({ name: e.currentTarget.value })}
+          onInput={(e) =>
+            formStore.setProjectForm({ name: e.currentTarget.value })
+          }
         />
 
-        <label htmlFor="projectDescription">Project Description</label>
+        <label htmlFor="projectDescription">프로젝트 설명</label>
         <textarea
           id="projectDescription"
           className="transition-all duration-200 rounded-md border border-gray-300 p-1"
+          placeholder="프로젝트 설명을 입력해주세요.나중에 수정할 수 있습니다."
           value={formStore.description}
-          onInput={(e) => formStore.setProjectForm({ description: e.currentTarget.value })}
+          onInput={(e) =>
+            formStore.setProjectForm({ description: e.currentTarget.value })
+          }
         />
 
         <div className="flex flex-col gap-3">
@@ -106,7 +118,8 @@ interface RoleInputProps {
 }
 
 function RoleInput({ title, targetRole, formData }: RoleInputProps) {
-  const inputStyle = "transition-all duration-200 rounded-md border border-gray-300 focus:py-1 outline-none px-2";
+  const inputStyle =
+    "transition-all duration-200 rounded-md border border-gray-300 focus:py-1 outline-none px-2";
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Math.max(0, parseInt(e.target.value) || 0);
@@ -119,7 +132,13 @@ function RoleInput({ title, targetRole, formData }: RoleInputProps) {
         {title}
         {formData[targetRole] > 0 && <span className="ml-2">✅</span>}
       </label>
-      <input id={targetRole} type="number" className={inputStyle} value={formData[targetRole]} onInput={handleInput} />
+      <input
+        id={targetRole}
+        type="number"
+        className={inputStyle}
+        value={formData[targetRole]}
+        onInput={handleInput}
+      />
     </div>
   );
 }
