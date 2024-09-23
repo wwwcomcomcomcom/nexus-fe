@@ -9,6 +9,12 @@ import { useState } from "react";
 import FilledHeartIcon from "../component/icons/FilledHeartIcon";
 import { generateProfileEntity } from "../shared/apiMockup";
 
+interface Comment {
+  id: number;
+  text: string;
+  replies: Comment[];
+}
+
 function PostPage() {
   const param = useParams();
   if (param.id === undefined) {
@@ -25,6 +31,54 @@ function PostPage() {
   };
 
   const profile = generateProfileEntity();
+
+  // 댓글과 대댓글 관리
+  const [comments, setComments] = useState<Comment[]>([]);
+  const [commentInput, setCommentInput] = useState("");
+  const [replyInputs, setReplyInputs] = useState<{ [key: number]: string }>({});
+
+  // 댓글 추가 함수
+  const handleAddComment = () => {
+    if (commentInput.trim() !== "") {
+      setComments((prevComments) => [
+        ...prevComments,
+        { id: prevComments.length, text: commentInput, replies: [] },
+      ]);
+      setCommentInput(""); // 댓글 입력 필드 초기화
+    }
+  };
+
+  // 대댓글 입력 핸들러
+  const handleReplyInputChange = (id: number, value: string) => {
+    setReplyInputs((prevInputs) => ({
+      ...prevInputs,
+      [id]: value,
+    }));
+  };
+
+  // 대댓글 추가 함수
+  const handleAddReply = (id: number) => {
+    if (replyInputs[id]?.trim()) {
+      setComments((prevComments) =>
+        prevComments.map((comment) =>
+          comment.id === id
+            ? {
+                ...comment,
+                replies: [
+                  ...comment.replies,
+                  {
+                    id: comment.replies.length,
+                    text: replyInputs[id],
+                    replies: [],
+                  },
+                ],
+              }
+            : comment
+        )
+      );
+      setReplyInputs((prevInputs) => ({ ...prevInputs, [id]: "" })); // 대댓글 입력 필드 초기화
+    }
+  };
 
   return (
     <>
@@ -46,14 +100,12 @@ function PostPage() {
             <div className="gird absolute -translate-y-[300px] pl-3">
               <p className="text-2xl ">임시로 만든 제목</p>
               <div className="flex py-5">
-                {/* <p className="cursor-pointer">프로필 사진</p> */}
                 <img
                   onClick={() => (window.location.href = `${profile.url}`)}
                   src={profile.imgUrl}
                   alt="profile"
                   className="cursor-pointer flex  h-9 relative rounded-full bg-white shadow-md "
                 />
-                {/* <p className="text-2xl font-normal">송재욱</p> */}
                 <div className="text-xl font-[450] p-2 ">{profile.name}</div>
               </div>
               <div className="text-xs text-[#757575] ">
@@ -62,21 +114,7 @@ function PostPage() {
               </div>
             </div>
             <p className="mx-16 mt-3 font-thin leading-7 text-gray-800 text-sm">
-              임시로 적는 본문입니다. 이 글이 중간 발표때까지 살아남을지
-              의문스럽습니다. 저는 프론트엔드 개발을 하려고 했는데 왜
-              유아이유엑스 디자인을 하고 있는지 아직도 잘 모르겠습니다. 그런데
-              디자인이 꽤 재미있다는 사실을 여러분은 알고계셨나요? 오늘
-              점심시간에 학생회에서 블루레몬에이드랑 미숫가루를 팔고 판매금액을
-              기부한다고 합니다. 제가 저희반 애 들 다끌고가서 사줄라고
-              계획중입니다. 조금 길게 써놔야 뭔가 진짜 게시물 같고 뭐 그런
-              느낌이 나니까요. 더 써보겠습니다. 사실 일 하기 싫어서 노가리
-              까는중입니다. 옆에서 세민이는 열심히 개발을 하고 있습니다.
-              프론트엔드에게 디자 인을 시킨 최후라고 할 수 있죠. 아까 윤시연쌤이
-              저한테 에이아이 배우라고 했습니다. 진짜 얼척엑스인게 프론트
-              엔드인데 아이디어 페스티벌에서 에이아이를 하게 됐습니다. 제가
-              시험을 망쳤습니다. 다른 과목은 양호한데 수학을 진짜 개 망쳤습니다.
-              제가 공부를 안한 대가이니 상실감이 크지는 않지만 명희쌤을 볼
-              면목이 없습니다. 더 쓸 말이 없네요. 개소리 여기까지 하겠습니다.
+              임시로 적는 본문입니다...
             </p>
             <div className="flex justify-end">
               <div className="translate-x-8 translate-y-16 w-[50%] relative h-36 flex justify-center items-center">
@@ -95,12 +133,16 @@ function PostPage() {
                   </div>
                   <div className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative flex justify-between">
                     <CommentIcon className="pt-[0.7rem] ml-[0.5rem] " />
-                    <p className="pr-[1rem] pt-[0.7rem] text-lg">4</p>
+                    <p className="pr-[1rem] pt-[0.7rem] text-lg">
+                      {comments.length}
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* 댓글 입력 필드 */}
           <label
             className="w-full flex mb-3 mt-10 border border-[#F2F2F2] rounded-full px-6 py-1 shadow-md"
             htmlFor="commentInput"
@@ -110,9 +152,53 @@ function PostPage() {
               type="text"
               placeholder="댓글을 최대 500자까지 입력할 수 있어요."
               className="grow outline-none"
+              value={commentInput}
+              onChange={(e) => setCommentInput(e.target.value)}
             />
-            <PencilIcon className="w-6 cursor-pointer" />
+            <PencilIcon
+              className="w-6 cursor-pointer"
+              onClick={handleAddComment}
+            />
           </label>
+
+          {/* 댓글 리스트 */}
+          <ul className="mt-3">
+            {comments.map((comment) => (
+              <li key={comment.id} className="mb-4 border-b pb-4">
+                <div>
+                  <p>{comment.text}</p>
+                </div>
+
+                {/* 대댓글 입력 필드 */}
+                <div className="ml-4 mt-2">
+                  <input
+                    type="text"
+                    placeholder="대댓글을 입력하세요"
+                    className="border border-gray-300 rounded px-2 py-1 w-80"
+                    value={replyInputs[comment.id] || ""}
+                    onChange={(e) =>
+                      handleReplyInputChange(comment.id, e.target.value)
+                    }
+                  />
+                  <button
+                    className="ml-2 px-3 py-1 bg-gray-200 rounded"
+                    onClick={() => handleAddReply(comment.id)}
+                  >
+                    대댓글 추가
+                  </button>
+
+                  {/* 대댓글 목록 */}
+                  <ul className="mt-2">
+                    {comment.replies.map((reply) => (
+                      <li key={reply.id} className="ml-4">
+                        {reply.text}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </main>
     </>
