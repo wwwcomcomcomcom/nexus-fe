@@ -91,8 +91,8 @@ function PostPage() {
         </span>
       </div>
       <main className="flex flex-col pt-10 items-center overflow-hidden relative">
-        <div className="w-[700px] h-[700px] rounded-full absolute bg-[#FFF5DB] left-0 -z-10 -translate-x-1/2"></div>
-        <div className="w-[600px] h-[600px] rounded-full absolute bg-[#FFF5DB] right-0 -z-10 translate-x-1/3 top-[60rem]"></div>
+        <div className="w-[700px] h-[700px] rounded-full absolute bg-[#FFF5DB] left-0 z-0 -translate-x-1/2"></div>
+        <div className="w-[600px] h-[600px] rounded-full absolute bg-[#FFF5DB] right-0 z-0 translate-x-1/3 top-[60rem]"></div>
 
         <div className="w-1/2 flex flex-col">
           <div className="bg-white border border-[#F2F2F2] rounded-3xl w-full shadow-xl mb-24">
@@ -162,41 +162,76 @@ function PostPage() {
           </label>
 
           {/* 댓글 리스트 */}
-          <ul className="mt-3">
+          <ul className="mt-3 z-20">
             {comments.map((comment) => (
-              <li key={comment.id} className="mb-4 border-b pb-4">
-                <div className="p-4 border border-[#F2F2F2] border-10  rounded-2xl shadow-md">
+              <li key={comment.id} className="mb-4">
+                <div
+                  className={`p-4 pt-2 border border-[#F2F2F2] border-10 rounded-3xl bg-white shadow-md ${
+                    comment.replies.length > 0 ? "mr-[30%]" : ""
+                  }`}
+                >
+                  <div className="flex">
+                    <img
+                      onClick={() => (window.location.href = `${profile.url}`)}
+                      src={profile.imgUrl}
+                      alt="profile"
+                      className="cursor-pointer flex h-7 relative rounded-full bg-white shadow-md mt-1"
+                    />
+                    <p className="text-md font-[200] p-2 ">{profile.name}</p>
+                  </div>
                   <p>{comment.text}</p>
                 </div>
 
-                {/* 대댓글 입력 필드 */}
-                <div className="ml-4 mt-2">
-                  <input
-                    type="text"
-                    placeholder="대댓글을 입력하세요"
-                    className="border border-gray-300 rounded px-2 py-1 w-80"
-                    value={replyInputs[comment.id] || ""}
-                    onChange={(e) =>
-                      handleReplyInputChange(comment.id, e.target.value)
-                    }
-                  />
-                  <button
-                    className="ml-2 px-3 py-1 bg-gray-200 rounded"
-                    onClick={() => handleAddReply(comment.id)}
-                  >
-                    대댓글 추가
-                  </button>
-
+                {/* 여기 부분 확인 */}
+                <div
+                  className={`mt-2 ml-[50%] ${
+                    comment.replies.length > 0 ? "-translate-y-10 -mb-10" : ""
+                  }`}
+                >
                   {/* 대댓글 목록 */}
-                  <ul className="ml-[50%]">
-                    <div className="p-4 border border-[#F2F2F2] border-10  rounded-2xl shadow-md">
-                      {comment.replies.map((reply) => (
-                        <li key={reply.id} className="">
-                          {reply.text}
-                        </li>
-                      ))}
-                    </div>
-                  </ul>
+                  <div className="z-30">
+                    {comment.replies.map((reply) => (
+                      <li
+                        key={reply.id}
+                        className="p-4 pt-2 border border-[#F2F2F2] border-10 bg-white rounded-3xl shadow-md mb-3 "
+                      >
+                        <div className="flex">
+                          <img
+                            onClick={() =>
+                              (window.location.href = `${profile.url}`)
+                            }
+                            src={profile.imgUrl}
+                            alt="profile"
+                            className="cursor-pointer flex h-7 relative rounded-full bg-white shadow-md mt-1"
+                          />
+                          <p className="text-md font-[200] p-2 ">
+                            {profile.name}
+                          </p>
+                        </div>
+                        {reply.text}
+                      </li>
+                    ))}
+                  </div>
+
+                  {/* 대댓글 입력 필드 */}
+                  <label
+                    className="w-full flex mb-3 border border-[#F2F2F2] bg-white rounded-full px-6 py-1 shadow-md"
+                    htmlFor="commentInput"
+                  >
+                    <input
+                      type="text"
+                      placeholder="대댓글을 입력하세요"
+                      className="grow outline-none"
+                      value={replyInputs[comment.id] || ""}
+                      onChange={(e) =>
+                        handleReplyInputChange(comment.id, e.target.value)
+                      }
+                    />
+                    <PencilIcon
+                      className="w-6 cursor-pointer"
+                      onClick={() => handleAddReply(comment.id)}
+                    />
+                  </label>
                 </div>
               </li>
             ))}
