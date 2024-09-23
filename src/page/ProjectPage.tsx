@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import LeftArrowIcon from "../component/elements/LeftArrowIcon";
+import LeftArrowIcon from "../component/icons/LeftArrowIcon";
 import ProjectGreenTopBox from "../component/elements/ProjectGreenTopBox";
 import ProfileCard from "../component/projectCard/ProfileCard";
 import { getAllNededEntity, getAllProfileEntity } from "../shared/apiMockup";

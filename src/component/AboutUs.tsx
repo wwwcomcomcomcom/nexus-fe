@@ -125,9 +125,5 @@ export default function AboutUs() {
 }
 
 function Label({ text, className }: { text: string; className: string }) {
-  return (
-    <label className={"w-full rounded-full text-center" + " " + className}>
-      {text}
-    </label>
-  );
+  return <label className={"w-full rounded-full text-center" + " " + className}>{text}</label>;
 }

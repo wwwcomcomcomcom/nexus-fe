@@ -5,7 +5,7 @@ import * as GauthApi from "../shared/guathApi.ts";
 import GauthIcon from "../component/icons/GauthIcon.tsx";
 import { useUserStore } from "../shared/userStore.ts";
 import Logo from "../component/elements/Logo.tsx";
-import LeftArrowIcon from "../component/elements/LeftArrowIcon.tsx";
+import LeftArrowIcon from "../component/icons/LeftArrowIcon.tsx";
 
 export default function Login() {
   const [query] = useSearchParams();
