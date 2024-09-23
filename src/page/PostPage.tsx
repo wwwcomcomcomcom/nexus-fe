@@ -165,7 +165,7 @@ function PostPage() {
           <ul className="mt-3">
             {comments.map((comment) => (
               <li key={comment.id} className="mb-4 border-b pb-4">
-                <div>
+                <div className="p-4 border border-[#F2F2F2] border-10  rounded-2xl shadow-md">
                   <p>{comment.text}</p>
                 </div>
 
@@ -188,12 +188,14 @@ function PostPage() {
                   </button>
 
                   {/* 대댓글 목록 */}
-                  <ul className="mt-2">
-                    {comment.replies.map((reply) => (
-                      <li key={reply.id} className="ml-4">
-                        {reply.text}
-                      </li>
-                    ))}
+                  <ul className="ml-[50%]">
+                    <div className="p-4 border border-[#F2F2F2] border-10  rounded-2xl shadow-md">
+                      {comment.replies.map((reply) => (
+                        <li key={reply.id} className="">
+                          {reply.text}
+                        </li>
+                      ))}
+                    </div>
                   </ul>
                 </div>
               </li>
