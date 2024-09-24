@@ -37,6 +37,7 @@ function PostPage() {
     setLikeCount((prevCount) => (liked ? prevCount - 1 : prevCount + 1));
   }, [liked]);
 
+  // 댓글 추가
   const handleAddComment = useCallback(() => {
     if (commentInput.trim()) {
       setComments((prevComments) => [
@@ -47,6 +48,7 @@ function PostPage() {
     }
   }, [commentInput]);
 
+  // input
   const handleReplyInputChange = useCallback((id: number, value: string) => {
     setReplyInputs((prevInputs) => ({
       ...prevInputs,
@@ -54,6 +56,7 @@ function PostPage() {
     }));
   }, []);
 
+  // 대댓글 추가
   const handleAddReply = useCallback(
     (id: number) => {
       if (replyInputs[id]?.trim()) {
