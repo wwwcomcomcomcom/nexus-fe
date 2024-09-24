@@ -74,7 +74,7 @@ export default function Comments() {
           placeholder="댓글을 최대 500자까지 입력할 수 있어요."
           className="grow outline-none"
           value={commentInput}
-          onChange={(e) => setCommentInput(e.target.value)}
+          onChange={(e) => setCommentInput(e.target.value.slice(0, 500))}
         />
         <PencilIcon className="w-6 cursor-pointer" onClick={handleAddComment} />
       </label>
@@ -140,7 +140,10 @@ export default function Comments() {
                   className="grow outline-none"
                   value={replyInputs[comment.id] || ""}
                   onChange={(e) =>
-                    handleReplyInputChange(comment.id, e.target.value)
+                    handleReplyInputChange(
+                      comment.id,
+                      e.target.value.slice(0, 500)
+                    )
                   }
                 />
                 <PencilIcon
