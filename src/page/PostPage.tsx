@@ -223,7 +223,7 @@ function PostPage() {
                   >
                     <input
                       type="text"
-                      placeholder="대댓글을 입력하세요"
+                      placeholder="대댓글을 입력하세요. "
                       className="grow outline-none"
                       value={replyInputs[comment.id] || ""}
                       onChange={(e) =>
