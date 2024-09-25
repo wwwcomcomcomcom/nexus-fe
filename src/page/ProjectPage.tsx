@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
 import LeftArrowIcon from "../component/icons/LeftArrowIcon";
 import ProjectGreenTopBox from "../component/elements/ProjectGreenTopBox";
-import ProfileCard from "../component/projectCard/ProfileCard";
+import ProfileCard from "../component/Card/ProfileCard";
 import { getAllNededEntity, getAllProfileEntity } from "../shared/apiMockup";
-import NeedCard from "../component/projectCard/NeedCard";
+import NeedCard from "../component/Card/NeedCard";
 
 function ProjectPage(/*props: DivProps*/) {
   const param = useParams();

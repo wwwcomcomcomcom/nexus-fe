@@ -5,7 +5,7 @@ import {
   HTMLMotionProps,
   MotionValue,
 } from "framer-motion";
-import ProjectCard from "./projectCard/ProjectCard.tsx";
+import ProjectCard from "./Card/ProjectCard.tsx";
 import { generateProjectEntity } from "../shared/apiMockup.ts";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";

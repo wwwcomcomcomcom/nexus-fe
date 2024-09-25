@@ -1,8 +1,8 @@
 import { useUpdatedUserStore } from "../shared/api.ts";
 import { getAllPostEntity, getAllProjectEntity } from "../shared/apiMockup.ts";
-import ProjectCard from "../component/projectCard/ProjectCard.tsx";
+import ProjectCard from "../component/Card/ProjectCard.tsx";
 // import { getElement } from "@egjs/react-flicking";
-import PostCard from "../component/projectCard/PostCard.tsx";
+import PostCard from "../component/Card/PostCard.tsx";
 
 export default function ProfilePage() {
   const { isLogin, user } = useUpdatedUserStore();
@@ -42,7 +42,11 @@ export default function ProfilePage() {
         <h1 className="text-2xl font-bold px-2 pb-3 ">Projects</h1>
         <div className="grid grid-cols-2 h-[35rem] w-fit gap-7  overflow-y-scroll scrollbar-hide mb-4 p-4 place-items-center">
           {getAllProjectEntity(10).map((project) => (
-            <ProjectCard key={project.id} project={project} className="h-[8rem]" />
+            <ProjectCard
+              key={project.id}
+              project={project}
+              className="h-[8rem]"
+            />
           ))}
         </div>
         <div className="py-10 flex flex-col items-center">

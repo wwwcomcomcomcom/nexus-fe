@@ -1,5 +1,5 @@
 import { MutableRefObject, useEffect, useState } from "react";
-import ProjectCard from "./projectCard/ProjectCard.tsx";
+import ProjectCard from "./Card/ProjectCard.tsx";
 import Loading from "./Loading.tsx";
 import { getAllProjectEntity } from "../shared/apiMockup.ts";
 import { ProjectEntity } from "../entity/ProjectEntity.ts";
