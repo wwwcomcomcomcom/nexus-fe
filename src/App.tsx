@@ -10,6 +10,7 @@ import Signup from "./page/Signup.tsx";
 import CreateProjectPage from "./page/CreateProjectPage.tsx";
 import PostListPage from "./page/PostListPage.tsx";
 import PostPage from "./page/PostPage.tsx";
+import ProjectSubmit from "./page/ProjectApplication.tsx";
 
 function App() {
   return (
@@ -21,6 +22,10 @@ function App() {
             <Route path="/projects" element={<ProjectListPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/project/:id/" element={<ProjectPage />} />
+            <Route
+              path="/projectApplication/:id/"
+              element={<ProjectSubmit />}
+            />
             <Route path="/post/:id/" element={<PostPage />} />
             <Route path="/createProject" element={<CreateProjectPage />} />
             <Route path="/posts" element={<PostListPage />} />
