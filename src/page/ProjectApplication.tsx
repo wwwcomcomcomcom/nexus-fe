@@ -5,8 +5,8 @@ export default function ProjectApplication() {
   const navigate = useNavigate();
 
   return (
-    <div className="">
-      <div className="p-8 pb-4">
+    <div className="py-8">
+      <div className="pl-8 pb-4">
         <span
           className="inline-block p-2 cursor-pointer "
           onClick={() => navigate(-1)}
