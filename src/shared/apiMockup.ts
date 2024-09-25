@@ -96,6 +96,7 @@ export function generatePostEntity(words?: string[]): PostEntity {
     id: randomId(),
     name: words[0],
     content: words.slice(3).join(" "),
+    user: words[0],
   };
   return postEntity;
 }

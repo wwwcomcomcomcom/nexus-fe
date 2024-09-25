@@ -5,7 +5,7 @@ import * as GauthApi from "../shared/guathApi.ts";
 import GauthIcon from "../component/icons/GauthIcon.tsx";
 import { useUserStore } from "../shared/userStore.ts";
 import Logo from "../component/elements/Logo.tsx";
-import LeftArrowIcon from "../component/elements/LeftArrowIcon.tsx";
+import LeftArrowIcon from "../component/icons/LeftArrowIcon.tsx";
 
 export default function Login() {
   const [query] = useSearchParams();
@@ -13,26 +13,37 @@ export default function Login() {
   const githubCode = query.get("code");
   const gauthCode = query.get("gauth?code");
   const store = useUserStore();
-  if (store.isLogin()) navigate("/");
+
+  // 로그인 되어 있는 애인지 확인
   useEffect(() => {
-    if (githubCode) {
-      GithubApi.login(githubCode)
-        .then(() => navigate("/"))
-        .catch((e) => {
-          alert("Failed to login" + e.message);
-        });
+    if (store.isLogin()) {
+      navigate("/");
     }
-    if (gauthCode) {
-      GauthApi.login(gauthCode)
-        .then((jwt) => {
+  }, [store, navigate]);
+
+  // Github 또는 Gauth 로그인 처리
+  useEffect(() => {
+    const handleLogin = async (code: string | null, loginFunction: (code: string) => Promise<string>) => {
+      if (code) {
+        try {
+          const jwt = await loginFunction(code);
           store.setJwt(jwt);
           navigate("/");
-        })
-        .catch((e) => {
-          alert("Failed to login" + e.message);
-        });
-    }
-  }, [githubCode, gauthCode, navigate]);
+        } catch (e) {
+          // 타입에러
+          if (e instanceof Error) {
+            alert("Failed to login: " + e.message);
+          } else {
+            alert("Failed to login");
+          }
+        }
+      }
+    };
+
+    handleLogin(githubCode, GithubApi.login);
+    handleLogin(gauthCode, GauthApi.login);
+  }, [githubCode, gauthCode, navigate, store]);
+
   return (
     <>
       <div
@@ -64,19 +75,13 @@ export default function Login() {
       <div className="mx-auto max-w-md space-y-6 py-12">
         <div className="text-center">
           <h1 className="text-3xl font-bold">로그인</h1>
-          <p className="text-gray-500">
-            Gauth 또는 Github 계정을 이용하여 간편하게 로그인하세요!
-          </p>
+          <p className="text-gray-500">Gauth 또는 Github 계정을 이용하여 간편하게 로그인하세요!</p>
         </div>
-        <div
-          data-orientation="horizontal"
-          role="none"
-          className="shrink-0 bg-gray-100 h-[1px] w-full my-6"
-        ></div>
+        <div data-orientation="horizontal" role="none" className="shrink-0 bg-gray-100 h-[1px] w-full my-6"></div>
         <Logo className="py-3 mx-auto w-64 h-64" />
         <a
           className="space-y-4 block"
-          href={`https://github.com/login/oauth/authorize?client_id=${GithubApi.GithubOauthClientId}`}
+          href={`https://github.com/login/oauth/authorize?client_id=${GithubApi.GithubOauthClientId}&redirect_uri=${window.location.origin}/login?github`}
         >
           <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border transition-colors duration-300 hover:bg-black hover:text-white active:bg-gray-700 active:text-gray-300 h-10 px-4 py-2 w-full">
             <svg
@@ -109,10 +114,7 @@ export default function Login() {
         </a>
         <div className="text-end px-4 text-gray-500">
           새로운 유저인가요?{" "}
-          <span
-            className="text-blue-400 ml-2 cursor-pointer"
-            onClick={() => navigate("/signup")}
-          >
+          <span className="text-blue-400 ml-2 cursor-pointer" onClick={() => navigate("/signup")}>
             회원가입
           </span>
         </div>

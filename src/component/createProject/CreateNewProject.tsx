@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { NewProjectStore, useProjectFormStore } from "./projectFormStore";
 
-type formStore = {
+type FormStore = {
   frontend: number;
   backend: number;
   android: number;
@@ -9,7 +9,18 @@ type formStore = {
   flutter: number;
   ai: number;
   design: number;
-}
+};
+
+const ROLES = [
+  { title: "프론트엔드", targetRole: "frontend" },
+  { title: "백엔드", targetRole: "backend" },
+  { title: "안드로이드", targetRole: "android" },
+  { title: "IOS", targetRole: "ios" },
+  { title: "플러터", targetRole: "flutter" },
+  { title: "AI", targetRole: "ai" },
+  { title: "디자인", targetRole: "design" },
+];
+
 export default function CreateNewProject({
   setViewPage,
 }: {
@@ -18,8 +29,11 @@ export default function CreateNewProject({
   const navigate = useNavigate();
   const formStore = useProjectFormStore();
 
-  function submitProjectData(){
-    if(formStore.name === "") return alert("프로젝트 이름을 입력해주세요");
+  function submitProjectData() {
+    if (!formStore.name) {
+      alert("프로젝트 이름을 입력해주세요");
+      return;
+    }
     setViewPage(1);
   }
 
@@ -41,7 +55,7 @@ export default function CreateNewProject({
           strokeLinejoin="round"
           className="h-5 w-5"
         >
-          <path d="m12 19-7-7 7-7"></path>
+          <path d="M12 19L5 12l7-7"></path>
           <path d="M19 12H5"></path>
         </svg>
       </div>
@@ -50,56 +64,81 @@ export default function CreateNewProject({
         <h2 className="text-xl text-gray-500 mb-4">
           새 프로젝트를 등록하고 팀원을 모집하세요
         </h2>
-        <label htmlFor="projectName">Project Name</label>
+
+        <label htmlFor="projectName">프로젝트 이름</label>
         <input
           id="projectName"
           type="text"
           className="transition-all duration-200 rounded-md border border-gray-300 text-lg p-1 focus:py-2"
+          placeholder="프로젝트 이름을 입력해주세요"
           value={formStore.name}
-          onInput={(e) => formStore.setProjectForm({ name: e.currentTarget.value })}
-        ></input>
-        <label htmlFor="projectDescription">Project description</label>
+          onInput={(e) =>
+            formStore.setProjectForm({ name: e.currentTarget.value })
+          }
+        />
+
+        <label htmlFor="projectDescription">프로젝트 설명</label>
         <textarea
           id="projectDescription"
           className="transition-all duration-200 rounded-md border border-gray-300 p-1"
+          placeholder="프로젝트 설명을 입력해주세요.나중에 수정할 수 있습니다."
           value={formStore.description}
-          onInput={(e) => formStore.setProjectForm({ description: e.currentTarget.value })}
-        ></textarea>
+          onInput={(e) =>
+            formStore.setProjectForm({ description: e.currentTarget.value })
+          }
+        />
+
         <div className="flex flex-col gap-3">
           <label className="font-semibold">필요 인원</label>
-          <RoleInput title="프론트엔드" targetRole="frontend" formData={formStore} />
-          <RoleInput title="백엔드" targetRole="backend" formData={formStore} />
-          <RoleInput title="안드로이드" targetRole="android" formData={formStore} />
-          <RoleInput title="IOS" targetRole="ios" formData={formStore} />
-          <RoleInput title="플러터" targetRole="flutter" formData={formStore} />
-          <RoleInput title="AI" targetRole="ai" formData={formStore} />
-          <RoleInput title="디자인" targetRole="design" formData={formStore} />
+          {ROLES.map((role) => (
+            <RoleInput
+              key={role.targetRole}
+              title={role.title}
+              targetRole={role.targetRole as keyof FormStore}
+              formData={formStore}
+            />
+          ))}
         </div>
-        <button className="rounded-md h-10 px-6 relative bottom-0 text-lg bg-gray-200 mt-4 transition active:bg-gray-300 active:shadow-md shadow-black" onClick={submitProjectData}>
+
+        <button
+          className="rounded-md h-10 px-6 relative bottom-0 text-lg bg-gray-200 mt-4 transition active:bg-gray-300 active:shadow-md shadow-black"
+          onClick={submitProjectData}
+        >
           Create Project
         </button>
       </div>
     </>
   );
 }
-interface RoleInputProps{
-  title:string;
-  targetRole:keyof formStore;
-  formData:NewProjectStore;
+
+interface RoleInputProps {
+  title: string;
+  targetRole: keyof FormStore;
+  formData: NewProjectStore;
 }
-function RoleInput(props:RoleInputProps){
-  const inputStyle:string = "transition-all duration-200 rounded-md border border-gray-300 focus:py-1 outline-none px-2";
-  
-  function handleInput(e:React.ChangeEvent<HTMLInputElement>){
-    let value = parseInt(e.target.value);
-    if(value < 0 || Number.isNaN(value)) value = 0;
-    props.formData.setProjectForm({...props.formData,[props.targetRole]:value});
-  }
-  return <div className="flex flex-col">
-  <label htmlFor={props.targetRole}>
-    {props.title}
-    <span className="transition duration-300" style={{opacity:+(props.formData[props.targetRole] > 0)}}>✅</span>
-  </label>
-  <input id={props.targetRole} type="number" className={inputStyle} value={props.formData[props.targetRole]} onInput={handleInput}></input>
-</div>;
+
+function RoleInput({ title, targetRole, formData }: RoleInputProps) {
+  const inputStyle =
+    "transition-all duration-200 rounded-md border border-gray-300 focus:py-1 outline-none px-2";
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Math.max(0, parseInt(e.target.value) || 0);
+    formData.setProjectForm({ ...formData, [targetRole]: value });
+  };
+
+  return (
+    <div className="flex flex-col">
+      <label htmlFor={targetRole}>
+        {title}
+        {formData[targetRole] > 0 && <span className="ml-2">✅</span>}
+      </label>
+      <input
+        id={targetRole}
+        type="number"
+        className={inputStyle}
+        value={formData[targetRole]}
+        onInput={handleInput}
+      />
+    </div>
+  );
 }

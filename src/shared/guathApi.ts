@@ -6,7 +6,7 @@ export const GauthOauthClientId =
 
 export async function signup(accessCode: string): Promise<string> {
   return await axios
-    .post(`${ApiBaseUrl}/api/user/signup?accessCode=${accessCode}`)
+    .post(`${ApiBaseUrl}/api/user/signup/gauth?accessCode=${accessCode}`)
     .then((res) => {
       if (res.status === 200 && typeof res.data === "string") {
         return res.data;
@@ -32,7 +32,7 @@ export async function login(accessCode: string): Promise<string> {
         throw new Error("Invalid JWT response");
       }
       throw new Error(
-        "response status is not 200 or getAuthorization is not a function"
+        "response status is not 200 or getAuthorization is not a function",
       );
     });
 }
