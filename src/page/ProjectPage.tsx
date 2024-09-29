@@ -14,7 +14,7 @@ function ProjectPage(/*props: DivProps*/) {
   }
 
   return (
-    <main className="flex flex-col gap-24">
+    <main className="flex flex-col gap-24 mb-10">
       <div className="p-8">
         <span
           className="inline-block p-2 cursor-pointer "
