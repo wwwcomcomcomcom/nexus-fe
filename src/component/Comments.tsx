@@ -61,6 +61,12 @@ export default function Comments() {
     [replyInputs]
   );
 
+  // textarea height 자동 조정
+  const adjustTextareaHeight = (element: HTMLTextAreaElement) => {
+    element.style.height = "auto"; // 기존 높이 리셋
+    element.style.height = `${element.scrollHeight}px`; // 새로운 높이 설정
+  };
+
   return (
     <>
       {/* 댓글 입력 필드 */}
@@ -100,7 +106,6 @@ export default function Comments() {
               <p>{comment.text}</p>
             </div>
 
-            {/* 여기 부분 확인 */}
             <div
               className={`mt-2 ml-[50%] ${
                 comment.replies.length > 0 ? "-translate-y-10 -mb-10" : ""
@@ -131,20 +136,22 @@ export default function Comments() {
 
               {/* 대댓글 입력 필드 */}
               <label
-                className="w-full flex mb-3 border border-[#F2F2F2] bg-white rounded-full px-6 py-1 shadow-md"
+                className="w-full flex mb-3 border border-[#F2F2F2] bg-white  rounded-[30px] px-6 py-1 shadow-md"
                 htmlFor="commentInput"
               >
-                <input
-                  type="text"
+                <textarea
+                  rows={1} // 초기 row 크기
+                  style={{ overflow: "hidden", resize: "none" }} // 수동 크기 조정 방지
                   placeholder="대댓글을 입력하세요. "
-                  className="grow outline-none"
+                  className="grow outline-none mt-2 mr-2 "
                   value={replyInputs[comment.id] || ""}
-                  onChange={(e) =>
-                    handleReplyInputChange(comment.id, e.target.value)
-                  }
+                  onChange={(e) => {
+                    handleReplyInputChange(comment.id, e.target.value);
+                    adjustTextareaHeight(e.target); // 높이 조정
+                  }}
                 />
                 <PencilIcon
-                  className="w-6 cursor-pointer"
+                  className="w-6 cursor-pointer "
                   onClick={() => handleAddReply(comment.id)}
                 />
               </label>
