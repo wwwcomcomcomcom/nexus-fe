@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import * as GithubApi from "../shared/githubApi.ts";
 import GauthIcon from "../component/icons/GauthIcon.tsx";
 // import GithubIcon from "../component/icons/GithubIcon.tsx";
-import LeftArrowIcon from "../component/elements/LeftArrowIcon.tsx";
+import LeftArrowIcon from "../component/icons/LeftArrowIcon.tsx";
 import Logo from "../component/elements/Logo.tsx";
 
 export default function Signup() {

@@ -4,6 +4,9 @@ export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["GmarketSansMedium", "sans-serif"],
+      },
       colors: {
         primary: "#000000",
         "primary-foreground": "#FFFFFF",
