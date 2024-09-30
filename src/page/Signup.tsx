@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import * as GauthApi from "../shared/guathApi.ts";
+import * as GauthApi from "../shared/gauthApi.ts";
 import { useEffect } from "react";
 import * as GithubApi from "../shared/githubApi.ts";
 import GauthIcon from "../component/icons/GauthIcon.tsx";

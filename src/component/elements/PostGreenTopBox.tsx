@@ -1,7 +1,9 @@
 export default function PostGreenTopBox(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      viewBox="0 0 959 550"
+      width="870"
+      height="250"
+      viewBox="0 0 870 400"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       style={{
@@ -10,7 +12,7 @@ export default function PostGreenTopBox(props: React.SVGProps<SVGSVGElement>) {
       {...props}
     >
       <path
-        d="M717.172 497.168C694.858 530.203 657.596 550 617.732 550L75 550C33.5787 550 6.10352e-05 516.421 6.10352e-05 475L6.10352e-05 75C6.10352e-05 33.5786 33.5787 0 75.0001 0L858.837 0C937.536 0 985.394 86.701 943.453 153.293L860.743 284.615L717.172 497.168Z"
+        d="M650.616 361.577C630.374 385.602 596.569 400 560.404 400L68.0397 400C30.4624 400 1.27485e-05 375.579 1.27485e-05 345.455V54.5454C1.27485e-05 24.4208 30.4624 -1.19209e-05 68.0398 -1.19209e-05L779.134 -1.19209e-05C850.53 -1.19209e-05 893.946 63.0553 855.898 111.486L780.864 206.993L650.616 361.577Z"
         fill="#DEFFEE"
       />
     </svg>
