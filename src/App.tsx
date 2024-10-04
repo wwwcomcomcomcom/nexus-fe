@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./layout/Layout.tsx";
 import HomeMain from "./page/HomePage.tsx";
 import Login from "./page/Login.tsx";
-import ProjectPage from "./page/ProjectPage.tsx";
 import ProfilePage from "./page/ProfilePage.tsx";
 import ProjectListPage from "./page/ProjectListPage.tsx";
 import Signup from "./page/Signup.tsx";
@@ -11,6 +10,7 @@ import CreateProjectPage from "./page/CreateProjectPage.tsx";
 import PostListPage from "./page/PostListPage.tsx";
 import PostPage from "./page/PostPage.tsx";
 import ProjectSubmit from "./page/ProjectApplication.tsx";
+import ProjectPage from "./page/ProjectPages/ProjectPage.tsx";
 
 function App() {
   return (
