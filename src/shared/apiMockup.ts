@@ -30,6 +30,18 @@ export function generateProjectEntity(words?: string[]): ProjectEntity {
   return projectEntity;
 }
 
+// 프로젝트 샘플
+export const getProjectById = (id: string): ProjectEntity | null => {
+  const project: ProjectEntity | null = {
+    id,
+    name: "Sample Project",
+    description: "This is a sample project description.",
+    status: Status.Active,
+    githubUrl: "https://github.com/sample",
+  };
+  return project;
+};
+
 // 여기 부분 확인
 export function getAllProfileEntity(
   numberOfProfiles: number = 10
