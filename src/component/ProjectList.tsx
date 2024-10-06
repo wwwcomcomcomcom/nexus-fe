@@ -9,6 +9,7 @@ import {
   motion,
   useMotionValue,
 } from "framer-motion";
+import { fetchProjectList } from "../shared/proejctApi.ts";
 
 export default function ProjectList({
   scrollRef,
@@ -22,7 +23,19 @@ export default function ProjectList({
     setLoading(true);
 
     setProjects([...projects, ...getAllProjectEntity(20)]);
-    setLoading(false);
+    fetchProjectList()
+      .then((res) => {
+        console.log(res);
+        setProjects([...projects, ...res]);
+      })
+      .catch((e) => {
+        if (e.response.status === 404) {
+          console.log("Not found");
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }
   function resetScroll() {
     window.scrollTo(0, 0);

@@ -22,9 +22,9 @@ export function generateProjectEntity(words?: string[]): ProjectEntity {
   }
   const projectEntity: ProjectEntity = {
     id: randomId(),
-    name: words[0],
+    title: words[0],
     description: words.slice(3).join(" "),
-    status: randomStatus(),
+    state: randomStatus(),
     githubUrl: `https://github.com/${words[1]}/${words[2]}`,
   };
   return projectEntity;

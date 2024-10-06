@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ApiBaseUrl } from "../../shared/userApi";
+import { ApiBaseUrl } from "../../shared/apiConfig";
 
 //TODO:impl createProjectApi
 //TODO:move createProjectDto from projectFormStore
