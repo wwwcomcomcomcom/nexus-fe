@@ -1,4 +1,4 @@
-import { useUpdatedUserStore } from "../shared/api.ts";
+import { useUpdatedUserStore } from "../shared/userApi.ts";
 import { getAllPostEntity, getAllProjectEntity } from "../shared/apiMockup.ts";
 import ProjectCard from "../component/Card/ProjectCard.tsx";
 // import { getElement } from "@egjs/react-flicking";

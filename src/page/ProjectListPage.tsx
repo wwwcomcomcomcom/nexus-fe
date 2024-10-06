@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import ProjectList from "../component/ProjectList.tsx";
-import { useUpdatedUserStore } from "../shared/api.ts";
+import { useUpdatedUserStore } from "../shared/userApi.ts";
 import { useRef } from "react";
 
 export default function ProjectListPage() {
