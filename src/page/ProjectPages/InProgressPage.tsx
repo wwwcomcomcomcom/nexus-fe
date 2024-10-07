@@ -7,6 +7,7 @@ import ProjectGreenTopBox from "../../component/elements/ProjectGreenTopBox";
 import { DivProps } from "../../utils/typedef";
 import { ProjectEntity } from "../../entity/ProjectEntity";
 import IntroduceProject from "./IntroduceProject";
+import { getStatusColorSet } from "../../component/projectCard/projectStatus";
 
 interface ProjectStatus extends DivProps {
   project: ProjectEntity;
@@ -15,6 +16,7 @@ interface ProjectStatus extends DivProps {
 function InProgressPage(props: ProjectStatus) {
   const param = useParams();
   const navigate = useNavigate();
+  const colorSet = getStatusColorSet(props.project.status);
 
   if (param.id === undefined) {
     window.location.href = "/notfound";
@@ -41,7 +43,10 @@ function InProgressPage(props: ProjectStatus) {
             <div className="absolute bg-white rounded-full text-6xl font-extrabold py-5 px-10 translate-y-1/2 -translate-x-[80%] shadow-xl">
               NEXUS
               <div className="absolute bg-white shadow-xl flex items-center gap-2 rounded-full p-2 pr-4 border border-gray-200 translate-x-[115%]">
-                <div className="w-8 h-8 rounded-full bg-orange-400"></div>
+                <div
+                  className="w-8 h-8 rounded-full"
+                  style={{ backgroundColor: colorSet[0] }}
+                ></div>
                 <div className="text-2xl">{props.project.status}</div>
               </div>
             </div>
