@@ -23,10 +23,6 @@ export default function ProjectList({
 
     setProjects([...projects, ...getAllProjectEntity(20)]);
     setLoading(false);
-    // getAllProjectEntity(20).then((newProjects) => {
-    //   setProjects([...projects, ...newProjects]);
-    //   setLoading(false);
-    // });
   }
   function resetScroll() {
     window.scrollTo(0, 0);
