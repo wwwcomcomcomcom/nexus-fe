@@ -1,21 +1,20 @@
 import { useNavigate, useParams } from "react-router-dom";
-import LeftArrowIcon from "../component/icons/LeftArrowIcon";
-import NeedCard from "../component/projectCard/NeedCard";
-import ProfileCard from "../component/projectCard/ProfileCard";
-import {
-  generateProjectEntity,
-  getAllNededEntity,
-  getAllProfileEntity,
-} from "../shared/apiMockup";
-import ProjectGreenTopBox from "../component/elements/ProjectGreenTopBox";
+import LeftArrowIcon from "../../component/icons/LeftArrowIcon";
+import NeedCard from "../../component/projectCard/NeedCard";
+import ProfileCard from "../../component/projectCard/ProfileCard";
+import { getAllNededEntity, getAllProfileEntity } from "../../shared/apiMockup";
+import ProjectGreenTopBox from "../../component/elements/ProjectGreenTopBox";
+import { DivProps } from "../../utils/typedef";
+import { ProjectEntity } from "../../entity/ProjectEntity";
 import IntroduceProject from "./IntroduceProject";
-import { getStatusColorSet } from "../component/projectCard/projectStatus";
 
-function ProjectPage() {
-  const project = generateProjectEntity();
+interface ProjectStatus extends DivProps {
+  project: ProjectEntity;
+}
+
+function CompletedPage(props: ProjectStatus) {
   const param = useParams();
   const navigate = useNavigate();
-  const colorSet = getStatusColorSet(project.status);
 
   if (param.id === undefined) {
     window.location.href = "/notfound";
@@ -42,28 +41,21 @@ function ProjectPage() {
             <div className="absolute bg-white rounded-full text-6xl font-extrabold py-5 px-10 translate-y-1/2 -translate-x-[80%] shadow-xl">
               NEXUS
               <div className="absolute bg-white shadow-xl flex items-center gap-2 rounded-full p-2 pr-4 border border-gray-200 translate-x-[115%]">
-                <div
-                  className="w-8 h-8 rounded-full"
-                  style={{ backgroundColor: colorSet[0] }}
-                ></div>
-                <div className="text-2xl">{project.status}</div>
+                <div className="w-8 h-8 rounded-full bg-orange-400"></div>
+                <div className="text-2xl">{props.project.status}</div>
               </div>
             </div>
           </div>
-
           <div className="w-full flex justify-end pt-16 pr-[5%]">
             <div className="w-1/2">
-              {project.status === "모집중" && (
-                <div className="flex mb-8 w-full pr-8 gap-8">
-                  {/* 임시*/}
-                  {getAllNededEntity(2).map((need) => (
-                    <NeedCard need={need} className="h-[8rem]" />
-                  ))}
-                </div>
-              )}
+              <div className="flex mb-8 w-full pr-8 gap-8">
+                {/* 임시*/}
+                {getAllNededEntity(2).map((need) => (
+                  <NeedCard need={need} className="h-[8rem]" />
+                ))}
+              </div>
             </div>
           </div>
-
           <div className="w-full flex justify-end pr-[5%]">
             <div className="w-1/2">
               <div className="grid grid-cols-2 gap-x-[30%] gap-y-6 w-fit">
@@ -90,4 +82,4 @@ function ProjectPage() {
   );
 }
 
-export default ProjectPage;
+export default CompletedPage;
