@@ -10,7 +10,7 @@ import CreateProjectPage from "./page/CreateProjectPage.tsx";
 import PostListPage from "./page/PostListPage.tsx";
 import PostPage from "./page/PostPage.tsx";
 import ProjectSubmit from "./page/ProjectApplication.tsx";
-import ProjectPage from "./page/ProjectPages/ProjectPage.tsx";
+import ProjectPage from "./page/ProjectPage.tsx";
 
 function App() {
   return (
