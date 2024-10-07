@@ -50,16 +50,20 @@ function ProjectPage() {
               </div>
             </div>
           </div>
+
           <div className="w-full flex justify-end pt-16 pr-[5%]">
             <div className="w-1/2">
-              <div className="flex mb-8 w-full pr-8 gap-8">
-                {/* 임시*/}
-                {getAllNededEntity(2).map((need) => (
-                  <NeedCard need={need} className="h-[8rem]" />
-                ))}
-              </div>
+              {project.status === "모집중" && (
+                <div className="flex mb-8 w-full pr-8 gap-8">
+                  {/* 임시*/}
+                  {getAllNededEntity(2).map((need) => (
+                    <NeedCard need={need} className="h-[8rem]" />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
+
           <div className="w-full flex justify-end pr-[5%]">
             <div className="w-1/2">
               <div className="grid grid-cols-2 gap-x-[30%] gap-y-6 w-fit">
