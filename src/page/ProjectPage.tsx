@@ -79,13 +79,15 @@ function ProjectPage() {
 
       <IntroduceProject />
 
-      <div className="w-full h-[70vh] flex justify-end">
-        <div className="md:w-2/3 w-full h-full bg-[#F4F9FF] rounded-[3rem] relative rounded-r-none">
-          <div className="p-10">
-            <div className="font-extrabold text-2xl">git 그래프</div>
+      {project.status === "진행중" && (
+        <div className="w-full h-[70vh] flex justify-end">
+          <div className="md:w-2/3 w-full h-full bg-[#F4F9FF] rounded-[3rem] relative rounded-r-none">
+            <div className="p-10">
+              <div className="font-extrabold text-2xl">git 그래프</div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </main>
   );
 }
