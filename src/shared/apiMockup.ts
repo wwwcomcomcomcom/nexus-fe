@@ -1,4 +1,4 @@
-import { Status } from "../component/Card/projectStatus.ts";
+import { Status } from "../component/projectCard/projectStatus.ts";
 import { NeedEntity } from "../entity/NeedEntity.ts";
 import { PostEntity } from "../entity/PostEntity.ts";
 import { ProfileEntity } from "../entity/ProfileEntity.ts";

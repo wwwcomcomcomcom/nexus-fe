@@ -4,8 +4,8 @@ import {
   getAllPostEntity,
   getAllProjectEntity,
 } from "../shared/apiMockup.ts";
-import ProjectCard from "../component/Card/ProjectCard.tsx";
-import PostCard from "../component/Card/PostCard.tsx";
+import ProjectCard from "../component/projectCard/ProjectCard.tsx";
+import PostCard from "../component/projectCard/PostCard.tsx";
 
 const profile = generateProfileEntity();
 

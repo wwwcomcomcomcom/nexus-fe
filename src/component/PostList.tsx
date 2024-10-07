@@ -1,4 +1,4 @@
-import PostCard from "./Card/PostCard.tsx";
+import PostCard from "./projectCard/PostCard.tsx";
 import { MutableRefObject, useEffect, useState } from "react";
 import Loading from "./Loading.tsx";
 import { getAllPostEntity } from "../shared/apiMockup.ts";

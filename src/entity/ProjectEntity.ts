@@ -1,4 +1,4 @@
-import { Status } from "../component/Card/projectStatus";
+import { Status } from "../component/projectCard/projectStatus";
 
 export interface ProjectEntity {
   id: string;
