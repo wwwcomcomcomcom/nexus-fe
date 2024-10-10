@@ -9,18 +9,20 @@ export default function ProjectListPage() {
   const scrollRef = useRef(null);
   return (
     <div className="flex flex-col w-full h-full" ref={scrollRef}>
-      <div className="flex flex-row w-full px-10 place-content-center bg-transparent">
-        <h1 className="text-3xl font-bold text-center py-10">Projects</h1>
-        {userStore.isLogin() && (
-          <div className="flex flex-row items-center">
-            <button
-              className="bg-blue-400 rounded-md h-10 px-3"
-              onClick={() => navigate("/createProject")}
-            >
-              Create Project
-            </button>
-          </div>
-        )}
+      <div className="flex w-full px-10 place-content-center bg-transparent">
+        <div className="relative py-10">
+          <h1 className="text-3xl font-bold">Projects</h1>
+          {userStore.isLogin() && (
+            <div className="flex w-44 items-center place-content-center absolute top-10 left-40">
+              <button
+                className="bg-blue-400 rounded-md h-10 px-3"
+                onClick={() => navigate("/createProject")}
+              >
+                Create Project
+              </button>
+            </div>
+          )}
+        </div>
       </div>
       <ProjectList scrollRef={scrollRef} />
     </div>
