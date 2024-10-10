@@ -10,3 +10,11 @@ export function fetchProjectList(): Promise<ProjectEntity[]> {
     throw new Error("Invalid response");
   });
 }
+export function fetchProject(projectId: string): Promise<ProjectEntity> {
+  return axios.get(`${ApiBaseUrl}/api/project/${projectId}`).then((res) => {
+    if (res.status === 200) {
+      return res.data;
+    }
+    throw new Error("Invalid response");
+  });
+}

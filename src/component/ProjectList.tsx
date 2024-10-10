@@ -1,8 +1,6 @@
 import { MutableRefObject, useEffect, useState } from "react";
 import ProjectCard from "./Card/ProjectCard.tsx";
 import Loading from "./Loading.tsx";
-import { getAllProjectEntity } from "../shared/apiMockup.ts";
-import { ProjectEntity } from "../entity/ProjectEntity.ts";
 import {
   useScroll,
   useMotionValueEvent,
@@ -10,23 +8,24 @@ import {
   useMotionValue,
 } from "framer-motion";
 import { fetchProjectList } from "../shared/proejctApi.ts";
+import { useProjectStore } from "../shared/projectStore.ts";
+import { useSearchParams } from "react-router-dom";
 
 export default function ProjectList({
   scrollRef,
 }: {
   scrollRef: MutableRefObject<null | HTMLDivElement>;
 }) {
+  const [query] = useSearchParams();
+  const page = query.get("page") || 1;
   const [isLoading, setLoading] = useState(true);
-  const [projects, setProjects] = useState<ProjectEntity[]>([]);
-
+  const projectStore = useProjectStore();
   function loadProjects() {
     setLoading(true);
-
-    setProjects([...projects, ...getAllProjectEntity(20)]);
     fetchProjectList()
       .then((res) => {
         console.log(res);
-        setProjects([...projects, ...res]);
+        projectStore.addProjects(res);
       })
       .catch((e) => {
         if (e.response.status === 404) {
@@ -80,7 +79,7 @@ export default function ProjectList({
         </div>
         <div className="grid px-4 py-6 md:px-6 justify-center w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
-            {projects.map((project) => (
+            {projectStore.projects.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
           </div>
