@@ -7,9 +7,9 @@ import {
   motion,
   useMotionValue,
 } from "framer-motion";
-import { fetchProjectList } from "../shared/proejctApi.ts";
 import { useProjectStore } from "../shared/projectStore.ts";
 import { useSearchParams } from "react-router-dom";
+import { fetchProjectsByPage } from "../shared/proejctApi.ts";
 
 export default function ProjectList({
   scrollRef,
@@ -17,20 +17,18 @@ export default function ProjectList({
   scrollRef: MutableRefObject<null | HTMLDivElement>;
 }) {
   const [query] = useSearchParams();
-  const page = query.get("page") || 1;
+  const page = Number(query.get("page")) || 0;
   const [isLoading, setLoading] = useState(true);
   const projectStore = useProjectStore();
   function loadProjects() {
     setLoading(true);
-    fetchProjectList()
-      .then((res) => {
-        console.log(res);
-        projectStore.addProjects(res);
+    fetchProjectsByPage(page)
+      .then((projects) => {
+        projectStore.addProjects(projects);
       })
       .catch((e) => {
-        if (e.response.status === 404) {
-          console.log("Not found");
-        }
+        console.error(e);
+        alert("Failed to load projects");
       })
       .finally(() => {
         setLoading(false);
