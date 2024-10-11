@@ -6,13 +6,6 @@ export default function CreatePostPage() {
   const navigate = useNavigate();
   const formStore = useProjectFormStore();
 
-  function submitProjectData() {
-    if (!formStore.name) {
-      alert("프로젝트 이름을 입력해주세요");
-      return;
-    }
-  }
-
   const isDisabled = !formStore.name || !formStore.description; // 제목 또는 내용이 비어있으면 비활성화
 
   return (
@@ -85,7 +78,6 @@ export default function CreatePostPage() {
                   ? "bg-gray-300 cursor-not-allowed text-gray-700"
                   : "bg-gradient-to-r from-blue-500 to-indigo-500 hover:shadow-lg transition transform hover:-translate-y-0.5 active:translate-y-0.5"
               }`}
-              onClick={submitProjectData}
               disabled={isDisabled}
             >
               Create Post
