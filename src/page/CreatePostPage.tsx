@@ -47,7 +47,7 @@ export default function CreatePostPage() {
                 id="projectName"
                 type="text"
                 className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="프로젝트 이름을 입력해주세요."
+                placeholder="글 제목을 입력해주세요."
                 value={formStore.name}
                 onInput={(e) =>
                   formStore.setProjectForm({ name: e.currentTarget.value })
