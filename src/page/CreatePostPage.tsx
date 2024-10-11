@@ -13,55 +13,86 @@ export default function CreatePostPage() {
     }
   }
 
+  const isDisabled = !formStore.name || !formStore.description; // 제목 또는 내용이 비어있으면 비활성화
+
   return (
-    <div className="flex justify-center h-fit">
-      <div
-        className="inline-flex items-center justify-center m-2 absolute left-0 p-8 cursor-pointer"
-        onClick={() => navigate("/projects")}
-      >
-        <LeftArrowIcon />
+    <>
+      <div className="px-8 py-4">
+        <span
+          className="inline-block p-2 cursor-pointer"
+          onClick={() => navigate(-1)}
+        >
+          <LeftArrowIcon className="w-3 h-auto" />
+        </span>
       </div>
-      <div className="mt-16">
-        <div className="text-center">
-          <h1 className="text-[1.5rem] font-bold">Create Post</h1>
-          <p className="text-sm text-[#757575] font-[8px] ">
-            글을 작성하고 사람들과 공유해보세요
-          </p>
-        </div>
+      <div className="text-center mb-6">
+        <h1 className="text-2xl font-bold text-gray-800">Create Post</h1>
+        <p className="text-gray-500 text-sm">
+          글을 작성하고 사람들과 공유해보세요.
+        </p>
+      </div>
+      <div className="flex flex-col items-center h-fit p-4 pb-10 ">
+        {/* 컨테이너*/}
+        <div className="w-full max-w-lg mt-3 p-14 bg-white rounded-3xl shadow-lg border border-[#F2F2F2] ">
+          <div className="flex flex-col gap-6">
+            {/* 프로젝트 이름 */}
+            <div>
+              <label
+                htmlFor="projectName"
+                className="block text-sm font-medium text-gray-700"
+              >
+                제목
+              </label>
+              <input
+                id="projectName"
+                type="text"
+                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                placeholder="프로젝트 이름을 입력해주세요."
+                value={formStore.name}
+                onInput={(e) =>
+                  formStore.setProjectForm({ name: e.currentTarget.value })
+                }
+              />
+            </div>
 
-        <div className="flex flex-col border rounded-xl border-gray-400 p-12 my-10 gap-4 h-fit">
-          <label htmlFor="projectName">제목</label>
-          <input
-            id="projectName"
-            type="text"
-            className="transition-all duration-200 rounded-md border border-gray-300 p-1 focus:py-2"
-            placeholder="프로젝트 이름을 입력해주세요"
-            value={formStore.name}
-            onInput={(e) =>
-              formStore.setProjectForm({ name: e.currentTarget.value })
-            }
-          />
+            {/* 프로젝트 설명*/}
+            <div>
+              <label
+                htmlFor="projectDescription"
+                className="block text-sm font-medium text-gray-700"
+              >
+                내용
+              </label>
+              <textarea
+                id="projectDescription"
+                className="w-full mt-1 p-2 border border-gray-300 rounded-md"
+                placeholder="글을 작성해주세요. "
+                value={formStore.description}
+                rows={5}
+                style={{ overflow: "hidden", resize: "none" }}
+                onInput={(e) =>
+                  formStore.setProjectForm({
+                    description: e.currentTarget.value,
+                  })
+                }
+              />
+            </div>
 
-          <label htmlFor="projectDescription">내용</label>
-          <textarea
-            id="projectDescription"
-            className="transition-all duration-200 rounded-md border border-gray-300 p-1"
-            placeholder="프로젝트 설명을 입력해주세요.나중에 수정할 수 있습니다."
-            value={formStore.description}
-            style={{ overflow: "hidden", resize: "none" }}
-            onInput={(e) =>
-              formStore.setProjectForm({ description: e.currentTarget.value })
-            }
-          />
-
-          <button
-            className="rounded-md h-10 px-6 relative bottom-0 text-lg bg-gray-200 mt-4 transition active:bg-gray-300 active:shadow-md shadow-black"
-            onClick={submitProjectData}
-          >
-            Create Post
-          </button>
+            {/* Submit Button */}
+            <button
+              className={`w-full py-2 px-4 rounded-md text-white text-md font-semibold shadow-md  ${
+                isDisabled
+                  ? "bg-gray-300 cursor-not-allowed text-gray-700"
+                  : "bg-gradient-to-r from-blue-500 to-indigo-500 hover:shadow-lg transition transform hover:-translate-y-0.5 active:translate-y-0.5"
+              }`}
+              onClick={submitProjectData}
+              disabled={isDisabled}
+            >
+              Create Post
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
