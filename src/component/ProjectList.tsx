@@ -77,7 +77,7 @@ export default function ProjectList({
         </div>
         <div className="grid px-4 py-6 md:px-6 justify-center w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
-            {projectStore.projects.map((project) => (
+            {Object.values(projectStore.projects).map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
           </div>

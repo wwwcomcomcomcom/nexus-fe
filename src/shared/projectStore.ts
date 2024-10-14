@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { ProjectEntity } from "../entity/ProjectEntity";
 
 interface ProjectStore {
-  projects: ProjectEntity[];
+  projects: { [keyof: string]: ProjectEntity };
   addProject: (project: ProjectEntity) => void;
   addProjects: (projects: ProjectEntity[]) => void;
   removeProject: (projectId: string) => void;
@@ -11,15 +11,22 @@ interface ProjectStore {
 }
 
 export const useProjectStore = create<ProjectStore>((set, get) => ({
-  projects: [],
-  addProject: (project) => set({ projects: [...get().projects, project] }),
-  addProjects: (projects) =>
-    set({ projects: [...get().projects, ...projects] }),
-  removeProject: (projectId) =>
-    set({ projects: get().projects.filter((p) => p.id !== projectId) }),
+  projects: {},
+  addProject: (project) =>
+    set({ projects: { ...get().projects, [project.id]: project } }),
+  addProjects: (projects) => {
+    const newProjects = projects.reduce(
+      (acc, project) => ({ ...acc, [project.id]: project }),
+      {}
+    );
+    set({ projects: { ...get().projects, ...newProjects } });
+  },
+  removeProject: (projectId) => {
+    const projects = { ...get().projects };
+    delete projects[projectId];
+    set({ projects });
+  },
   setProject: (project) =>
-    set({
-      projects: get().projects.map((p) => (p.id === project.id ? project : p)),
-    }),
-  getProject: (projectId) => get().projects.find((p) => p.id === projectId),
+    set({ projects: { ...get().projects, [project.id]: project } }),
+  getProject: (projectId) => get().projects[projectId],
 }));
