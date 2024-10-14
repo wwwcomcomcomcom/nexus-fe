@@ -40,6 +40,13 @@ export default function CreatePostPage() {
     }
   }
 
+  // textarea의 높이를 자동으로 조정하는 함수
+  const adjustHeight = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const textarea = event.target;
+    textarea.style.height = "auto"; // 높이를 초기화
+    textarea.style.height = `${textarea.scrollHeight}px`; // 내용에 따라 높이를 설정
+  };
+
   return (
     <>
       <div className="px-8 py-4">
@@ -51,30 +58,31 @@ export default function CreatePostPage() {
         </span>
       </div>
       <div className="text-center mb-6">
+        <div className="w-[50vw] h-[50vw] sm:w-[700px] sm:h-[700px] rounded-full absolute bg-[#FFF5DB] left-0 -z-10 -translate-x-1/2"></div>
+        <div className="w-[40vw] h-[40vw] sm:w-[600px] sm:h-[600px] rounded-full absolute bg-[#FFF5DB] right-0 -z-10 translate-x-1/3 top-[60rem]"></div>
         <h1 className="text-2xl font-bold text-gray-800">Create Post</h1>
         <p className="text-gray-500 text-sm">
           글을 작성하고 사람들과 공유해보세요.
         </p>
       </div>
-      <div className="flex flex-col items-center h-fit p-4 pb-10 ">
+      <div className="flex flex-col items-center h-fit p-4 pb-10">
         {/* 컨테이너 */}
-        <div className="w-full max-w-lg mt-3 p-14 bg-white rounded-3xl shadow-lg border border-[#F2F2F2] ">
+        <div className="w-full max-w-3xl mt-3 p-14 bg-white rounded-3xl shadow-lg border border-[#F2F2F2]">
           <div className="flex flex-col gap-6">
             {/* 프로젝트 이름 */}
             <div>
               <label
                 htmlFor="projectName"
-                className="block text-sm font-medium text-gray-700"
+                className="block font-medium text-gray-700"
               >
                 제목
               </label>
               <input
                 id="projectName"
                 type="text"
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="글 제목을 입력해주세요."
+                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-lg"
                 value={formStore.name}
-                onInput={(e) =>
+                onInput={(e: React.FormEvent<HTMLInputElement>) =>
                   formStore.setProjectForm({ name: e.currentTarget.value })
                 }
               />
@@ -84,28 +92,32 @@ export default function CreatePostPage() {
             <div>
               <label
                 htmlFor="projectDescription"
-                className="block text-sm font-medium text-gray-700"
+                className="block font-medium text-gray-700"
               >
                 내용
               </label>
               <textarea
                 id="projectDescription"
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-                placeholder="글을 작성해주세요."
+                className="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm"
                 value={formStore.description}
-                rows={5}
-                style={{ overflow: "hidden", resize: "none" }}
-                onInput={(e) =>
+                rows={1} // 기본 높이를 1행으로 설정
+                style={{
+                  overflow: "hidden",
+                  resize: "none",
+                  minHeight: "100px",
+                }}
+                onInput={(e: React.FormEvent<HTMLTextAreaElement>) => {
+                  adjustHeight(e as React.ChangeEvent<HTMLTextAreaElement>); // 자동 크기 조정 함수 호출
                   formStore.setProjectForm({
                     description: e.currentTarget.value,
-                  })
-                }
+                  });
+                }}
               />
             </div>
 
             {/* Submit Button */}
             <button
-              className={`w-full py-2 px-4 rounded-md  text-md font-semibold shadow-md  ${
+              className={`w-full py-2 px-4 rounded-md text-md font-semibold shadow-md ${
                 isDisabled
                   ? "bg-gray-300 cursor-not-allowed text-gray-700 "
                   : "bg-gradient-to-r from-blue-500 to-indigo-500 hover:shadow-lg transition transform hover:-translate-y-0.5 active:translate-y-0.5 text-white"
