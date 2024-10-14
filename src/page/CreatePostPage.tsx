@@ -80,7 +80,7 @@ export default function CreatePostPage() {
               <input
                 id="projectName"
                 type="text"
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500 text-lg"
+                className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-[#0000FF4D] focus:border-[#0000FF4D] text-lg outline-none"
                 value={formStore.name}
                 onInput={(e: React.FormEvent<HTMLInputElement>) =>
                   formStore.setProjectForm({ name: e.currentTarget.value })
@@ -98,13 +98,14 @@ export default function CreatePostPage() {
               </label>
               <textarea
                 id="projectDescription"
-                className="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm"
+                className="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm focus:ring-[#0000FF4D] focus:border-[#0000FF4D]"
                 value={formStore.description}
                 rows={1} // 기본 높이를 1행으로 설정
                 style={{
                   overflow: "hidden",
                   resize: "none",
                   minHeight: "100px",
+                  outline: "none",
                 }}
                 onInput={(e: React.FormEvent<HTMLTextAreaElement>) => {
                   adjustHeight(e as React.ChangeEvent<HTMLTextAreaElement>); // 자동 크기 조정 함수 호출
