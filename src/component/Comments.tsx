@@ -86,7 +86,7 @@ export default function Comments() {
     <>
       {/* 댓글 입력 필드 */}
       <label
-        className="w-full flex items-center mb-3 border border-[#F2F2F2] rounded-[30px] px-6 py-1 shadow-md"
+        className="bg-white w-full flex items-center mb-3 border border-[#F2F2F2] rounded-[30px] px-6 py-1 shadow-md"
         htmlFor="commentInput"
       >
         <textarea
@@ -113,6 +113,11 @@ export default function Comments() {
               className={`p-4 pt-2 border border-[#F2F2F2] rounded-3xl bg-white shadow-md ${
                 comment.replies.length > 0 ? "mr-[30%]" : ""
               }`}
+              style={{
+                wordBreak: "break-word", // Ensures words break inside the box
+                overflowWrap: "break-word", // Forces long words to break
+                maxWidth: "100%", // Ensures the box doesn't stretch too far
+              }}
             >
               <div className="flex">
                 <img
@@ -137,6 +142,11 @@ export default function Comments() {
                   <li
                     key={reply.id}
                     className="p-4 pt-2 border border-[#F2F2F2] bg-white rounded-3xl shadow-md mb-3"
+                    style={{
+                      wordBreak: "break-word",
+                      overflowWrap: "break-word",
+                      maxWidth: "100%",
+                    }}
                   >
                     <div className="flex">
                       <img
