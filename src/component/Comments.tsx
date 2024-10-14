@@ -86,7 +86,7 @@ export default function Comments() {
     <>
       {/* 댓글 입력 필드 */}
       <label
-        className="w-full flex items-center mb-3 border border-[#F2F2F2] rounded-[30px] px-6 py-1 shadow-md"
+        className="bg-white w-full flex items-center mb-3 border border-[#F2F2F2] rounded-[30px] px-6 py-1 shadow-md"
         htmlFor="commentInput"
       >
         <textarea
