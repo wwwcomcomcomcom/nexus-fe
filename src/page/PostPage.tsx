@@ -30,7 +30,7 @@ function PostPage() {
 
   return (
     <>
-      <div className="px-8 py-4">
+      <div className="px-4 py-2 sm:px-8 sm:py-4">
         <span
           className="inline-block p-2 cursor-pointer"
           onClick={() => navigate(-1)}
@@ -39,12 +39,12 @@ function PostPage() {
         </span>
       </div>
       <main className="flex flex-col pt-10 items-center overflow-hidden relative">
-        <div className="w-[700px] h-[700px] rounded-full absolute bg-[#FFF5DB] left-0 z-0 -translate-x-1/2"></div>
-        <div className="w-[600px] h-[600px] rounded-full absolute bg-[#FFF5DB] right-0 z-0 translate-x-1/3 top-[60rem]"></div>
+        <div className="w-[50vw] h-[50vw] sm:w-[700px] sm:h-[700px] rounded-full absolute bg-[#FFF5DB] left-0 z-0 -translate-x-1/2"></div>
+        <div className="w-[40vw] h-[40vw] sm:w-[600px] sm:h-[600px] rounded-full absolute bg-[#FFF5DB] right-0 z-0 translate-x-1/3 top-[60rem]"></div>
 
-        <div className="w-1/2 flex flex-col z-10 relative">
+        <div className="w-full max-w-[600px] flex flex-col z-10 relative">
           <div className="bg-white border border-[#F2F2F2] rounded-3xl w-full shadow-xl mb-24 z-1">
-            {/* 게시물 내용 */}
+            {/* Post content */}
             <div className="-translate-y-10">
               <PostGreenTopBox className="relative -left-10 w-[75%]" />
               <div className="grid absolute -translate-y-[200px] pl-3">
@@ -64,13 +64,13 @@ function PostPage() {
                 </div>
               </div>
             </div>
-            <p className="mx-16 mt-10 font-thin leading-7 text-gray-800 text-sm">
+            <p className="mx-4 sm:mx-16 mt-10 font-thin leading-7 text-gray-800 text-sm">
               임시로 적는 본문입니다. ...
             </p>
             <div className="flex justify-end">
               <div className="translate-x-8 translate-y-16 w-[50%] relative h-36 flex justify-center items-center">
                 <PostGreenBottomBox className="absolute w-full" />
-                <div className="w-full flex gap-7 items-center content-center justify-center ml-3">
+                <div className="w-full flex gap-7 items-center justify-center ml-3">
                   <div
                     className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative flex justify-between cursor-pointer"
                     onClick={handleLikeToggle}
