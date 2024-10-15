@@ -1,4 +1,4 @@
-import { useUpdatedUserStore } from "../shared/api.ts";
+import { useUpdatedUserStore } from "../shared/userApi.ts";
 import {
   generateProfileEntity,
   getAllPostEntity,

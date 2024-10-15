@@ -16,6 +16,9 @@ export default {
         xxs: "375px",
         xs: "480px",
       },
+      boxShadow: {
+        regular: "",
+      },
     },
   },
 
