@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ApiBaseUrl } from "./api";
+import { ApiBaseUrl } from "./apiConfig";
 
 export const GithubOauthClientId = "Ov23liUtVGUymJiEuINj";
 

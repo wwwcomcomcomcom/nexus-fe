@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import LoginButton from "./LoginButton";
-import { useUpdatedUserStore } from "../../shared/api";
+import { useUpdatedUserStore } from "../../shared/userApi";
 
 export default function Header() {
   const navigate = useNavigate();
