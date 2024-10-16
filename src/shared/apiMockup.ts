@@ -34,9 +34,9 @@ export function generateProjectEntity(words?: string[]): ProjectEntity {
 export const getProjectById = (id: string): ProjectEntity | null => {
   const project: ProjectEntity | null = {
     id,
-    name: "Sample Project",
+    title: "Sample Project",
     description: "This is a sample project description.",
-    status: Status.Active,
+    state: Status.Active,
     githubUrl: "https://github.com/sample",
   };
   return project;
