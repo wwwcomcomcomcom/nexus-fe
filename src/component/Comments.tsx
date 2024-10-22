@@ -1,6 +1,7 @@
 import { useCallback, useState, useRef } from "react";
 import { generateProfileEntity } from "../shared/apiMockup";
 import PencilIcon from "./icons/PencilIcon";
+import DeleteIcon from "./icons/DeleteIcon";
 
 interface Comment {
   id: number;
@@ -150,7 +151,9 @@ export default function Comments() {
                   />
                   <p className="text-md font-[200] p-2">{profile.name}</p>
                 </div>
-                <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
+                <button onClick={() => handleDeleteComment(comment.id)}>
+                  <DeleteIcon />
+                </button>
               </div>
               <p>{comment.text}</p>
             </div>

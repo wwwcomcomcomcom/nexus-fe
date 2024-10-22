@@ -2,12 +2,13 @@ const DeleteIcon = () => {
   return (
     <div>
       <svg
-        fill="#000000"
+        fill="#757575"
+        fill-opacity="0.5"
         version="1.1"
         id="Capa_1"
         xmlns="http://www.w3.org/2000/svg"
-        width="800px"
-        height="800px"
+        width="25px"
+        height="25px"
         viewBox="0 0 408.483 408.483"
       >
         <g>
