@@ -2,21 +2,21 @@ import { useState, useRef, useEffect } from "react";
 import PencilIcon from "../component/icons/PencilIcon";
 
 interface User {
-  id: number;
+  id: string;
   name: string;
 }
 
 interface Message {
-  id: number;
+  id: string;
   message: string;
   sender: string;
-  receiver: number;
+  receiver: string;
 }
 
 const users: User[] = [
-  { id: 1, name: "User1" },
-  { id: 2, name: "User2" },
-  { id: 3, name: "User3" },
+  { id: "1", name: "User1" },
+  { id: "2", name: "User2" },
+  { id: "3", name: "User3" },
 ]; // 유저 목록 데이터 예시
 
 export default function ChatPage() {
@@ -43,7 +43,7 @@ export default function ChatPage() {
     if (message) {
       setChatMessages((prevMessages) => [
         ...prevMessages,
-        { id: new Date().getTime(), message, sender: "me", receiver: selectedUser.id },
+        { id: new Date().getTime().toString(), message, sender: "me", receiver: selectedUser.id },
       ]);
       messageInputRef.current!.value = "";
     }
