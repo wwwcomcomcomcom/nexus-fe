@@ -1,14 +1,36 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import PencilIcon from "../component/icons/PencilIcon";
 
-const users = [
+interface User {
+  id: number;
+  name: string;
+}
+
+interface Message {
+  id: number;
+  message: string;
+  sender: string;
+}
+
+const users: User[] = [
   { id: 1, name: "User1" },
   { id: 2, name: "User2" },
   { id: 3, name: "User3" },
 ]; // 유저 목록 데이터 예시
 
 export default function ChatPage() {
-  const [selectedUser, setSelectedUser] = useState(users[0]); // 선택된 유저
+  const [selectedUser, setSelectedUser] = useState<User>(users[0]); // 선택된 유저
+  const [chatMessages, setChatMessages] = useState<Message[]>([]); // 채팅 메시지 목록
+  const messageInputRef = useRef<HTMLTextAreaElement>(null); // textarea의 ref
+
+  const handleSendMessage = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const message = messageInputRef.current?.value; // textarea의 값을 가져옴
+    if (message) {
+      setChatMessages((prevMessages) => [...prevMessages, { id: new Date().getTime(), message, sender: "me" }]);
+      messageInputRef.current!.value = ""; // 메시지를 보낸 후 textarea를 비움
+    }
+  };
 
   return (
     <div className="flex flex-col h-lvh">
@@ -20,9 +42,7 @@ export default function ChatPage() {
             {users.map((user) => (
               <div
                 key={user.id}
-                className={`p-4 cursor-pointer hover:bg-slate-300 ${
-                  user.id === selectedUser.id ? "bg-slate-300" : ""
-                }`}
+                className={`p-4 cursor-pointer hover:bg-slate-300 ${user.id === selectedUser.id ? "bg-slate-300" : ""}`}
                 onClick={() => setSelectedUser(user)}
               >
                 {user.name}
@@ -39,6 +59,17 @@ export default function ChatPage() {
             <div className="p-4">
               <p>Chat with {selectedUser.name}</p>
               {/* Scrollable chat content goes here */}
+              {chatMessages.map((message) => (
+                <div key={message.id} className={`mb-2 ${message.sender === "me" ? "text-right" : "text-left"}`}>
+                  <span
+                    className={`inline-block ${
+                      message.sender === "me" ? "bg-blue-500" : "bg-gray-300"
+                    } text-white py-2 px-4 rounded-full`}
+                  >
+                    {message.message}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -46,19 +77,18 @@ export default function ChatPage() {
 
       {/* 채팅 입력 - textarea */}
       <footer className="w-full fixed bottom-0 left-0 bg-white border-t border-[#F2F2F2] py-2 shadow-md px-6">
-        <label
-          className="w-full flex items-center bg-white border border-[#F2F2F2] rounded-[30px] px-6 py-1"
-          htmlFor="commentInput"
-        >
-          <textarea
-            id="commentInput"
-            rows={1}
-            style={{ overflow: "hidden", resize: "none" }}
-            placeholder={`Send a message to ${selectedUser.name}`}
-            className="grow outline-none"
-          />
-          <PencilIcon className="w-6 cursor-pointer" />
-        </label>
+        <form onSubmit={handleSendMessage}>
+          <label className="w-full flex items-center bg-white border border-[#F2F2F2] rounded-[30px] px-6 py-1">
+            <textarea
+              ref={messageInputRef}
+              rows={1}
+              style={{ overflow: "hidden", resize: "none" }}
+              placeholder={`Send a message to ${selectedUser.name}`}
+              className="grow outline-none"
+            />
+            <PencilIcon className="w-6 cursor-pointer" />
+          </label>
+        </form>
       </footer>
     </div>
   );
