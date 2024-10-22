@@ -38,10 +38,10 @@ export default function ChatPage() {
   ) => {
     if ("key" in event && event.key !== "Enter") return;
     event.preventDefault();
-    const message = messageInputRef.current?.value; // textarea의 값을 가져옴
+    const message = messageInputRef.current?.value; // textarea 값을 가져옴
     if (message) {
       setChatMessages((prevMessages) => [...prevMessages, { id: new Date().getTime(), message, sender: "me" }]);
-      messageInputRef.current!.value = ""; // 메시지를 보낸 후 textarea를 비움
+      messageInputRef.current!.value = "";
     }
   };
 
