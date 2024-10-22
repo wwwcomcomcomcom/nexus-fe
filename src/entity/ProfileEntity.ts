@@ -3,4 +3,5 @@ export interface ProfileEntity {
   url: string;
   imgUrl: string;
   role: string;
+  id: number;
 }

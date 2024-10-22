@@ -64,6 +64,7 @@ export function generateProfileEntity(words?: string[]): ProfileEntity {
     url: "https://github.com/h-0y28",
     imgUrl: "https://avatars.githubusercontent.com/u/164720957?v=4",
     role: "FrontEnd",
+    id: 1,
   };
   return profileEntity;
 }
@@ -85,8 +86,9 @@ export function generateNeedEntity(words?: string[]): NeedEntity {
   }
   const NeedEntity: NeedEntity = {
     role: "FrontEnd",
-    number: "2",
+    number: 2,
     stack: ["Javascript", "React", "Java", "Figma"],
+    id: 1,
   };
   return NeedEntity;
 }

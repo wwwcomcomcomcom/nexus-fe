@@ -1,5 +1,6 @@
 export interface NeedEntity {
   role: string;
-  number: string;
+  number: number;
   stack: string[];
+  id: number;
 }
