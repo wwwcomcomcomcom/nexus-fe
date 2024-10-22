@@ -181,7 +181,9 @@ export default function Comments() {
                         />
                         <p className="text-md font-[200] p-2">{profile.name}</p>
                       </div>
-                      <button onClick={() => handleDeleteReply(comment.id, reply.id)}>삭제</button>
+                      <button onClick={() => handleDeleteReply(comment.id, reply.id)}>
+                        <DeleteIcon />
+                      </button>
                     </div>
                     <p>{reply.text}</p>
                   </li>
