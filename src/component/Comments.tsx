@@ -7,6 +7,7 @@ interface Comment {
   text: string;
   replies: Comment[];
   isEditing: boolean;
+  isSaving: boolean;
 }
 
 export default function Comments() {
@@ -24,7 +25,7 @@ export default function Comments() {
     if (commentInput.trim()) {
       setComments((prevComments) => [
         ...prevComments,
-        { id: prevComments.length, text: commentInput, replies: [], isEditing: false },
+        { id: prevComments.length, text: commentInput, replies: [], isEditing: false, isSaving: false },
       ]);
       setCommentInput("");
 
@@ -59,6 +60,7 @@ export default function Comments() {
                       text: replyInputs[id],
                       replies: [],
                       isEditing: false,
+                      isSaving: false, // 추가된 상태
                     },
                   ],
                 }
@@ -89,29 +91,6 @@ export default function Comments() {
           ? {
               ...comment,
               replies: comment.replies.filter((reply) => reply.id !== replyId),
-            }
-          : comment
-      )
-    );
-  }, []);
-
-  // 댓글 수정
-  const handleEditComment = useCallback((id: number, text: string) => {
-    setComments((prevComments) =>
-      prevComments.map((comment) => (comment.id === id ? { ...comment, text: text, isEditing: false } : comment))
-    );
-  }, []);
-
-  // 대댓글 수정
-  const handleEditReply = useCallback((commentId: number, replyId: number, text: string) => {
-    setComments((prevComments) =>
-      prevComments.map((comment) =>
-        comment.id === commentId
-          ? {
-              ...comment,
-              replies: comment.replies.map((reply) =>
-                reply.id === replyId ? { ...reply, text: text, isEditing: false } : reply
-              ),
             }
           : comment
       )
@@ -172,25 +151,8 @@ export default function Comments() {
                   <p className="text-md font-[200] p-2">{profile.name}</p>
                 </div>
                 <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
-                <button onClick={() => handleEditComment(comment.id, comment.text)}>수정</button>
               </div>
-              {comment.isEditing ? (
-                <textarea
-                  rows={1}
-                  style={{ overflow: "hidden", resize: "none" }}
-                  placeholder="댓글을 입력하세요."
-                  className="w-full outline-none mt-2 mr-2"
-                  value={comment.text}
-                  onChange={(e) => {
-                    setComments((prevComments) =>
-                      prevComments.map((c) => (c.id === comment.id ? { ...c, text: e.target.value } : c))
-                    );
-                    adjustTextareaHeight(e.target);
-                  }}
-                />
-              ) : (
-                <p>{comment.text}</p>
-              )}
+              <p>{comment.text}</p>
             </div>
 
             <div className={`mt-2 ml-[50%] ${comment.replies.length > 0 ? "-translate-y-10 -mb-10" : ""}`}>
@@ -217,34 +179,8 @@ export default function Comments() {
                         <p className="text-md font-[200] p-2">{profile.name}</p>
                       </div>
                       <button onClick={() => handleDeleteReply(comment.id, reply.id)}>삭제</button>
-                      <button onClick={() => handleEditReply(comment.id, reply.id, reply.text)}>수정</button>
                     </div>
-                    {reply.isEditing ? (
-                      <textarea
-                        rows={1}
-                        style={{ overflow: "hidden", resize: "none" }}
-                        placeholder="댓글을 입력하세요."
-                        className="w-full outline-none mt-2 mr-2"
-                        value={reply.text}
-                        onChange={(e) => {
-                          setComments((prevComments) =>
-                            prevComments.map((c) =>
-                              c.id === comment.id
-                                ? {
-                                    ...c,
-                                    replies: c.replies.map((r) =>
-                                      r.id === reply.id ? { ...r, text: e.target.value } : r
-                                    ),
-                                  }
-                                : c
-                            )
-                          );
-                          adjustTextareaHeight(e.target);
-                        }}
-                      />
-                    ) : (
-                      <p>{reply.text}</p>
-                    )}
+                    <p>{reply.text}</p>
                   </li>
                 ))}
               </div>
