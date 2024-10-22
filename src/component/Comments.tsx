@@ -133,17 +133,19 @@ export default function Comments() {
                 maxWidth: "100%",
               }}
             >
-              <div className="flex">
-                <img
-                  onClick={() => (window.location.href = `${profile.url}`)}
-                  src={profile.imgUrl}
-                  alt="profile"
-                  className="cursor-pointer flex h-7 relative rounded-full bg-white shadow-md mt-1"
-                />
-                <p className="text-md font-[200] p-2">{profile.name}</p>
+              <div className="flex justify-between">
+                <div className="flex">
+                  <img
+                    onClick={() => (window.location.href = `${profile.url}`)}
+                    src={profile.imgUrl}
+                    alt="profile"
+                    className="cursor-pointer flex h-7 relative rounded-full bg-white shadow-md mt-1"
+                  />
+                  <p className="text-md font-[200] p-2">{profile.name}</p>
+                </div>
+                <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
               </div>
               <p>{comment.text}</p>
-              <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
             </div>
 
             <div className={`mt-2 ml-[50%] ${comment.replies.length > 0 ? "-translate-y-10 -mb-10" : ""}`}>
@@ -159,17 +161,19 @@ export default function Comments() {
                       maxWidth: "100%",
                     }}
                   >
-                    <div className="flex">
-                      <img
-                        onClick={() => (window.location.href = `${profile.url}`)}
-                        src={profile.imgUrl}
-                        alt="profile"
-                        className="cursor-pointer flex h-7 relative rounded-full bg-white shadow-md mt-1"
-                      />
-                      <p className="text-md font-[200] p-2">{profile.name}</p>
+                    <div className="flex justify-between">
+                      <div className="flex">
+                        <img
+                          onClick={() => (window.location.href = `${profile.url}`)}
+                          src={profile.imgUrl}
+                          alt="profile"
+                          className="cursor-pointer flex h-7 relative rounded-full bg-white shadow-md mt-1"
+                        />
+                        <p className="text-md font-[200] p-2">{profile.name}</p>
+                      </div>
+                      <button onClick={() => handleDeleteReply(comment.id, reply.id)}>삭제</button>
                     </div>
                     {reply.text}
-                    <button onClick={() => handleDeleteReply(comment.id, reply.id)}>삭제</button>
                   </li>
                 ))}
               </div>
@@ -183,7 +187,7 @@ export default function Comments() {
                   rows={1}
                   ref={(el) => (replyInputRefs.current[comment.id] = el)}
                   style={{ overflow: "hidden", resize: "none" }}
-                  placeholder="대댓글을 입력하세요."
+                  placeholder="댓글을 입력하세요."
                   className="grow outline-none mt-2 mr-2"
                   value={replyInputs[comment.id] || ""}
                   onChange={(e) => {
