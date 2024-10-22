@@ -30,7 +30,13 @@ export default function ChatPage() {
     }
   }, [chatMessages]);
 
-  const handleSendMessage = (event: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
+  const handleSendMessage = (
+    event:
+      | React.FormEvent<HTMLFormElement>
+      | React.MouseEvent<HTMLButtonElement>
+      | React.KeyboardEvent<HTMLTextAreaElement>
+  ) => {
+    if ("key" in event && event.key !== "Enter") return;
     event.preventDefault();
     const message = messageInputRef.current?.value; // textarea의 값을 가져옴
     if (message) {
@@ -95,9 +101,10 @@ export default function ChatPage() {
               style={{ overflow: "hidden", resize: "none" }}
               placeholder={`Send a message to ${selectedUser.name}`}
               className="grow outline-none"
+              onKeyPress={handleSendMessage}
             />
             <button onClick={handleSendMessage} className="w-6 cursor-pointer">
-              <PencilIcon />
+              <PencilIcon className="h-6 w-6" />
             </button>
           </label>
         </form>
