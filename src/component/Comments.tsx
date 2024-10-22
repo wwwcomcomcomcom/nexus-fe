@@ -14,19 +14,14 @@ export default function Comments() {
   const [replyInputs, setReplyInputs] = useState<{ [key: number]: string }>({});
 
   const commentInputRef = useRef<HTMLTextAreaElement>(null);
-  const replyInputRefs = useRef<{ [key: number]: HTMLTextAreaElement | null }>(
-    {}
-  );
+  const replyInputRefs = useRef<{ [key: number]: HTMLTextAreaElement | null }>({});
 
   const profile = generateProfileEntity();
 
   // 댓글 추가
   const handleAddComment = useCallback(() => {
     if (commentInput.trim()) {
-      setComments((prevComments) => [
-        ...prevComments,
-        { id: prevComments.length, text: commentInput, replies: [] },
-      ]);
+      setComments((prevComments) => [...prevComments, { id: prevComments.length, text: commentInput, replies: [] }]);
       setCommentInput("");
 
       // 댓글 입력창 높이 초기화
@@ -76,6 +71,25 @@ export default function Comments() {
     [replyInputs]
   );
 
+  // 댓글 삭제
+  const handleDeleteComment = useCallback((id: number) => {
+    setComments((prevComments) => prevComments.filter((comment) => comment.id !== id));
+  }, []);
+
+  // 대댓글 삭제
+  const handleDeleteReply = useCallback((commentId: number, replyId: number) => {
+    setComments((prevComments) =>
+      prevComments.map((comment) =>
+        comment.id === commentId
+          ? {
+              ...comment,
+              replies: comment.replies.filter((reply) => reply.id !== replyId),
+            }
+          : comment
+      )
+    );
+  }, []);
+
   // textarea 높이 자동 조정
   const adjustTextareaHeight = (element: HTMLTextAreaElement) => {
     element.style.height = "auto";
@@ -114,9 +128,9 @@ export default function Comments() {
                 comment.replies.length > 0 ? "mr-[30%]" : ""
               }`}
               style={{
-                wordBreak: "break-word", // Ensures words break inside the box
-                overflowWrap: "break-word", // Forces long words to break
-                maxWidth: "100%", // Ensures the box doesn't stretch too far
+                wordBreak: "break-word",
+                overflowWrap: "break-word",
+                maxWidth: "100%",
               }}
             >
               <div className="flex">
@@ -129,13 +143,10 @@ export default function Comments() {
                 <p className="text-md font-[200] p-2">{profile.name}</p>
               </div>
               <p>{comment.text}</p>
+              <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
             </div>
 
-            <div
-              className={`mt-2 ml-[50%] ${
-                comment.replies.length > 0 ? "-translate-y-10 -mb-10" : ""
-              }`}
-            >
+            <div className={`mt-2 ml-[50%] ${comment.replies.length > 0 ? "-translate-y-10 -mb-10" : ""}`}>
               {/* 대댓글 목록 */}
               <div className="z-30">
                 {comment.replies.map((reply) => (
@@ -150,9 +161,7 @@ export default function Comments() {
                   >
                     <div className="flex">
                       <img
-                        onClick={() =>
-                          (window.location.href = `${profile.url}`)
-                        }
+                        onClick={() => (window.location.href = `${profile.url}`)}
                         src={profile.imgUrl}
                         alt="profile"
                         className="cursor-pointer flex h-7 relative rounded-full bg-white shadow-md mt-1"
@@ -160,6 +169,7 @@ export default function Comments() {
                       <p className="text-md font-[200] p-2">{profile.name}</p>
                     </div>
                     {reply.text}
+                    <button onClick={() => handleDeleteReply(comment.id, reply.id)}>삭제</button>
                   </li>
                 ))}
               </div>
@@ -181,10 +191,7 @@ export default function Comments() {
                     adjustTextareaHeight(e.target);
                   }}
                 />
-                <PencilIcon
-                  className="w-6 cursor-pointer"
-                  onClick={() => handleAddReply(comment.id)}
-                />
+                <PencilIcon className="w-6 cursor-pointer" onClick={() => handleAddReply(comment.id)} />
               </label>
             </div>
           </li>
