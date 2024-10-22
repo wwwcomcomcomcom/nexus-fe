@@ -16,7 +16,7 @@ function ProjectPage() {
   const project = generateProjectEntity();
   const { id } = useParams();
   const navigate = useNavigate();
-  const colorSet = getStatusColorSet(project.status);
+  const colorSet = getStatusColorSet(project.state);
 
   if (!id) {
     window.location.href = "/notfound";
@@ -39,13 +39,13 @@ function ProjectPage() {
           <div className="absolute w-full h-fit flex justify-start items-start -translate-x-10 -translate-y-10 max-md:translate-x-0">
             <ProjectGreenTopBox className="w-1/2 max-w-[30rem] h-fit max-md:w-1/2" />
             <div className="absolute bg-white rounded-full text-6xl font-extrabold py-5 px-10 translate-y-1/2 -translate-x-[80%] shadow-xl">
-              {project.name}
+              {project.title}
               <div className="absolute bg-white shadow-xl flex items-center gap-2 rounded-full p-2 pr-4 border border-gray-200 translate-x-[115%]">
                 <div
                   className="w-8 h-8 rounded-full"
                   style={{ backgroundColor: colorSet[0] }}
                 ></div>
-                <div className="text-2xl">{project.status}</div>
+                <div className="text-2xl">{project.state}</div>
               </div>
             </div>
             <div className="text-sm absolute text-[#757575] top-[25%] left-[8%]">
@@ -55,7 +55,7 @@ function ProjectPage() {
 
           <div className="w-full flex justify-end pt-16 pr-[5%]">
             <div className="w-1/2">
-              {project.status === "모집중" && (
+              {project.state === "모집중" && (
                 <div className="flex mb-8 w-full pr-8 gap-8">
                   {/* 임시*/}
                   {getAllNededEntity(2).map((need) => (
@@ -82,7 +82,7 @@ function ProjectPage() {
       <IntroduceProject />
 
       {/* 진행중일 때 깃 그래프 */}
-      {project.status === "진행중" && <GitGraph />}
+      {project.state === "진행중" && <GitGraph />}
       {true && <GitGraph />}
     </main>
   );

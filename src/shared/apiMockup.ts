@@ -1,4 +1,4 @@
-import { Status } from "../component/projectCard/projectStatus.ts";
+import { State } from "../component/projectCard/projectStatus.ts";
 import { NeedEntity } from "../entity/NeedEntity.ts";
 import { PostEntity } from "../entity/PostEntity.ts";
 import { ProfileEntity } from "../entity/ProfileEntity.ts";
@@ -34,9 +34,9 @@ export function generateProjectEntity(words?: string[]): ProjectEntity {
 export const getProjectById = (id: string): ProjectEntity | null => {
   const project: ProjectEntity | null = {
     id,
-    name: "Sample Project",
+    title: "Sample Project",
     description: "This is a sample project description.",
-    status: Status.Active,
+    state: State.Active,
     githubUrl: "https://github.com/sample",
   };
   return project;
@@ -133,8 +133,8 @@ function getRandomWords(wordsLength: number): string[] {
   return words;
 }
 
-function randomStatus(): Status {
-  return Object.values(Status)[
-    Math.floor(Math.random() * Object.values(Status).length)
+function randomStatus(): State {
+  return Object.values(State)[
+    Math.floor(Math.random() * Object.values(State).length)
   ];
 }

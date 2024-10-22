@@ -1,8 +1,8 @@
-import { Status, getStatusColorSet } from "./projectStatus.ts";
+import { State, getStatusColorSet } from "./projectStatus.ts";
 export default function ProjectStatusIndicator({
-  status = Status.Active,
+  status = State.Active,
 }: {
-  status?: Status;
+  status?: State;
 }) {
   const colorSet = getStatusColorSet(status);
   return (
