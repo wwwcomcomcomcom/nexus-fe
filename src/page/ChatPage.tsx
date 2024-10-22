@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import PencilIcon from "../component/icons/PencilIcon";
 
 interface User {
@@ -23,7 +23,14 @@ export default function ChatPage() {
   const [chatMessages, setChatMessages] = useState<Message[]>([]); // 채팅 메시지 목록
   const messageInputRef = useRef<HTMLTextAreaElement>(null); // textarea의 ref
 
-  const handleSendMessage = (event: React.FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    const chatBox = document.getElementById("chat-box");
+    if (chatBox) {
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  }, [chatMessages]);
+
+  const handleSendMessage = (event: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     const message = messageInputRef.current?.value; // textarea의 값을 가져옴
     if (message) {
@@ -54,7 +61,10 @@ export default function ChatPage() {
         {/* 채팅 내용과 입력 박스 */}
         <div className="h-full grow-[2] flex flex-col gap-8">
           {/* 채팅 내용이 담긴 상자 */}
-          <div className="mt-6 h-full rounded-3xl border border-[#FEFEFE] grow shadow-[0_10px_50px_0px_rgb(0,0,0,0.1)] overflow-auto">
+          <div
+            id="chat-box"
+            className="mt-6 h-full rounded-3xl border border-[#FEFEFE] grow shadow-[0_10px_50px_0px_rgb(0,0,0,0.1)] overflow-auto"
+          >
             {/* 선택된 유저와의 대화 */}
             <div className="p-4">
               <p>Chat with {selectedUser.name}</p>
@@ -86,7 +96,9 @@ export default function ChatPage() {
               placeholder={`Send a message to ${selectedUser.name}`}
               className="grow outline-none"
             />
-            <PencilIcon className="w-6 cursor-pointer" />
+            <button onClick={handleSendMessage} className="w-6 cursor-pointer">
+              <PencilIcon />
+            </button>
           </label>
         </form>
       </footer>
