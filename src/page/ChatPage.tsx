@@ -10,6 +10,7 @@ interface Message {
   id: number;
   message: string;
   sender: string;
+  receiver: number;
 }
 
 const users: User[] = [
@@ -40,10 +41,16 @@ export default function ChatPage() {
     event.preventDefault();
     const message = messageInputRef.current?.value; // textarea 값을 가져옴
     if (message) {
-      setChatMessages((prevMessages) => [...prevMessages, { id: new Date().getTime(), message, sender: "me" }]);
+      setChatMessages((prevMessages) => [
+        ...prevMessages,
+        { id: new Date().getTime(), message, sender: "me", receiver: selectedUser.id },
+      ]);
       messageInputRef.current!.value = "";
     }
   };
+
+  // 선택된 유저와의 채팅 메시지만 필터링하여 표시
+  const filteredMessages = chatMessages.filter((message) => message.receiver === selectedUser.id);
 
   return (
     <div className="flex flex-col h-lvh">
@@ -75,7 +82,7 @@ export default function ChatPage() {
             <div className="p-4">
               <p>Chat with {selectedUser.name}</p>
               {/* Scrollable chat content goes here */}
-              {chatMessages.map((message) => (
+              {filteredMessages.map((message) => (
                 <div key={message.id} className={`mb-2 ${message.sender === "me" ? "text-right" : "text-left"}`}>
                   <span
                     className={`inline-block ${
