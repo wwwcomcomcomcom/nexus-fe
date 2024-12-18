@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["GmarketSansMedium", "sans-serif"],
+        sans: ["Pretendard-Regular", "sans-serif"],
       },
       colors: {
         primary: "#000000",

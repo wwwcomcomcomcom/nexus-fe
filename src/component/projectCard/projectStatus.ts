@@ -1,4 +1,4 @@
-export enum Status {
+export enum State {
   Active = "진행중",
   Recruit = "모집중",
   Completed = "완료됨",
@@ -13,10 +13,10 @@ export const StatusColorSet = {
   Cancelled: ["#df347a", "#fcf3f8"],
 };
 
-export function getStatusColorSet(status: Status) {
+export function getStatusColorSet(status: State) {
   return StatusColorSet[
-    Object.keys(Status)[
-      Object.values(Status).indexOf(status)
+    Object.keys(State)[
+      Object.values(State).indexOf(status)
     ] as keyof typeof StatusColorSet
   ];
 }
