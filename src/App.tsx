@@ -23,10 +23,7 @@ function App() {
             <Route path="/projects" element={<ProjectListPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/project/:id/" element={<ProjectPage />} />
-            <Route
-              path="/projectApplication/:id/"
-              element={<ProjectSubmit />}
-            />
+            <Route path="/projectApplication/:id/" element={<ProjectSubmit />} />
             <Route path="/post/:id/" element={<PostPage />} />
             <Route path="/createProject" element={<CreateProjectPage />} />
             <Route path="/createPost" element={<CreatePostPage />}></Route>
