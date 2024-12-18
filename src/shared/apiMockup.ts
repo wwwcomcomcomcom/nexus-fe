@@ -1,4 +1,4 @@
-import { Status } from "../component/Card/projectStatus.ts";
+import { Status } from "../component/projectCard/projectStatus.ts";
 import { NeedEntity } from "../entity/NeedEntity.ts";
 import { PostEntity } from "../entity/PostEntity.ts";
 import { ProfileEntity } from "../entity/ProfileEntity.ts";
@@ -22,13 +22,25 @@ export function generateProjectEntity(words?: string[]): ProjectEntity {
   }
   const projectEntity: ProjectEntity = {
     id: randomId(),
-    name: words[0],
+    title: words[0],
     description: words.slice(3).join(" "),
-    status: randomStatus(),
+    state: randomStatus(),
     githubUrl: `https://github.com/${words[1]}/${words[2]}`,
   };
   return projectEntity;
 }
+
+// 프로젝트 샘플
+export const getProjectById = (id: string): ProjectEntity | null => {
+  const project: ProjectEntity | null = {
+    id,
+    name: "Sample Project",
+    description: "This is a sample project description.",
+    status: Status.Active,
+    githubUrl: "https://github.com/sample",
+  };
+  return project;
+};
 
 // 여기 부분 확인
 export function getAllProfileEntity(

@@ -1,32 +1,38 @@
 import { MutableRefObject, useEffect, useState } from "react";
-import ProjectCard from "./Card/ProjectCard.tsx";
+import ProjectCard from "./projectCard/ProjectCard.tsx";
 import Loading from "./Loading.tsx";
-import { getAllProjectEntity } from "../shared/apiMockup.ts";
-import { ProjectEntity } from "../entity/ProjectEntity.ts";
 import {
   useScroll,
   useMotionValueEvent,
   motion,
   useMotionValue,
 } from "framer-motion";
+import { useProjectStore } from "../shared/projectStore.ts";
+import { useSearchParams } from "react-router-dom";
+import { fetchProjectsByPage } from "../shared/proejctApi.ts";
 
 export default function ProjectList({
   scrollRef,
 }: {
   scrollRef: MutableRefObject<null | HTMLDivElement>;
 }) {
+  const [query] = useSearchParams();
+  const page = Number(query.get("page")) || 0;
   const [isLoading, setLoading] = useState(true);
-  const [projects, setProjects] = useState<ProjectEntity[]>([]);
-
+  const projectStore = useProjectStore();
   function loadProjects() {
     setLoading(true);
-
-    setProjects([...projects, ...getAllProjectEntity(20)]);
-    setLoading(false);
-    // getAllProjectEntity(20).then((newProjects) => {
-    //   setProjects([...projects, ...newProjects]);
-    //   setLoading(false);
-    // });
+    fetchProjectsByPage(page)
+      .then((projects) => {
+        projectStore.addProjects(projects);
+      })
+      .catch((e) => {
+        console.error(e);
+        alert("Failed to load projects");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }
   function resetScroll() {
     window.scrollTo(0, 0);
@@ -71,7 +77,7 @@ export default function ProjectList({
         </div>
         <div className="grid px-4 py-6 md:px-6 justify-center w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
-            {projects.map((project) => (
+            {Object.values(projectStore.projects).map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
           </div>

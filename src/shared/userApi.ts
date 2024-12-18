@@ -1,10 +1,7 @@
 import axios from "axios";
 import { useUserStore } from "./userStore";
 import { useEffect } from "react";
-
-export const ApiBaseUrl =
-  // "https://port-0-nexus-avengers-lyma34av040a79c3.sel5.cloudtype.app";
-  window.location.origin;
+import { ApiBaseUrl } from "./apiConfig";
 
 export function useUpdatedUserStore() {
   const store = useUserStore();
@@ -29,17 +26,3 @@ export function useUpdatedUserStore() {
   }, []);
   return store;
 }
-
-// export function getUserInfo() {
-//   axios
-//     .get(`${ApiBaseUrl}/api/user/info`)
-//     .then((res) => {
-//       if (res.status === 200 && res.data.name) {
-//         return res.data;
-//       }
-//       throw new Error(`Invalid response ${res.status}`);
-//     })
-//     .catch((e) => {
-//       throw new Error("Failed to get user info" + e.message);
-//     });
-// }
