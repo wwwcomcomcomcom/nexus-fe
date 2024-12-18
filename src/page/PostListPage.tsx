@@ -13,10 +13,7 @@ export default function PostListPage() {
         <h1 className="text-3xl font-bold text-center py-10">Community</h1>
         {userStore.isLogin() && (
           <div className="flex flex-row items-center">
-            <button
-              className="bg-blue-400 rounded-md h-10 px-3"
-              onClick={() => navigate("/createPost")}
-            >
+            <button className="bg-blue-400 rounded-md h-10 px-3" onClick={() => navigate("/createPost")}>
               Create Post
             </button>
           </div>
