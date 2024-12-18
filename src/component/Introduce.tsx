@@ -5,7 +5,7 @@ import {
   HTMLMotionProps,
   MotionValue,
 } from "framer-motion";
-import ProjectCard from "./projectCard/ProjectCard.tsx";
+import ProjectCard from "./Card/ProjectCard.tsx";
 import { generateProjectEntity } from "../shared/apiMockup.ts";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -64,10 +64,12 @@ export default function Introduce() {
         style={{ opacity: opacity1 }}
         childProps={{ style: { y: offset1 } }}
       >
-        <h1 className="font-bold p-4 text-center text-[4rem]">Nexus</h1>
-        <h1 className="font-semibold p-4 text-center text-[20px] text-[#757575]">
-          Nexus는 교내 프로젝트 관리 & 지식공유 플랫폼입니다.
-        </h1>
+        <div className="-translate-y-16">
+          <h1 className="font-bold p-4 text-center text-[4rem]">Nexus</h1>
+          <h1 className="font-semibold p-4 text-center text-[20px] text-[#757575]">
+            Nexus는 교내 프로젝트 관리 & 지식공유 플랫폼입니다.
+          </h1>
+        </div>
       </ScrollPage>
       <ScrollPage
         style={{ opacity: opacity2 }}
@@ -80,25 +82,27 @@ export default function Introduce() {
           },
         }}
       >
-        <h1 className="font-bold p-4 text-center text-[2rem] ">
+        <h1 className="font-bold p-6 text-center text-[2rem] -translate-y-6 ">
           프로젝트 인원 모집 / 관리
         </h1>
         <ProjectCard
           project={generateProjectEntity()}
-          width={300}
-          height={400}
+          width={240}
+          height={320}
         />
       </ScrollPage>
       <ScrollPage
         style={{ opacity: opacity3 }}
         childProps={{ style: { y: offset3 } }}
       >
-        <h1 className="font-bold p-4 text-center text-[2rem]">
-          개발 정보 공유 커뮤니티
-        </h1>
-        <h2 className="text-[20px] text-[#757575]">
-          AI 추천기반 최신 기술정보 | 자유로운 정보공유 게시판
-        </h2>
+        <div className="-translate-y-14">
+          <h1 className="font-bold p-4 text-center text-[2rem]">
+            개발 정보 공유 커뮤니티
+          </h1>
+          <h2 className="text-[20px] text-[#757575]">
+            AI 추천기반 최신 기술정보 | 자유로운 정보공유 게시판
+          </h2>
+        </div>
       </ScrollPage>
       <ScrollPage
         childProps={{ className: "flex flex-col items-center gap-5" }}

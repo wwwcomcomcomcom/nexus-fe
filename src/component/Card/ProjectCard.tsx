@@ -19,7 +19,7 @@ export default function ProjectCard(props: ProjectCardProps) {
   return (
     <div
       className={
-        "cursor-pointer p-5 pb-10 rounded-2xl border border-gray-200 shadow-[0px_0.5px_15px_1px_rgb(0,0,0,0.1)] flex flex-col bg-white z-10 hover:scale-105 transition " +
+        "cursor-pointer p-5 pb-10 rounded-2xl border border-[#F2F2F2] shadow-[0px_0.5px_15px_1px_rgb(0,0,0,0.05)] flex flex-col bg-white z-10 hover:scale-105 transition " +
         (props.className !== undefined ? props.className : "")
       }
       style={{
@@ -30,15 +30,8 @@ export default function ProjectCard(props: ProjectCardProps) {
       data-v0-t="card"
     >
       <div className="grow flex items-center justify-center">
-        <div
-          className="bg-orange-100 p-4 rounded-3xl"
-          style={{ backgroundColor: colorSet[1] }}
-        >
-          <ProjectIcon
-            color={colorSet[0]}
-            width={width / 4}
-            height={width / 4}
-          />
+        <div className="bg-orange-100 p-4 rounded-3xl" style={{ backgroundColor: colorSet[1] }}>
+          <ProjectIcon color={colorSet[0]} width={width / 4} height={width / 4} />
         </div>
       </div>
       <div className="grow flex flex-col items-center">
@@ -46,9 +39,7 @@ export default function ProjectCard(props: ProjectCardProps) {
         <ProjectStatus status={props.project.status} />
         <div className="grid grow gap-2 text-sm justify-center mt-5">
           {/* <p className="truncate">{props.project.description}</p> */}
-          <p className="text-xs text-gray-500 dark:text-gray-400">
-            Updated 2 days ago
-          </p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">Updated 2 days ago</p>
         </div>
       </div>
     </div>
