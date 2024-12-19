@@ -42,7 +42,7 @@ export default function CreatePostPage() {
   };
 
   return (
-    <>
+    <div className="h-screen bg-[#FFF5DB]">
       <div className="px-8 py-4">
         <span
           className="inline-block p-2 cursor-pointer"
@@ -52,8 +52,8 @@ export default function CreatePostPage() {
         </span>
       </div>
       <main className="overflow-hidden relative">
-        <div className="w-[50vw] h-[50vw] sm:w-[100rem] sm:h-[100rem] rounded-full absolute bg-[#FFF5DB] left-0 -z-10 -translate-x-1/2"></div>
-        <div className="w-[40vw] h-[40vw] sm:w-[60rem] sm:h-[60rem] rounded-full absolute bg-[#FFF5DB] right-0 -z-10 translate-x-1/3 top-[110rem]"></div>
+        {/* <div className="w-[50vw] h-[50vw] sm:w-[100rem] sm:h-[100rem] rounded-full absolute bg-[#FFF5DB] left-0 -z-10 -translate-x-1/2"></div>
+        <div className="w-[40vw] h-[40vw] sm:w-[60rem] sm:h-[60rem] rounded-full absolute bg-[#FFF5DB] right-0 -z-10 translate-x-1/3 top-[110rem]"></div> */}
         <div className="text-center mb-6">
           <h1 className="text-3xl font-bold text-gray-800">Create Post</h1>
           <p className="text-gray-500">글을 작성하고 사람들과 공유해보세요.</p>
@@ -79,6 +79,7 @@ export default function CreatePostPage() {
                   onInput={(e: React.FormEvent<HTMLInputElement>) =>
                     formStore.setProjectForm({ name: e.currentTarget.value })
                   }
+                  placeholder="제목을 입력해주세요."
                 />
               </div>
 
@@ -102,6 +103,7 @@ export default function CreatePostPage() {
                       description: e.currentTarget.value,
                     });
                   }}
+                  placeholder="글 내용을 작성해주세요."
                 />
               </div>
 
@@ -123,6 +125,6 @@ export default function CreatePostPage() {
           </div>
         </div>
       </main>
-    </>
+    </div>
   );
 }
