@@ -5,9 +5,7 @@ export default function HeaderLayout() {
   return (
     <>
       <Header />
-      <main className="pt-16">
-        <Outlet />
-      </main>
+      <Outlet />
     </>
   );
 }
