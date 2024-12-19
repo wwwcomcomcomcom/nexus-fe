@@ -5,6 +5,7 @@ import { BestProjectList } from "../component/BestProjectList.tsx";
 import Introduce from "../component/Introduce.tsx";
 import AboutUs from "../component/AboutUs.tsx";
 import Search from "../component/Search.tsx";
+import Footer from "../component/footer/footer.tsx";
 
 export default function HomeMain() {
   const [projects, setProjects] = useState<ProjectEntity[]>([]);
@@ -25,6 +26,7 @@ export default function HomeMain() {
       <Search />
       <BestProjectList projects={projects} />
       <AboutUs />
+      <Footer />
     </main>
   );
 }
