@@ -1,25 +1,19 @@
 import { MutableRefObject, useEffect, useState } from "react";
 import ProjectCard from "./projectCard/ProjectCard.tsx";
 import Loading from "./Loading.tsx";
-import {
-  useScroll,
-  useMotionValueEvent,
-  motion,
-  useMotionValue,
-} from "framer-motion";
+import { useScroll, useMotionValueEvent, motion, useMotionValue } from "framer-motion";
 import { useProjectStore } from "../shared/projectStore.ts";
 import { useSearchParams } from "react-router-dom";
 import { fetchProjectsByPage } from "../shared/proejctApi.ts";
+import { useNavigate } from "react-router-dom";
 
-export default function ProjectList({
-  scrollRef,
-}: {
-  scrollRef: MutableRefObject<null | HTMLDivElement>;
-}) {
+export default function ProjectList({ scrollRef }: { scrollRef: MutableRefObject<null | HTMLDivElement> }) {
   const [query] = useSearchParams();
   const page = Number(query.get("page")) || 0;
   const [isLoading, setLoading] = useState(true);
   const projectStore = useProjectStore();
+  const navigate = useNavigate();
+
   function loadProjects() {
     setLoading(true);
     fetchProjectsByPage(page)
@@ -28,12 +22,13 @@ export default function ProjectList({
       })
       .catch((e) => {
         console.error(e);
-        alert("Failed to load projects");
+        alert("프로젝트를 불러오는데 실패했어요 ㅠㅠ");
       })
       .finally(() => {
         setLoading(false);
       });
   }
+
   function resetScroll() {
     window.scrollTo(0, 0);
   }
@@ -41,12 +36,13 @@ export default function ProjectList({
   useEffect(() => {
     loadProjects();
     resetScroll();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   const { scrollY } = useScroll();
   const translateY1 = useMotionValue(0);
   const translateY2 = useMotionValue(0);
   const translateY3 = useMotionValue(0);
+
   useMotionValueEvent(scrollY, "change", (latest) => {
     translateY1.set(latest + 5000 * sinPulse(latest / 2000));
     translateY2.set(latest + 2500 * -sinPulse(latest / 3000));
@@ -55,11 +51,12 @@ export default function ProjectList({
     if (scrollRef.current!.scrollHeight - latest < 1100) loadProjects();
   });
 
+  const handleProjectClick = (projectId: string) => {
+    navigate(`/project/${projectId}`);
+  };
+
   return (
-    <main
-      className="flex flex-1 overflow-x-hidden place-content-center"
-      ref={scrollRef}
-    >
+    <main className="flex flex-1 overflow-x-hidden place-content-center" ref={scrollRef}>
       <div className="grid w-full relative">
         <div className="w-full h-full absolute overflow-hidden">
           <motion.div
@@ -78,7 +75,7 @@ export default function ProjectList({
         <div className="grid px-4 py-6 md:px-6 justify-center w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
             {Object.values(projectStore.projects).map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard key={project.id} project={project} onClick={() => handleProjectClick(project.id)} />
             ))}
           </div>
           {isLoading ? <Loading /> : null}
