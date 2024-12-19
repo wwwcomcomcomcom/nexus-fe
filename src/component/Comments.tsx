@@ -1,11 +1,14 @@
 import { useCallback, useState, useRef } from "react";
 import { generateProfileEntity } from "../shared/apiMockup";
 import PencilIcon from "./icons/PencilIcon";
+import DeleteIcon from "./icons/DeleteIcon";
 
 interface Comment {
   id: number;
   text: string;
   replies: Comment[];
+  isEditing: boolean;
+  isSaving: boolean;
 }
 
 export default function Comments() {
@@ -14,9 +17,7 @@ export default function Comments() {
   const [replyInputs, setReplyInputs] = useState<{ [key: number]: string }>({});
 
   const commentInputRef = useRef<HTMLTextAreaElement>(null);
-  const replyInputRefs = useRef<{ [key: number]: HTMLTextAreaElement | null }>(
-    {}
-  );
+  const replyInputRefs = useRef<{ [key: number]: HTMLTextAreaElement | null }>({});
 
   const profile = generateProfileEntity();
 
@@ -25,7 +26,7 @@ export default function Comments() {
     if (commentInput.trim()) {
       setComments((prevComments) => [
         ...prevComments,
-        { id: prevComments.length, text: commentInput, replies: [] },
+        { id: prevComments.length, text: commentInput, replies: [], isEditing: false, isSaving: false },
       ]);
       setCommentInput("");
 
@@ -59,6 +60,8 @@ export default function Comments() {
                       id: comment.replies.length,
                       text: replyInputs[id],
                       replies: [],
+                      isEditing: false,
+                      isSaving: false, // 추가된 상태
                     },
                   ],
                 }
@@ -75,6 +78,25 @@ export default function Comments() {
     },
     [replyInputs]
   );
+
+  // 댓글 삭제
+  const handleDeleteComment = useCallback((id: number) => {
+    setComments((prevComments) => prevComments.filter((comment) => comment.id !== id));
+  }, []);
+
+  // 대댓글 삭제
+  const handleDeleteReply = useCallback((commentId: number, replyId: number) => {
+    setComments((prevComments) =>
+      prevComments.map((comment) =>
+        comment.id === commentId
+          ? {
+              ...comment,
+              replies: comment.replies.filter((reply) => reply.id !== replyId),
+            }
+          : comment
+      )
+    );
+  }, []);
 
   // textarea 높이 자동 조정
   const adjustTextareaHeight = (element: HTMLTextAreaElement) => {
@@ -114,28 +136,29 @@ export default function Comments() {
                 comment.replies.length > 0 ? "mr-[30%]" : ""
               }`}
               style={{
-                wordBreak: "break-word", // Ensures words break inside the box
-                overflowWrap: "break-word", // Forces long words to break
-                maxWidth: "100%", // Ensures the box doesn't stretch too far
+                wordBreak: "break-word",
+                overflowWrap: "break-word",
+                maxWidth: "100%",
               }}
             >
-              <div className="flex">
-                <img
-                  onClick={() => (window.location.href = `${profile.url}`)}
-                  src={profile.imgUrl}
-                  alt="profile"
-                  className="cursor-pointer flex h-7 relative rounded-full bg-white shadow-md mt-1"
-                />
-                <p className="text-md font-[200] p-2">{profile.name}</p>
+              <div className="flex justify-between">
+                <div className="flex">
+                  <img
+                    onClick={() => (window.location.href = `${profile.url}`)}
+                    src={profile.imgUrl}
+                    alt="profile"
+                    className="cursor-pointer flex h-7 relative rounded-full bg-white shadow-md mt-1"
+                  />
+                  <p className="text-md font-[200] p-2">{profile.name}</p>
+                </div>
+                <button onClick={() => handleDeleteComment(comment.id)}>
+                  <DeleteIcon />
+                </button>
               </div>
               <p>{comment.text}</p>
             </div>
 
-            <div
-              className={`mt-2 ml-[50%] ${
-                comment.replies.length > 0 ? "-translate-y-10 -mb-10" : ""
-              }`}
-            >
+            <div className={`mt-2 ml-[50%] ${comment.replies.length > 0 ? "-translate-y-10 -mb-10" : ""}`}>
               {/* 대댓글 목록 */}
               <div className="z-30">
                 {comment.replies.map((reply) => (
@@ -148,18 +171,21 @@ export default function Comments() {
                       maxWidth: "100%",
                     }}
                   >
-                    <div className="flex">
-                      <img
-                        onClick={() =>
-                          (window.location.href = `${profile.url}`)
-                        }
-                        src={profile.imgUrl}
-                        alt="profile"
-                        className="cursor-pointer flex h-7 relative rounded-full bg-white shadow-md mt-1"
-                      />
-                      <p className="text-md font-[200] p-2">{profile.name}</p>
+                    <div className="flex justify-between">
+                      <div className="flex">
+                        <img
+                          onClick={() => (window.location.href = `${profile.url}`)}
+                          src={profile.imgUrl}
+                          alt="profile"
+                          className="cursor-pointer flex h-7 relative rounded-full bg-white shadow-md mt-1"
+                        />
+                        <p className="text-md font-[200] p-2">{profile.name}</p>
+                      </div>
+                      <button onClick={() => handleDeleteReply(comment.id, reply.id)}>
+                        <DeleteIcon />
+                      </button>
                     </div>
-                    {reply.text}
+                    <p>{reply.text}</p>
                   </li>
                 ))}
               </div>
@@ -173,7 +199,7 @@ export default function Comments() {
                   rows={1}
                   ref={(el) => (replyInputRefs.current[comment.id] = el)}
                   style={{ overflow: "hidden", resize: "none" }}
-                  placeholder="대댓글을 입력하세요."
+                  placeholder="댓글을 입력하세요."
                   className="grow outline-none mt-2 mr-2"
                   value={replyInputs[comment.id] || ""}
                   onChange={(e) => {
@@ -181,10 +207,7 @@ export default function Comments() {
                     adjustTextareaHeight(e.target);
                   }}
                 />
-                <PencilIcon
-                  className="w-6 cursor-pointer"
-                  onClick={() => handleAddReply(comment.id)}
-                />
+                <PencilIcon className="w-6 cursor-pointer" onClick={() => handleAddReply(comment.id)} />
               </label>
             </div>
           </li>

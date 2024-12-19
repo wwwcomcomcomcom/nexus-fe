@@ -82,6 +82,7 @@ function ProjectPage() {
       <IntroduceProject />
 
       {/* 진행중일 때 깃 그래프 */}
+
       {project.state === "진행중" && <GitGraph />}
       {true && <GitGraph />}
     </main>
