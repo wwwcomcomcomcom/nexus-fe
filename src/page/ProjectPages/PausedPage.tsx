@@ -6,7 +6,7 @@ import { getAllNededEntity, getAllProfileEntity } from "../../shared/apiMockup";
 import ProjectGreenTopBox from "../../component/elements/ProjectGreenTopBox";
 import { DivProps } from "../../utils/typedef";
 import { ProjectEntity } from "../../entity/ProjectEntity";
-import IntroduceProject from "./IntroduceProject";
+import IntroduceProject from "../IntroduceProject";
 
 interface ProjectStatus extends DivProps {
   project: ProjectEntity;
@@ -42,7 +42,7 @@ function PausedPage(props: ProjectStatus) {
               NEXUS
               <div className="absolute bg-white shadow-xl flex items-center gap-2 rounded-full p-2 pr-4 border border-gray-200 translate-x-[115%]">
                 <div className="w-8 h-8 rounded-full bg-orange-400"></div>
-                <div className="text-2xl">{props.project.status}</div>
+                <div className="text-2xl">{props.project.state}</div>
               </div>
             </div>
           </div>
