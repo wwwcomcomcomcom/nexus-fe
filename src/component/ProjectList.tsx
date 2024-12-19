@@ -11,18 +11,30 @@ export default function ProjectList({ scrollRef }: { scrollRef: MutableRefObject
   const [query] = useSearchParams();
   const page = Number(query.get("page")) || 0;
   const [isLoading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const projectStore = useProjectStore();
   const navigate = useNavigate();
 
   function loadProjects() {
     setLoading(true);
+    setError(null);
     fetchProjectsByPage(page)
       .then((projects) => {
+        if (projects.length === 0 && page > 0) {
+          setError("더 이상 프로젝트가 없어요 :(");
+          navigate("/projects?page=0");
+          return;
+        }
         projectStore.addProjects(projects);
       })
       .catch((e) => {
         console.error(e);
-        alert("프로젝트를 불러오는데 실패했어요 ㅠㅠ");
+        if (e.response?.status === 404) {
+          setError("요청하신 페이지를 찾을 수 없어요");
+          navigate("/projects?page=0");
+        } else {
+          setError("프로젝트를 불러오는데 실패했어요 ㅠㅠ");
+        }
       })
       .finally(() => {
         setLoading(false);
@@ -36,7 +48,7 @@ export default function ProjectList({ scrollRef }: { scrollRef: MutableRefObject
   useEffect(() => {
     loadProjects();
     resetScroll();
-  }, []);
+  }, [page]);
 
   const { scrollY } = useScroll();
   const translateY1 = useMotionValue(0);
@@ -73,6 +85,7 @@ export default function ProjectList({ scrollRef }: { scrollRef: MutableRefObject
           ></motion.div>
         </div>
         <div className="grid px-4 py-6 md:px-6 justify-center w-full">
+          {error && <div className="text-center text-red-500 mb-4">{error}</div>}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
             {Object.values(projectStore.projects).map((project) => (
               <ProjectCard key={project.id} project={project} onClick={() => handleProjectClick(project.id)} />
