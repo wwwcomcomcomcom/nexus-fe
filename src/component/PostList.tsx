@@ -5,23 +5,18 @@ import { getAllPostEntity } from "../shared/apiMockup.ts";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import { PostEntity } from "../entity/PostEntity.ts";
 import { motion, useMotionValue } from "framer-motion";
-export default function PostList({
-  scrollRef,
-}: {
+
+interface PostListProps {
   scrollRef: MutableRefObject<null | HTMLDivElement>;
-}) {
-  const [isloading, setLoading] = useState(true);
-  const [posts, setPosts] = useState<PostEntity[]>([]);
+  initialPosts: PostEntity[];
+  isLoading: boolean;
+}
+
+export default function PostList({ scrollRef, initialPosts, isLoading }: PostListProps) {
+  const [posts, setPosts] = useState<PostEntity[]>(initialPosts);
 
   function loadPosts() {
-    setLoading(true);
-
     setPosts([...posts, ...getAllPostEntity(20)]);
-    setLoading(false);
-    // getAllProjectEntity(20).then((newProjects) => {
-    //   setProjects([...projects,...newProjects]);
-    //   setLoading(false);
-    // });
   }
   function resetScroll() {
     window.scrollTo(0, 0);
@@ -46,10 +41,7 @@ export default function PostList({
   });
 
   return (
-    <main
-      className="flex flex-1 overflow-x-hidden place-content-center"
-      ref={scrollRef}
-    >
+    <main className="flex flex-1 overflow-x-hidden place-content-center" ref={scrollRef}>
       <div className="grid w-full relative">
         <div className="w-full h-full absolute overflow-hidden">
           <motion.div
@@ -71,7 +63,7 @@ export default function PostList({
               <PostCard key={post.id} post={post} />
             ))}
           </div>
-          {isloading ? <Loading /> : null}
+          {isLoading ? <Loading /> : null}
         </div>
       </div>
     </main>
