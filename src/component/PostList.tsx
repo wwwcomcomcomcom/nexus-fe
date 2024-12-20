@@ -1,7 +1,7 @@
 import PostCard from "./projectCard/PostCard.tsx";
 import { MutableRefObject, useEffect, useState } from "react";
 import Loading from "./Loading.tsx";
-import { getAllPostEntity } from "../shared/apiMockup.ts";
+// import { getAllPostEntity } from "../shared/apiMockup.ts";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import { PostEntity } from "../entity/PostEntity.ts";
 import { motion, useMotionValue } from "framer-motion";
@@ -16,14 +16,15 @@ export default function PostList({ scrollRef, initialPosts, isLoading }: PostLis
   const [posts, setPosts] = useState<PostEntity[]>(initialPosts);
 
   function loadPosts() {
-    setPosts([...posts, ...getAllPostEntity(20)]);
+    // setPosts([...posts, ...getAllPostEntity(20)]);
   }
+
   function resetScroll() {
     window.scrollTo(0, 0);
   }
 
   useEffect(() => {
-    loadPosts();
+    // loadPosts();
     resetScroll();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -37,7 +38,8 @@ export default function PostList({ scrollRef, initialPosts, isLoading }: PostLis
     translateY2.set(latest + 2500 * -sinPulse(latest / 3000));
     translateY3.set(latest + 3000 * sinPulse(latest / 2000));
 
-    if (scrollRef.current!.scrollHeight - latest < 1100) loadPosts();
+    // 스크롤 이벤트에서 loadPosts 호출 제거
+    // if (scrollRef.current!.scrollHeight - latest < 1100) loadPosts();
   });
 
   return (
