@@ -13,35 +13,30 @@ import ProjectPage from "./page/ProjectPage.tsx";
 import CreatePostPage from "./page/CreatePostPage.tsx";
 import ChatPage from "./page/ChatPage.tsx";
 import HeaderLayout from "./layout/HeaderLayout.tsx";
-import FooterLayout from "./layout/FooterLayout.tsx";
+import ProjectApplication from "./page/ProjectApplication.tsx";
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HeaderLayout />}>
-            <Route path="/" element={<FooterLayout/>}>
-            <Route path="/" element={<HomeMain />} />
-            <Route path="/projects" element={<ProjectListPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/project/:id/" element={<ProjectPage />} />
-            <Route path="/projectApplication/:id/" element={<ProjectSubmit />} />
-            <Route path="/post/:id/" element={<PostPage />} />
-            <Route path="/createProject" element={<CreateProjectPage />} />
-            <Route path="/createPost" element={<CreatePostPage />}></Route>
-            <Route path="/posts" element={<PostListPage />} />
-            
-            </Route>
-            
-            <Route path="/chat" element={<ChatPage/>}></Route>
-          </Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="*" element={<h1>Not Found</h1>} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HeaderLayout />}>
+          <Route path="/" element={<HomeMain />} />
+          <Route path="/projects" element={<ProjectListPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/project/:id/" element={<ProjectPage />} />
+          <Route path="/projectApplication/:id/" element={<ProjectSubmit />} />
+          <Route path="/post/:id/" element={<PostPage />} />
+          <Route path="/createProject" element={<CreateProjectPage />} />
+          <Route path="/createPost" element={<CreatePostPage />} />
+          <Route path="/posts" element={<PostListPage />} />
+          <Route path="/chat" element={<ChatPage />} />
+          <Route path="/application" element={<ProjectApplication />} />
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<h1>Not Found</h1>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

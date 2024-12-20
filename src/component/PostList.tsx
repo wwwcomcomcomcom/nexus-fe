@@ -53,7 +53,7 @@ export default function PostList({
       <div className="grid w-full relative">
         <div className="w-full h-full absolute overflow-hidden">
           <motion.div
-            className="w-[800px] h-[800px] bg-[#feead2] rounded-full absolute right-3/4"
+            className="w-[80rem] h-[800px] bg-[#feead2] rounded-full absolute right-3/4"
             style={{ translateY: translateY1 }}
           ></motion.div>
           <motion.div
@@ -66,7 +66,7 @@ export default function PostList({
           ></motion.div>
         </div>
         <div className="grid px-10 py-6 justify-center w-full place-items-center">
-          <div className="grid grid-cols-1 gap-9 relative z-10 w-full max-w-screen-md">
+          <div className="grid grid-cols-1 gap-9 relative z-10 w-full max-w-screen-xl">
             {posts.map((post) => (
               <PostCard key={post.id} post={post} />
             ))}
