@@ -108,9 +108,9 @@ export function generatePostEntity(words?: string[]): PostEntity {
   }
   const postEntity: PostEntity = {
     id: randomId(),
-    name: words[0],
+    name: "임시 제목이지렁 잉아엉",
     content: words.slice(3).join(" "),
-    user: words[0],
+    user: "정효주",
   };
   return postEntity;
 }
