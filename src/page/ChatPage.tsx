@@ -75,10 +75,10 @@ export default function ChatPage() {
 
   return (
     <div className="flex flex-col h-lvh">
-      {/* 채팅자 목록 */}
       <div className="flex grow">
-        <div className="h-full grow max-w-xl min-w-64  flex flex-col p-6 pl-0">
-          <div className="rounded-r-3xl bg-[#F4F9FF] h-full ">
+        {/* 채팅자 목록 */}
+        <div className="h-full grow max-w-xl min-w-64 flex flex-col pt-10 pr-10">
+          <div className="rounded-r-3xl bg-[#F4F9FF] h-[90%] ">
             {/* 유저 리스트 */}
             <div className="pt-10">
               {users.map((user) => (
@@ -105,55 +105,60 @@ export default function ChatPage() {
         </div>
 
         {/* 채팅 내용과 입력 박스 */}
-        <div className="h-full grow-[2] flex flex-col gap-8">
-          {/* 채팅 내용이 담긴 상자 */}
-          <div
-            id="chat-box"
-            className="mt-6 h-full rounded-3xl border border-[#FEFEFE] grow shadow-[0_10px_50px_0px_rgb(0,0,0,0.1)] overflow-auto"
-          >
-            {/* 선택된 유저와의 대화 */}
-            <div className="p-4">
-              <p>Chat with {selectedUser.name}</p>
-              {/* Scrollable chat content goes here */}
-              {filteredMessages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`mb-2 ${
-                    message.sender === "me" ? "text-right" : "text-left"
-                  }`}
-                >
-                  <span
-                    className={`${
-                      message.sender === "me" ? "bg-[#FFE3E3]" : "bg-[#E4E4E4]"
-                    } text-black text-3xl py-2 px-4 rounded-full flex-wrap  break-words`}
+        <div className="h-[87.3%] grow-[2] flex flex-col mt-10 mr-10 ">
+          {/* 채팅 내용과 입력 박스 */}
+          <div className="flex-1 flex flex-col gap-8">
+            {/* 채팅 내용 */}
+            <div
+              id="chat-box"
+              className="flex-1 overflow-y-auto p-6 bg-white rounded-3xl shadow-lg border border-1"
+            >
+              <div className="flex flex-col gap-4">
+                {filteredMessages.map((message) => (
+                  <div
+                    key={message.id}
+                    className={`flex gap-2 ${
+                      message.sender === "me" ? "justify-end" : "justify-start"
+                    }`}
                   >
-                    {message.message}
-                  </span>
+                    <span
+                      className={`${
+                        message.sender === "me"
+                          ? "bg-[#FFE3E3] text-right"
+                          : "bg-[#E4E4E4] text-left"
+                      } text-3xl py-5 px-7 rounded-3xl break-words max-w-[70%]`}
+                    >
+                      {message.message}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* 채팅 입력 - textarea */}
+            <div className="sticky  bottom-0 bg-white ">
+              <form onSubmit={handleSendMessage}>
+                <div className="flex items-center gap-4">
+                  <textarea
+                    ref={messageInputRef}
+                    rows={1}
+                    style={{ overflow: "hidden", resize: "none" }}
+                    placeholder={`${selectedUser.name}님에게 메시지 보내기`}
+                    className="flex-1 text-2xl p-6 rounded-xl border border-[#DCDCDC] shadow-md focus:outline-none"
+                    onKeyPress={handleSendMessage}
+                  />
+                  <button
+                    type="submit"
+                    className="text-2xl text-[#4CAF50] p-2 rounded-full"
+                  >
+                    <PencilIcon />
+                  </button>
                 </div>
-              ))}
+              </form>
             </div>
           </div>
         </div>
       </div>
-
-      {/* 채팅 입력 - textarea */}
-      <footer className="w-full fixed bottom-0 left-0 bg-white border-t border-[#F2F2F2] py-2 shadow-md px-6">
-        <form onSubmit={handleSendMessage}>
-          <label className="w-full flex items-center bg-white border border-[#F2F2F2] rounded-[30px] px-6 py-1">
-            <textarea
-              ref={messageInputRef}
-              rows={1}
-              style={{ overflow: "hidden", resize: "none" }}
-              placeholder={`Send a message to ${selectedUser.name}`}
-              className="grow outline-none"
-              onKeyPress={handleSendMessage}
-            />
-            <button onClick={handleSendMessage} className="w-6 cursor-pointer">
-              <PencilIcon className="h-6 w-6" />
-            </button>
-          </label>
-        </form>
-      </footer>
     </div>
   );
 }
