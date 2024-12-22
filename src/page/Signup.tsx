@@ -58,7 +58,7 @@ export default function Signup() {
           <path d="M19 12H5"></path>
         </svg>
       </a> */}
-      <div className="mx-auto max-w-md space-y-6 py-12">
+      <div className="mx-auto max-w-md space-y-6 py-12 h-screen flex flex-col justify-center">
         <div className="text-center">
           <h1 className="text-3xl font-bold">회원가입</h1>
           <p className="text-gray-500">
