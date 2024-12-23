@@ -5,7 +5,6 @@ import Loading from "./Loading.tsx";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import { PostEntity } from "../entity/PostEntity.ts";
 import { motion, useMotionValue } from "framer-motion";
-import CreatePostCard from "./createPost/createPostCard.tsx";
 
 interface PostListProps {
   scrollRef: MutableRefObject<null | HTMLDivElement>;
@@ -13,16 +12,12 @@ interface PostListProps {
   isLoading: boolean;
 }
 
-export default function PostList({
-  scrollRef,
-  initialPosts,
-  isLoading,
-}: PostListProps) {
+export default function PostList({ scrollRef, initialPosts, isLoading }: PostListProps) {
   const [posts, setPosts] = useState<PostEntity[]>(initialPosts);
 
-  function loadPosts() {
-    // setPosts([...posts, ...getAllPostEntity(20)]);
-  }
+  // function loadPosts() {
+  //   // setPosts([...posts, ...getAllPostEntity(20)]);
+  // }
 
   function resetScroll() {
     window.scrollTo(0, 0);
@@ -48,12 +43,8 @@ export default function PostList({
   });
 
   return (
-    <main
-      className="flex flex-1 overflow-x-hidden place-content-center min-h-[76vh]"
-      ref={scrollRef}
-    >
+    <main className="flex flex-1 overflow-x-hidden place-content-center" ref={scrollRef}>
       <div className="grid w-full relative">
-        {/* 배경 */}
         <div className="w-full h-full absolute overflow-hidden">
           <motion.div
             className="w-[80rem] h-[800px] bg-[#feead2] rounded-full absolute right-3/4"
@@ -68,22 +59,8 @@ export default function PostList({
             style={{ translateY: translateY3 }}
           ></motion.div>
         </div>
-
-        <div className="grid px-10 py-6 justify-center w-full place-items-start ">
-          <div className="grid grid-cols-1 gap-9 relative z-10 w-full max-w-screen-xl ">
-            <CreatePostCard />
-
-            {/* 임시로 쓴거임 */}
-            <PostCard
-              post={{
-                id: "1",
-                user: "1",
-                name: "sdkjfh",
-                content: "dfsjkhf",
-              }}
-            />
-            {/* 여기까지 */}
-
+        <div className="grid px-10 py-6 justify-center w-full place-items-center">
+          <div className="grid grid-cols-1 gap-9 relative z-10 w-full max-w-screen-xl">
             {posts.map((post) => (
               <PostCard key={post.id} post={post} />
             ))}
