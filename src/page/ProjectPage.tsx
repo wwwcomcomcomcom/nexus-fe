@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import LeftArrowIcon from "../component/icons/LeftArrowIcon";
 import NeedCard from "../component/projectCard/NeedCard";
 import ProfileCard from "../component/projectCard/ProfileCard";
-import { getAllNededEntity, getAllProfileEntity } from "../shared/apiMockup";
+// import { getAllNededEntity, getAllProfileEntity } from "../shared/apiMockup"; <-- 목업 데이터 제거
 import ProjectGreenTopBox from "../component/elements/ProjectGreenTopBox";
 import IntroduceProject from "./IntroduceProject";
 import { getStatusColorSet } from "../component/projectCard/projectStatus";
@@ -11,12 +11,25 @@ import GitGraph from "./GitGraph";
 import axios from "axios";
 import Loading from "../component/Loading";
 import { ProjectEntity } from "../entity/ProjectEntity";
+import { ProfileEntity } from "../entity/ProfileEntity";
+import { ApiBaseUrl } from "../shared/apiConfig";
+
+export async function getUserProfile(userId: number): Promise<ProfileEntity | null> {
+  try {
+    const response = await axios.get(`${ApiBaseUrl}/api/user/${userId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching user profile:", error);
+    return null;
+  }
+}
 
 function ProjectPage() {
   const [project, setProject] = useState<ProjectEntity | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
+  const [memberProfiles, setMemberProfiles] = useState<ProfileEntity[]>([]);
 
   useEffect(() => {
     if (!id) {
@@ -42,6 +55,16 @@ function ProjectPage() {
       });
   }, [id]);
 
+  useEffect(() => {
+    if (project?.members) {
+      Promise.all(project.members.map((memberId) => getUserProfile(memberId))).then(
+        (profiles: (ProfileEntity | null)[]) => {
+          setMemberProfiles(profiles.filter((profile): profile is ProfileEntity => profile !== null));
+        }
+      );
+    }
+  }, [project]);
+
   if (!id) {
     return null;
   }
@@ -60,10 +83,7 @@ function ProjectPage() {
     <main className="flex flex-col gap-24 mb-10">
       {/* 이전 페이지로 돌아가기 버튼 */}
       <div className="p-8">
-        <span
-          className="inline-block p-2 cursor-pointer"
-          onClick={() => navigate(-1)}
-        >
+        <span className="inline-block p-2 cursor-pointer" onClick={() => navigate(-1)}>
           <LeftArrowIcon className="w-3 h-auto" />
         </span>
       </div>
@@ -77,10 +97,7 @@ function ProjectPage() {
             <div className="absolute bg-white rounded-full text-6xl font-extrabold py-5 px-10 translate-y-1/2 -translate-x-[80%] shadow-xl">
               {project.title}
               <div className="absolute bg-white shadow-xl flex items-center gap-2 rounded-full p-2 pr-4 border border-gray-200 translate-x-[60%]">
-                <div
-                  className="w-8 h-8 rounded-full"
-                  style={{ backgroundColor: colorSet[0] }}
-                ></div>
+                <div className="w-8 h-8 rounded-full" style={{ backgroundColor: colorSet[0] }}></div>
                 <div className="text-2xl">{project.state}</div>
               </div>
             </div>
@@ -96,10 +113,15 @@ function ProjectPage() {
                   <div className="w-11/12 max-w-6xl">
                     <h3 className="text-2xl font-semibold mb-6">필요한 인력</h3>
                     <div className="flex gap-8 overflow-x-auto">
-                      {getAllNededEntity(2).map((need) => (
+                      {project.wanted.map((need, index) => (
                         <NeedCard
-                          key={need.id}
-                          need={need}
+                          key={index}
+                          need={{
+                            id: index,
+                            role: need.role,
+                            number: need.neededMemberCount,
+                            stack: need.stack,
+                          }}
                           className="h-[8rem]"
                         />
                       ))}
@@ -113,10 +135,16 @@ function ProjectPage() {
                 <div className="w-11/12 max-w-6xl">
                   <h3 className="text-2xl font-semibold mb-6">프로필</h3>
                   <div className="flex flex-wrap gap-7">
-                    {getAllProfileEntity(4).map((profile) => (
+                    {memberProfiles.map((profile, index) => (
                       <ProfileCard
-                        key={profile.id}
-                        profile={profile}
+                        key={index}
+                        profile={{
+                          id: profile.id,
+                          name: profile.name,
+                          githubUrl: profile.githubUrl,
+                          profileImageUrl: profile.profileImageUrl,
+                          role: profile.role || "Member",
+                        }}
                         className="h-[8rem]"
                       />
                     ))}
