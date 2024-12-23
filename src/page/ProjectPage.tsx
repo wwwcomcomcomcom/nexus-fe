@@ -25,22 +25,26 @@ function ProjectPage() {
 
   return (
     <main className="flex flex-col gap-24 mb-10">
+      {/* 이전 페이지로 돌아가기 버튼 */}
       <div className="p-8">
         <span
-          className="inline-block p-2 cursor-pointer "
+          className="inline-block p-2 cursor-pointer"
           onClick={() => navigate(-1)}
         >
           <LeftArrowIcon className="w-3 h-auto" />
         </span>
       </div>
-      {/* profile card 갯수에 맞도록 파랑색 배경 늘려야 함  */}
-      <div className="w-full h-[100vh] flex justify-end">
-        <div className="md:w-3/4 w-full h-full bg-[#F4F9FF] rounded-[3rem] relative rounded-r-none">
-          <div className="absolute w-full h-fit flex justify-start items-start -translate-x-10 -translate-y-10 max-md:translate-x-0">
-            <ProjectGreenTopBox className="w-1/2 max-w-[30rem] h-fit max-md:w-1/2" />
+
+      {/* 제목 설명 인력  */}
+      <div className="flex justify-end">
+        {/* 프로젝트 제목과 설명 */}
+        <div className="w-[70%] h-[60vh] flex  items-center bg-[#F4F9FF] rounded-l-[3rem] relative">
+          <div className="absolute flex justify-start items-start w-full h-full -translate-x-10 -translate-y-10">
+            <ProjectGreenTopBox className="w-1/2 max-w-[30rem] h-fit max-md:w-3/4" />
+
             <div className="absolute bg-white rounded-full text-6xl font-extrabold py-5 px-10 translate-y-1/2 -translate-x-[80%] shadow-xl">
               {project.title}
-              <div className="absolute bg-white shadow-xl flex items-center gap-2 rounded-full p-2 pr-4 border border-gray-200 translate-x-[115%]">
+              <div className="absolute bg-white shadow-xl flex items-center gap-2 rounded-full p-2 pr-4 border border-gray-200 translate-x-[60%]">
                 <div
                   className="w-8 h-8 rounded-full"
                   style={{ backgroundColor: colorSet[0] }}
@@ -48,43 +52,55 @@ function ProjectPage() {
                 <div className="text-2xl">{project.state}</div>
               </div>
             </div>
-            <div className="text-sm absolute text-[#757575] top-[25%] left-[8%]">
+
+            <div className="text-sm w-56 absolute text-[#757575] top-[10%] left-[8%] max-md:left-[4%]">
               {project.description}
             </div>
-          </div>
 
-          <div className="w-full flex justify-end pt-16 pr-[5%]">
-            <div className="w-1/2">
+            <div className="flex flex-col">
+              {/* 필요한 인력 섹션 */}
               {project.state === "모집중" && (
-                <div className="flex mb-8 w-full pr-8 gap-8">
-                  {/* 임시*/}
-                  {getAllNededEntity(2).map((need) => (
-                    <NeedCard need={need} className="h-[8rem]" />
-                  ))}
+                <div className="w-full flex justify-center pt-16 pl-5">
+                  <div className="w-11/12 max-w-6xl">
+                    <h3 className="text-2xl font-semibold mb-6">필요한 인력</h3>
+                    <div className="flex gap-8 overflow-x-auto">
+                      {getAllNededEntity(2).map((need) => (
+                        <NeedCard
+                          key={need.id}
+                          need={need}
+                          className="h-[8rem]"
+                        />
+                      ))}
+                    </div>
+                  </div>
                 </div>
               )}
-            </div>
-          </div>
 
-          <div className="w-full flex justify-end pr-[5%]">
-            <div className="w-1/2">
-              <div className="grid grid-cols-2 gap-x-[30%] gap-y-6 w-fit">
-                {/* 임시로 profile card 갯수 4개로 지정해둔 상태   */}
-                {getAllProfileEntity(4).map((profile) => (
-                  <ProfileCard profile={profile} className="h-[8rem]" />
-                ))}
+              {/* 프로필 카드 섹션 */}
+              <div className="w-full flex justify-center pt-16 pl-5">
+                <div className="w-11/12 max-w-6xl">
+                  <h3 className="text-2xl font-semibold mb-6">프로필</h3>
+                  <div className="flex flex-wrap gap-7">
+                    {getAllProfileEntity(4).map((profile) => (
+                      <ProfileCard
+                        key={profile.id}
+                        profile={profile}
+                        className="h-[8rem]"
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
+      {/* 프로젝트 소개 */}
       <IntroduceProject />
 
-      {/* 진행중일 때 깃 그래프 */}
-
+      {/* 진행 중일 때 깃 그래프 표시 */}
       {project.state === "진행중" && <GitGraph />}
-      {true && <GitGraph />}
     </main>
   );
 }
