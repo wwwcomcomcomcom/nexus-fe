@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import LeftArrowIcon from "../component/icons/LeftArrowIcon";
 import { useProjectFormStore } from "../component/createProject/projectFormStore";
 import NeedCard from "../component/projectCard/NeedCard";
-import { getAllNededEntity } from "../shared/apiMockup";
+// import { getAllNededEntity } from "../shared/apiMockup";
 
 export default function ProjectApplication() {
   const navigate = useNavigate();
@@ -45,18 +45,13 @@ export default function ProjectApplication() {
     <div className="py-8">
       {/* 화살표 */}
       <div className="pl-8 pb-4">
-        <span
-          className="inline-block p-2 cursor-pointer "
-          onClick={() => navigate(-1)}
-        >
+        <span className="inline-block p-2 cursor-pointer " onClick={() => navigate(-1)}>
           <LeftArrowIcon className="w-3 h-auto" />
         </span>
       </div>
 
       {/* 제목 */}
-      <div className="text-center font-extrabold text-4xl mb-16">
-        Application
-      </div>
+      <div className="text-center font-extrabold text-4xl mb-16">Application</div>
       {/* 폼 */}
       <div className="w-full flex justify-end  ">
         {/* 파랑 배경 */}
@@ -66,21 +61,13 @@ export default function ProjectApplication() {
         <div className="absolute flex flex-row items-start  ">
           <div>
             {/* 전공 카드 */}
-            <div className="mt-28">
-              {/* 임시*/}
-              {getAllNededEntity(1).map((need) => (
-                <NeedCard need={need} className="" />
-              ))}
-            </div>
+            <div className="mt-28">{/* 임시*/}</div>
           </div>
 
           {/* 내용 작성 */}
           <div className="mt-20 mr-20">
             <div>
-              <label
-                htmlFor="projectDescription"
-                className="block text-3xl font-bold text-gray-700"
-              >
+              <label htmlFor="projectDescription" className="block text-3xl font-bold text-gray-700">
                 지원서 작성
               </label>
               <textarea
@@ -105,9 +92,7 @@ export default function ProjectApplication() {
             {/* 버튼 */}
             <div className="flex justify-end mt-6 pl-2">
               <button
-                className={
-                  "py-3 px-6 w-[20%] rounded-md text-lg shadow-sm  bg-[#DEFFEE] text-black border border-1"
-                }
+                className={"py-3 px-6 w-[20%] rounded-md text-lg shadow-sm  bg-[#DEFFEE] text-black border border-1"}
                 onClick={submitApplicationData}
               >
                 제출하기
