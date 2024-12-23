@@ -38,10 +38,12 @@ function PostPage() {
           <LeftArrowIcon className="w-3 h-auto" />
         </span>
       </div>
-      <main className="flex flex-col pt-10 items-center overflow-hidden relative">
+      <main className="flex flex-col pt-10 items-center min-h-screen overflow-hidden relative">
+        {/* 베경 무늬*/}
         <div className="w-[50vw] h-[50vw] sm:w-[700px] sm:h-[700px] rounded-full absolute bg-[#FFF5DB] left-0 z-0 -translate-x-1/2"></div>
         <div className="w-[40vw] h-[40vw] sm:w-[600px] sm:h-[600px] rounded-full absolute bg-[#FFF5DB] right-0 z-0 translate-x-1/3 top-[60rem]"></div>
 
+        {/* 게시글 내용 컨테이너 */}
         <div className="w-full max-w-[600px] flex flex-col z-10 relative">
           <div className="bg-white border border-[#F2F2F2] rounded-3xl w-full shadow-xl mb-24 z-1">
             {/* Post content */}
@@ -90,7 +92,10 @@ function PostPage() {
               </div>
             </div>
           </div>
-          <Comments />
+          {/* 댓글 */}
+          <div className=" p-4">
+            <Comments />
+          </div>
         </div>
       </main>
     </>

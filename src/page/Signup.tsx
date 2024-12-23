@@ -12,7 +12,7 @@ export default function Signup() {
   const navigate = useNavigate();
   const gauthCode = query.get("gauth?code");
   const githubCode = query.get("code");
-
+  console.log(gauthCode, githubCode);
   useEffect(() => {
     if (gauthCode) {
       GauthApi.signup(gauthCode)

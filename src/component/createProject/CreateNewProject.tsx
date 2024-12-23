@@ -29,6 +29,7 @@ export default function CreateNewProject({
 }) {
   const navigate = useNavigate();
   const formStore = useProjectFormStore();
+  const isDisabled = !formStore.name || !formStore.description;
 
   function submitProjectData() {
     if (!formStore.name) {
@@ -39,62 +40,103 @@ export default function CreateNewProject({
   }
 
   return (
-    <>
-      <div
-        className="inline-flex items-center justify-center m-2 absolute left-0 p-8 cursor-pointer"
-        onClick={() => navigate("/projects")}
-      >
-        <LeftArrowIcon />
+    <div className="flex flex-col w-full bg-[#F4F9FF] h-screen">
+      <div className="px-8 py-4">
+        <span
+          className="inline-block p-2 cursor-pointer"
+          onClick={() => navigate(-1)}
+        >
+          <LeftArrowIcon className="w-3 h-auto" />
+        </span>
       </div>
-      <div className="flex flex-col border rounded-xl border-gray-400 p-12 my-10 gap-4 h-fit">
-        <h1 className="text-[2rem] font-bold">새 프로젝트 만들기</h1>
-        <h2 className="text-xl text-gray-500 mb-4">
-          새 프로젝트를 등록하고 팀원을 모집하세요
-        </h2>
 
-        <label htmlFor="projectName">프로젝트 이름</label>
-        <input
-          id="projectName"
-          type="text"
-          className="transition-all duration-200 rounded-md border border-gray-300 text-lg p-1 focus:py-2"
-          placeholder="프로젝트 이름을 입력해주세요"
-          value={formStore.name}
-          onInput={(e) =>
-            formStore.setProjectForm({ name: e.currentTarget.value })
-          }
-        />
+      <main className="overflow-hidden relative">
+        {/* <div className="w-[50vw] h-[50vw] sm:w-[100rem] sm:h-[100rem] rounded-full absolute bg-[#F4F9FF]  right-0 -z-10 translate-x-1/3"></div>
+        <div className="w-[40vw] h-[40vw] sm:w-[60rem] sm:h-[60rem] rounded-full absolute bg-[#F4F9FF] left-0 -z-10 -translate-x-1/2 top-[110rem]"></div> */}
+        <div className="text-center mb-6">
+          <h1 className="text-3xl font-bold text-gray-800">Create Project</h1>
 
-        <label htmlFor="projectDescription">프로젝트 설명</label>
-        <textarea
-          id="projectDescription"
-          className="transition-all duration-200 rounded-md border border-gray-300 p-1"
-          placeholder="프로젝트 설명을 입력해주세요.나중에 수정할 수 있습니다."
-          value={formStore.description}
-          onInput={(e) =>
-            formStore.setProjectForm({ description: e.currentTarget.value })
-          }
-        />
-
-        <div className="flex flex-col gap-3">
-          <label className="font-semibold">필요 인원</label>
-          {ROLES.map((role) => (
-            <RoleInput
-              key={role.targetRole}
-              title={role.title}
-              targetRole={role.targetRole as keyof FormStore}
-              formData={formStore}
-            />
-          ))}
+          <p className="text-gray-500">
+            새 프로젝트를 등록하고 팀원을 모집하세요
+          </p>
         </div>
 
-        <button
-          className="rounded-md h-10 px-6 relative bottom-0 text-lg bg-gray-200 mt-4 transition active:bg-gray-300 active:shadow-md shadow-black"
-          onClick={submitProjectData}
-        >
-          Create Project
-        </button>
-      </div>
-    </>
+        {/* 입력 폼 */}
+        <div className="flex flex-col items-center p-4 pb-10">
+          <div className="w-full max-w-7xl mt-3 p-14 bg-white rounded-3xl shadow-lg border border-[#F2F2F2]">
+            <div>
+              <div>
+                <label
+                  htmlFor="projectName"
+                  className="block text-xl font-bold text-gray-700"
+                >
+                  프로젝트 이름
+                </label>
+                <input
+                  id="projectName"
+                  type="text"
+                  className="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm outline-none resize-none"
+                  placeholder="프로젝트 이름을 입력해주세요."
+                  value={formStore.name}
+                  onInput={(e) =>
+                    formStore.setProjectForm({ name: e.currentTarget.value })
+                  }
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="projectDescription"
+                  className="block text-xl font-bold text-gray-700 pt-3"
+                >
+                  프로젝트 설명
+                </label>
+                <textarea
+                  id="projectDescription"
+                  className="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm outline-none resize-none"
+                  placeholder="프로젝트 설명을 입력해주세요.나중에 수정할 수 있습니다."
+                  value={formStore.description}
+                  onInput={(e) =>
+                    formStore.setProjectForm({
+                      description: e.currentTarget.value,
+                    })
+                  }
+                />
+              </div>
+            </div>
+
+            {/* 폼 */}
+            <div className="pt-5">
+              <label className="font-semibold text-xl">필요 인원</label>
+              <div className="flex flex-wrap gap-6 pt-4">
+                {ROLES.map((role) => (
+                  <RoleInput
+                    key={role.targetRole}
+                    title={role.title}
+                    targetRole={role.targetRole as keyof FormStore}
+                    formData={formStore}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div className="flex justify-center mt-10">
+              <button
+                className={`py-2 px-6 w-[40%] rounded-md text-lg shadow-sm transition transform ${
+                  isDisabled
+                    ? "bg-gray-300 cursor-not-allowed text-gray-700"
+                    : "bg-[#DEFFEE] text-black hover:-translate-y-0.5 active:translate-y-0.5"
+                }`}
+                disabled={isDisabled}
+                onClick={submitProjectData}
+              >
+                Create Post
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
   );
 }
 
@@ -106,7 +148,7 @@ interface RoleInputProps {
 
 function RoleInput({ title, targetRole, formData }: RoleInputProps) {
   const inputStyle =
-    "transition-all duration-200 rounded-md border border-gray-300 focus:py-1 outline-none px-2";
+    "transition-all duration-200 rounded-md border border-gray-300 py-1 pl-3 mt-2 text-lg w-32 outline-none ";
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Math.max(0, parseInt(e.target.value) || 0);
