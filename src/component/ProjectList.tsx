@@ -110,7 +110,6 @@ export default function ProjectList({
                 githubUrl: "",
               }}
               isCreateCard={true}
-              onClick={() => navigate("/createProject")}
             />
             {Object.values(projectStore.projects).map((project) => (
               <ProjectCard
