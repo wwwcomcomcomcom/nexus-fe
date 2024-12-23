@@ -6,6 +6,7 @@ import axios from "axios";
 import { ApiBaseUrl } from "../shared/apiConfig";
 import { ProjectEntity } from "../entity/ProjectEntity";
 import { PostEntity } from "../entity/PostEntity";
+import Loading from "../component/Loading";
 
 interface UserProfile {
   id: number;
@@ -36,11 +37,15 @@ export default function ProfilePage() {
         setProfile(profileResponse.data);
 
         // 프로젝트 목록 가져오기
-        const projectsResponse = await axios.get(`${ApiBaseUrl}/api/project/user/${user.id}`);
+        const projectsResponse = await axios.get(
+          `${ApiBaseUrl}/api/project/user/${user.id}`
+        );
         setProjects(projectsResponse.data);
 
         // 포스트 목록 가져오기
-        const postsResponse = await axios.get(`${ApiBaseUrl}/api/post/user/${user.id}`);
+        const postsResponse = await axios.get(
+          `${ApiBaseUrl}/api/post/user/${user.id}`
+        );
         setPosts(postsResponse.data);
       } catch (err) {
         console.error(err);
@@ -54,7 +59,12 @@ export default function ProfilePage() {
   }, [isLogin, user]);
 
   if (!isLogin()) return <h1>로그인하세요;</h1>;
-  if (loading) return <div>로딩중..</div>;
+  if (loading)
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   if (error) return <div>{error}</div>;
   if (!profile) return <div>프로필 정보가 없습니다.</div>;
 
@@ -66,9 +76,15 @@ export default function ProfilePage() {
             <div className="flex flex-col pt-10">
               <h1 className="text-4xl">{profile.role || "무전공"}</h1>
               <h1 className="text-4xl font-extrabold pt-1">{profile.name}</h1>
-              <p className="text-gray-500 my-9 text-2xl">{profile.bio || "-"}</p>
+              <p className="text-gray-500 my-9 text-2xl">
+                {profile.bio || "-"}
+              </p>
             </div>
-            <img className="w-[20rem] h-[20rem] rounded-full shadow-md" src={profile.profileImageUrl} alt="profile" />
+            <img
+              className="w-[20rem] h-[20rem] rounded-full shadow-md"
+              src={profile.profileImageUrl}
+              alt="profile"
+            />
           </div>
         </div>
       </div>
@@ -79,7 +95,11 @@ export default function ProfilePage() {
           <h1 className="text-2xl font-bold px-2 pb-3">Projects</h1>
           <div className="grid grid-cols-2 h-[50rem] w-fit gap-7 overflow-y-scroll scrollbar-hide mb-4 p-4 place-items-center">
             {projects.map((project) => (
-              <ProjectCard key={project.id} project={project} className="h-[8rem]" />
+              <ProjectCard
+                key={project.id}
+                project={project}
+                className="h-[8rem]"
+              />
             ))}
           </div>
         </div>
