@@ -30,7 +30,9 @@ export default function CreatePostPage() {
         navigate(`/post/${postId}`);
       } else {
         const errorData = await response.json();
-        alert(`게시글 생성에 실패했습니다: ${errorData.message}`);
+        alert(
+          `게시글 생성에 실패했습니다: ${errorData.message}, ${response.status}`
+        );
       }
     } catch (error) {
       console.error("Error submitting post:", error);
