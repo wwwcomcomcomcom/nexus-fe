@@ -4,28 +4,23 @@ import { ApiBaseUrl } from "../../shared/apiConfig";
 //TODO:impl createProjectApi
 //TODO:move createProjectDto from projectFormStore
 export interface CreateProjectDto {
-  name: string;
+  title: string;
+  subtitle?: string;
   description: string;
-  //wanted roles
-  frontend: number;
-  backend: number;
-  android: number;
-  ios: number;
-  flutter: number;
-  ai: number;
-  design: number;
+  githubUrl?: string;
+  owner: number;
+  wanted: {
+    role: string;
+    neededMemberCount: number;
+    stack?: string[];
+  }[];
 }
+
 export function submitProjectData(projectData: CreateProjectDto) {
-  axios
-    .post(`${ApiBaseUrl}/api/project`, projectData)
-    .then((res) => {
-      if (res.status === 200) {
-        console.log("Project created");
-      }
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-  //axios
-  return null;
+  return axios.post(`${ApiBaseUrl}/api/project`, projectData).then((res) => {
+    if (res.status === 200) {
+      return res.data;
+    }
+    throw new Error("프로젝트 생성 실패");
+  });
 }

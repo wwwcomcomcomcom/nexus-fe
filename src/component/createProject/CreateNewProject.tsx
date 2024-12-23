@@ -1,51 +1,52 @@
 import { useNavigate } from "react-router-dom";
 import { NewProjectStore, useProjectFormStore } from "./projectFormStore";
+import { submitProjectData } from "./createProjectApi";
+import { useUserStore } from "../../store/userStore";
 import LeftArrowIcon from "../icons/LeftArrowIcon";
-
-type FormStore = {
-  frontend: number;
-  backend: number;
-  android: number;
-  ios: number;
-  flutter: number;
-  ai: number;
-  design: number;
-};
+import { Dispatch, SetStateAction } from "react";
 
 const ROLES = [
-  { title: "프론트엔드", targetRole: "frontend" },
-  { title: "백엔드", targetRole: "backend" },
-  { title: "안드로이드", targetRole: "android" },
-  { title: "IOS", targetRole: "ios" },
-  { title: "플러터", targetRole: "flutter" },
+  { title: "Frontend", targetRole: "frontend" },
+  { title: "Backend", targetRole: "backend" },
+  { title: "Android", targetRole: "android" },
+  { title: "iOS", targetRole: "ios" },
+  { title: "Flutter", targetRole: "flutter" },
   { title: "AI", targetRole: "ai" },
-  { title: "디자인", targetRole: "design" },
+  { title: "Design", targetRole: "design" },
 ];
 
-export default function CreateNewProject({
-  setViewPage,
-}: {
-  setViewPage: (page: number) => void;
-}) {
+export default function CreateNewProject({ setViewPage }: { setViewPage: Dispatch<SetStateAction<number>> }) {
   const navigate = useNavigate();
   const formStore = useProjectFormStore();
-  const isDisabled = !formStore.name || !formStore.description;
+  const { user } = useUserStore();
+  const isDisabled = !formStore.title || !formStore.description;
 
-  function submitProjectData() {
-    if (!formStore.name) {
-      alert("프로젝트 이름을 입력해주세요");
+  async function handleSubmit() {
+    if (!user || !user.id) {
+      alert("로그인이 필요합니다");
+      navigate("/login");
       return;
     }
-    setViewPage(1);
+
+    if (isDisabled) {
+      alert("프로젝트 이름과 설명을 입력해주세요");
+      return;
+    }
+
+    try {
+      const projectDto = formStore.toCreateProjectDto(user.id);
+      const response = await submitProjectData(projectDto);
+      navigate(`/project/${response.id}`);
+    } catch (error) {
+      console.error("Failed to create project:", error);
+      alert("프로젝트 생성에 실패했습니다. 다시 시도해주세요.");
+    }
   }
 
   return (
     <div className="flex flex-col w-full bg-[#F4F9FF] h-screen">
       <div className="px-8 py-4">
-        <span
-          className="inline-block p-2 cursor-pointer"
-          onClick={() => navigate(-1)}
-        >
+        <span className="inline-block p-2 cursor-pointer" onClick={() => navigate(-1)}>
           <LeftArrowIcon className="w-3 h-auto" />
         </span>
       </div>
@@ -56,9 +57,7 @@ export default function CreateNewProject({
         <div className="text-center mb-6">
           <h1 className="text-3xl font-bold text-gray-800">Create Project</h1>
 
-          <p className="text-gray-500">
-            새 프로젝트를 등록하고 팀원을 모집하세요
-          </p>
+          <p className="text-gray-500">새 프로젝트를 등록하고 팀원을 모집하세요</p>
         </div>
 
         {/* 입력 폼 */}
@@ -66,10 +65,7 @@ export default function CreateNewProject({
           <div className="w-full max-w-7xl mt-3 p-14 bg-white rounded-3xl shadow-lg border border-[#F2F2F2]">
             <div>
               <div>
-                <label
-                  htmlFor="projectName"
-                  className="block text-xl font-bold text-gray-700"
-                >
+                <label htmlFor="projectName" className="block text-xl font-bold text-gray-700">
                   프로젝트 이름
                 </label>
                 <input
@@ -77,18 +73,13 @@ export default function CreateNewProject({
                   type="text"
                   className="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm outline-none resize-none"
                   placeholder="프로젝트 이름을 입력해주세요."
-                  value={formStore.name}
-                  onInput={(e) =>
-                    formStore.setProjectForm({ name: e.currentTarget.value })
-                  }
+                  value={formStore.title}
+                  onInput={(e) => formStore.setProjectForm({ title: e.currentTarget.value })}
                 />
               </div>
 
               <div>
-                <label
-                  htmlFor="projectDescription"
-                  className="block text-xl font-bold text-gray-700 pt-3"
-                >
+                <label htmlFor="projectDescription" className="block text-xl font-bold text-gray-700 pt-3">
                   프로젝트 설명
                 </label>
                 <textarea
@@ -113,7 +104,7 @@ export default function CreateNewProject({
                   <RoleInput
                     key={role.targetRole}
                     title={role.title}
-                    targetRole={role.targetRole as keyof FormStore}
+                    targetRole={role.targetRole as keyof Omit<NewProjectStore, "setProjectForm" | "toCreateProjectDto">}
                     formData={formStore}
                   />
                 ))}
@@ -128,7 +119,7 @@ export default function CreateNewProject({
                     : "bg-[#DEFFEE] text-black hover:-translate-y-0.5 active:translate-y-0.5"
                 }`}
                 disabled={isDisabled}
-                onClick={submitProjectData}
+                onClick={handleSubmit}
               >
                 Create Post
               </button>
@@ -142,7 +133,7 @@ export default function CreateNewProject({
 
 interface RoleInputProps {
   title: string;
-  targetRole: keyof FormStore;
+  targetRole: keyof Omit<NewProjectStore, "setProjectForm" | "toCreateProjectDto">;
   formData: NewProjectStore;
 }
 
@@ -159,15 +150,9 @@ function RoleInput({ title, targetRole, formData }: RoleInputProps) {
     <div className="flex flex-col">
       <label htmlFor={targetRole}>
         {title}
-        {formData[targetRole] > 0 && <span className="ml-2">✅</span>}
+        {Number(formData[targetRole]) > 0 && <span className="ml-2">✅</span>}
       </label>
-      <input
-        id={targetRole}
-        type="number"
-        className={inputStyle}
-        value={formData[targetRole]}
-        onInput={handleInput}
-      />
+      <input id={targetRole} type="number" className={inputStyle} value={formData[targetRole]} onInput={handleInput} />
     </div>
   );
 }

@@ -6,4 +6,11 @@ export interface ProjectEntity {
   description: string;
   state: State;
   githubUrl: string;
+  owner: number;
+  members: number[];
+  wanted: {
+    role: string;
+    neededMemberCount: number;
+    stack: string[];
+  }[];
 }

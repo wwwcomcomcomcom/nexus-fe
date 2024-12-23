@@ -31,10 +31,7 @@ function PostPage() {
   return (
     <>
       <div className="px-4 py-2 sm:px-8 sm:py-4">
-        <span
-          className="inline-block p-2 cursor-pointer"
-          onClick={() => navigate(-1)}
-        >
+        <span className="inline-block p-2 cursor-pointer" onClick={() => navigate(-1)}>
           <LeftArrowIcon className="w-3 h-auto" />
         </span>
       </div>
@@ -53,8 +50,8 @@ function PostPage() {
                 <p className="text-2xl">임시로 만든 제목</p>
                 <div className="flex py-5">
                   <img
-                    onClick={() => (window.location.href = `${profile.url}`)}
-                    src={profile.imgUrl}
+                    onClick={() => (window.location.href = `/profile/${profile.id}`)}
+                    src={profile.profileImageUrl}
                     alt="profile"
                     className="cursor-pointer flex h-9 relative rounded-full bg-white shadow-md"
                   />
@@ -66,9 +63,7 @@ function PostPage() {
                 </div>
               </div>
             </div>
-            <p className="mx-4 sm:mx-16 mt-10 font-thin leading-7 text-gray-800 text-sm">
-              임시로 적는 본문입니다. ...
-            </p>
+            <p className="mx-4 sm:mx-16 mt-10 font-thin leading-7 text-gray-800 text-sm">임시로 적는 본문입니다. ...</p>
             <div className="flex justify-end">
               <div className="translate-x-8 translate-y-16 w-[50%] relative h-36 flex justify-center items-center">
                 <PostGreenBottomBox className="absolute w-full" />

@@ -1,34 +1,35 @@
 import PostCard from "./projectCard/PostCard.tsx";
 import { MutableRefObject, useEffect, useState } from "react";
 import Loading from "./Loading.tsx";
-import { getAllPostEntity } from "../shared/apiMockup.ts";
+// import { getAllPostEntity } from "../shared/apiMockup.ts";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import { PostEntity } from "../entity/PostEntity.ts";
 import { motion, useMotionValue } from "framer-motion";
+import CreatePostCard from "./createPost/createPostCard.tsx";
+
+interface PostListProps {
+  scrollRef: MutableRefObject<null | HTMLDivElement>;
+  initialPosts: PostEntity[];
+  isLoading: boolean;
+}
+
 export default function PostList({
   scrollRef,
-}: {
-  scrollRef: MutableRefObject<null | HTMLDivElement>;
-}) {
-  const [isloading, setLoading] = useState(true);
-  const [posts, setPosts] = useState<PostEntity[]>([]);
+  initialPosts,
+  isLoading,
+}: PostListProps) {
+  const [posts, setPosts] = useState<PostEntity[]>(initialPosts);
 
   function loadPosts() {
-    setLoading(true);
-
-    setPosts([...posts, ...getAllPostEntity(20)]);
-    setLoading(false);
-    // getAllProjectEntity(20).then((newProjects) => {
-    //   setProjects([...projects,...newProjects]);
-    //   setLoading(false);
-    // });
+    // setPosts([...posts, ...getAllPostEntity(20)]);
   }
+
   function resetScroll() {
     window.scrollTo(0, 0);
   }
 
   useEffect(() => {
-    loadPosts();
+    // loadPosts();
     resetScroll();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -42,15 +43,17 @@ export default function PostList({
     translateY2.set(latest + 2500 * -sinPulse(latest / 3000));
     translateY3.set(latest + 3000 * sinPulse(latest / 2000));
 
-    if (scrollRef.current!.scrollHeight - latest < 1100) loadPosts();
+    // 스크롤 이벤트에서 loadPosts 호출 제거
+    // if (scrollRef.current!.scrollHeight - latest < 1100) loadPosts();
   });
 
   return (
     <main
-      className="flex flex-1 overflow-x-hidden place-content-center"
+      className="flex flex-1 overflow-x-hidden place-content-center min-h-[76vh]"
       ref={scrollRef}
     >
       <div className="grid w-full relative">
+        {/* 배경 */}
         <div className="w-full h-full absolute overflow-hidden">
           <motion.div
             className="w-[80rem] h-[800px] bg-[#feead2] rounded-full absolute right-3/4"
@@ -65,13 +68,27 @@ export default function PostList({
             style={{ translateY: translateY3 }}
           ></motion.div>
         </div>
-        <div className="grid px-10 py-6 justify-center w-full place-items-center">
-          <div className="grid grid-cols-1 gap-9 relative z-10 w-full max-w-screen-xl">
+
+        <div className="grid px-10 py-6 justify-center w-full place-items-start ">
+          <div className="grid grid-cols-1 gap-9 relative z-10 w-full max-w-screen-xl ">
+            <CreatePostCard />
+
+            {/* 임시로 쓴거임 */}
+            <PostCard
+              post={{
+                id: "1",
+                user: "1",
+                name: "sdkjfh",
+                content: "dfsjkhf",
+              }}
+            />
+            {/* 여기까지 */}
+
             {posts.map((post) => (
               <PostCard key={post.id} post={post} />
             ))}
           </div>
-          {isloading ? <Loading /> : null}
+          {isLoading ? <Loading /> : null}
         </div>
       </div>
     </main>

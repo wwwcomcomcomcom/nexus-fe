@@ -5,10 +5,10 @@ import ImportFromGithub from "../component/createProject/ImportFromGithub.tsx";
 
 export default function CreateProjectPage() {
   const [viewPage, setViewPage] = useState(0);
-  const pages: JSX.Element[] = [
-    <CreateNewProject setViewPage={setViewPage} />,
-    <SelectCreateMode setViewPage={setViewPage} />,
-    <ImportFromGithub setViewPage={setViewPage} />,
+  const pages = [
+    () => <CreateNewProject setViewPage={setViewPage} />,
+    () => <SelectCreateMode setViewPage={setViewPage} />,
+    () => <ImportFromGithub setViewPage={setViewPage} />,
   ];
-  return <main className="flex justify-center h-fit">{pages[viewPage]}</main>;
+  return <main className="flex justify-center h-fit">{pages[viewPage]()}</main>;
 }

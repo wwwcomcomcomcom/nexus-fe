@@ -17,7 +17,7 @@ export default function PostCard(props: PostCardProps) {
   return (
     <div
       className={
-        "overflow-hidden cursor-pointer h-fit px-20 mt-4 pt-14 pb-24 rounded-3xl text-projectCard-foreground shadow-[0px_0.5px_15px_1px_rgb(0,0,0,0.05)] border border-neutral-100 bg-white z-0 hover:scale-105 transition justify-items-center " +
+        "overflow-hidden cursor-pointer h-fit px-20 mt-4 pt-[3%] pb-[7%] rounded-3xl text-projectCard-foreground shadow-[0px_0.5px_15px_1px_rgb(0,0,0,0.05)] border border-neutral-100 bg-white z-0 hover:scale-105 transition justify-items-center " +
         props.className
       }
       onClick={() => navigate(`/post/${props.post.id}`)}
