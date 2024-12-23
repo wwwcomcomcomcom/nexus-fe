@@ -87,6 +87,17 @@ export default function ProjectList({ scrollRef }: { scrollRef: MutableRefObject
         <div className="grid px-4 py-6 md:px-6 justify-center w-full">
           {error && <div className="text-center text-red-500 mb-4">{error}</div>}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+            <ProjectCard
+              project={{
+                id: "new",
+                title: "새 프로젝트",
+                state: "CREATED",
+                description: "",
+                githubUrl: "",
+              }}
+              isCreateCard={true}
+              onClick={() => navigate("/project/new")}
+            />
             {Object.values(projectStore.projects).map((project) => (
               <ProjectCard key={project.id} project={project} onClick={() => handleProjectClick(project.id)} />
             ))}
