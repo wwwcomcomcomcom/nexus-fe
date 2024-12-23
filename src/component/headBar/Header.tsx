@@ -11,7 +11,7 @@ export default function Header() {
     { name: "Home", path: "/" },
     { name: "Projects", path: "/projects" },
     { name: "Community", path: "/posts" },
-    { name: "Chat", path: "/chat" },
+    ...(isLogin() ? [{ name: "Chat", path: "/chat" }] : []),
   ];
 
   return (
