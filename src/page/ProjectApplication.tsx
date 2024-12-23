@@ -13,9 +13,10 @@ export default function ProjectApplication() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         },
         body: JSON.stringify({
-          name: formStore.name,
+          title: formStore.title,
           description: formStore.description,
         }),
       });
@@ -24,20 +25,19 @@ export default function ProjectApplication() {
         // 서버 응답이 실패한 경우
         const errorMessage = await response.text();
         console.error("Server error:", errorMessage);
-        alert("프로젝트 제출에 실패하였습니다. 다시 시도해주세요.");
+        alert("프로젝트 등록에 실패하였습니다. 다시 시도해주세요.");
         return;
       }
 
-      // 서버에서 생성된 프로젝트 ID를 가져옴
       const { projectId } = await response.json();
       if (projectId) {
-        navigate(`/project/${projectId}`); // 프로젝트 상세 페이지로 이동
+        navigate(`/project/${projectId}`);
       } else {
         alert("프로젝트 ID를 가져오는 데 실패했습니다. 다시 시도해주세요.");
       }
     } catch (error) {
       console.error("Error submitting project:", error);
-      alert("프로젝트 제출 중 오류가 발생했습니다. 네트워크를 확인해주세요.");
+      alert("프로젝트 등록 중 오류가 발생했습니다. 네트워크를 확인해주세요.");
     }
   };
 
