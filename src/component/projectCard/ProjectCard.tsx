@@ -9,6 +9,7 @@ interface ProjectCardProps extends DivProps {
   project: ProjectEntity;
   width?: number;
   height?: number;
+  isCreateCard?: boolean;
 }
 
 export default function ProjectCard(props: ProjectCardProps) {
@@ -16,6 +17,23 @@ export default function ProjectCard(props: ProjectCardProps) {
   const navigate = useNavigate();
   const width = props.width ?? 200;
   const height = props.height ?? 250;
+
+  if (props.isCreateCard) {
+    return (
+      <div
+        className="cursor-pointer p-5 pb-10 rounded-2xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center bg-white z-10 hover:scale-105 transition"
+        style={{
+          width: width + "px",
+          height: height + "px",
+        }}
+        onClick={props.onClick}
+      >
+        <div className="text-5xl text-gray-400">+</div>
+        <p className="mt-4 text-gray-500">새 프로젝트</p>
+      </div>
+    );
+  }
+
   return (
     <div
       className={

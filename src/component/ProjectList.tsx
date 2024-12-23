@@ -101,6 +101,17 @@ export default function ProjectList({
             <div className="text-center text-red-500 mb-4">{error}</div>
           )}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+            <ProjectCard
+              project={{
+                id: "new",
+                title: "새 프로젝트",
+                state: "CREATED",
+                description: "",
+                githubUrl: "",
+              }}
+              isCreateCard={true}
+              onClick={() => navigate("/project/new")}
+            />
             {Object.values(projectStore.projects).map((project) => (
               <ProjectCard
                 key={project.id}
