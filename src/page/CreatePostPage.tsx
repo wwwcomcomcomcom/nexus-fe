@@ -42,7 +42,7 @@ export default function CreatePostPage() {
   };
 
   return (
-    <div className="h-screen bg-[#FFF5DB]">
+    <div className="h-screen bg-[#FFFCEF]">
       <div className="px-8 py-4">
         <span
           className="inline-block p-2 cursor-pointer"
