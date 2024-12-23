@@ -70,7 +70,10 @@ export default function Signup() {
           role="none"
           className="shrink-0 bg-gray-100 h-[1px] w-full my-6"
         ></div>
-        <Logo className="py-3 mx-auto w-64 h-64" />
+        <Logo
+          className="py-3 mx-auto w-64 h-64 cursor-pointer"
+          onClick={() => navigate("/")}
+        />
         <a
           className="space-y-4 block"
           href={`https://github.com/login/oauth/authorize?client_id=${GithubApi.GithubOauthClientId}&redirect_uri=${window.location.origin}/signup`}
