@@ -7,7 +7,8 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://port-0-nexus-avengers-lyma34av040a79c3.sel5.cloudtype.app/:path*/",
+        target:
+          "https://port-0-nexus-avengers-lyma34av040a79c3.sel5.cloudtype.app/",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
