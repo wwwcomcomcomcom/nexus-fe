@@ -114,7 +114,7 @@ export default function Login() {
 
         <a
           className="space-y-4 block"
-          href={`https://gauth.co.kr/login?client_id=${GauthApi.GauthOauthClientId}&redirect_uri=${window.location.origin}/login?gauth`}
+          href={`https://gauth-msg.vercel.app/login?client_id=${GauthApi.GauthOauthClientId}&redirect_uri=${window.location.origin}/login?gauth`}
         >
           <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border transition-colors duration-300 text-gauth-primary hover:bg-gauth-primary hover:text-white h-10 px-4 py-2 w-full">
             <GauthIcon className="h-4 w-4 mr-2" />
