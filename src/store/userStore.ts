@@ -1,8 +1,7 @@
 import { create } from "zustand";
 
 interface User {
-  id?: string;
-  // Add other user properties as needed
+  id?: number;
 }
 
 interface UserStore {
