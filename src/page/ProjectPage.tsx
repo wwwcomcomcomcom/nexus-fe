@@ -1,27 +1,60 @@
 import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import LeftArrowIcon from "../component/icons/LeftArrowIcon";
 import NeedCard from "../component/projectCard/NeedCard";
 import ProfileCard from "../component/projectCard/ProfileCard";
-import {
-  generateProjectEntity,
-  getAllNededEntity,
-  getAllProfileEntity,
-} from "../shared/apiMockup";
+import { getAllNededEntity, getAllProfileEntity } from "../shared/apiMockup";
 import ProjectGreenTopBox from "../component/elements/ProjectGreenTopBox";
 import IntroduceProject from "./IntroduceProject";
 import { getStatusColorSet } from "../component/projectCard/projectStatus";
 import GitGraph from "./GitGraph";
+import axios from "axios";
+import Loading from "../component/Loading";
+import { ProjectEntity } from "../entity/ProjectEntity";
 
 function ProjectPage() {
-  const project = generateProjectEntity();
-  const { id } = useParams();
+  const [project, setProject] = useState<ProjectEntity | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const colorSet = getStatusColorSet(project.state);
+  const { id } = useParams<{ id: string }>();
+
+  useEffect(() => {
+    if (!id) {
+      window.location.href = "/notfound";
+      return;
+    }
+
+    axios
+      .get(`/api/project/${id}`)
+      .then((res) => {
+        if (res.status === 200) {
+          setProject(res.data);
+        } else {
+          throw new Error("Invalid response");
+        }
+      })
+      .catch((error) => {
+        console.error("Error loading project:", error);
+        window.location.href = "/notfound";
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [id]);
 
   if (!id) {
-    window.location.href = "/notfound";
     return null;
   }
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (!project) {
+    return <div>프로젝트 정보를 불러올 수 없습니다.</div>;
+  }
+
+  const colorSet = getStatusColorSet(project.state);
 
   return (
     <main className="flex flex-col gap-24 mb-10">
@@ -35,10 +68,9 @@ function ProjectPage() {
         </span>
       </div>
 
-      {/* 제목 설명 인력  */}
+      {/* 제목 설명 인력 */}
       <div className="flex justify-end">
-        {/* 프로젝트 제목과 설명 */}
-        <div className="w-[70%] h-[60vh] flex  items-center bg-[#F4F9FF] rounded-l-[3rem] relative">
+        <div className="w-[70%] h-[70vh] flex items-center bg-[#F4F9FF] rounded-l-[3rem] relative">
           <div className="absolute flex justify-start items-start w-full h-full -translate-x-10 -translate-y-10">
             <ProjectGreenTopBox className="w-1/2 max-w-[30rem] h-fit max-md:w-3/4" />
 
