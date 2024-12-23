@@ -69,9 +69,7 @@ export default function ChatPage() {
   };
 
   // 선택된 유저와의 채팅 메시지만 필터링하여 표시
-  const filteredMessages = chatMessages.filter(
-    (message) => message.receiver === selectedUser.id
-  );
+  const filteredMessages = chatMessages.filter((message) => message.receiver === selectedUser.id);
 
   return (
     <div className="flex flex-col h-lvh">
@@ -84,19 +82,15 @@ export default function ChatPage() {
               {users.map((user) => (
                 <div
                   key={user.id}
-                  className="p-16 cursor-pointer relative flex items-center text-3xl "
+                  className="p-8 cursor-pointer relative flex items-center text-xl"
                   onClick={() => setSelectedUser(user)}
                 >
-                  <div className="flex items-center gap-6 z-30">
-                    <img
-                      src={user.img}
-                      alt="profile"
-                      className="w-24 h-24 rounded-full object-cover "
-                    />
-                    <p className="text-4xl  ">{user.name}</p>
+                  <div className="flex items-center gap-4 z-30">
+                    <img src={user.img} alt="profile" className="w-12 h-12 rounded-full object-cover" />
+                    <p className="text-2xl">{user.name}</p>
                   </div>
                   {user.id === selectedUser?.id && (
-                    <ChatLIstGreenBox className="absolute z-20 -translate-x-20 translate-y-5" />
+                    <ChatLIstGreenBox className="absolute z-20 -translate-x-10 translate-y-2" />
                   )}
                 </div>
               ))}
@@ -109,24 +103,17 @@ export default function ChatPage() {
           {/* 채팅 내용과 입력 박스 */}
           <div className="flex-1 flex flex-col gap-8">
             {/* 채팅 내용 */}
-            <div
-              id="chat-box"
-              className="flex-1 overflow-y-auto p-6 bg-white rounded-3xl shadow-lg border border-1"
-            >
+            <div id="chat-box" className="flex-1 overflow-y-auto p-6 bg-white rounded-3xl shadow-lg border border-1">
               <div className="flex flex-col gap-4">
                 {filteredMessages.map((message) => (
                   <div
                     key={message.id}
-                    className={`flex gap-2 ${
-                      message.sender === "me" ? "justify-end" : "justify-start"
-                    }`}
+                    className={`flex gap-2 ${message.sender === "me" ? "justify-end" : "justify-start"}`}
                   >
                     <span
                       className={`${
-                        message.sender === "me"
-                          ? "bg-[#FFE3E3] text-right"
-                          : "bg-[#E4E4E4] text-left"
-                      } text-3xl py-5 px-7 rounded-3xl break-words max-w-[70%]`}
+                        message.sender === "me" ? "bg-[#FFE3E3] text-right" : "bg-[#E4E4E4] text-left"
+                      } text-xl py-3 px-5 rounded-2xl break-words max-w-[70%]`}
                     >
                       {message.message}
                     </span>
@@ -144,13 +131,10 @@ export default function ChatPage() {
                     rows={1}
                     style={{ overflow: "hidden", resize: "none" }}
                     placeholder={`${selectedUser.name}님에게 메시지 보내기`}
-                    className="flex-1 text-2xl p-6 rounded-xl border border-[#DCDCDC] shadow-md focus:outline-none"
+                    className="flex-1 text-lg p-4 rounded-xl border border-[#DCDCDC] shadow-md focus:outline-none"
                     onKeyPress={handleSendMessage}
                   />
-                  <button
-                    type="submit"
-                    className="text-2xl text-[#4CAF50] p-2 rounded-full"
-                  >
+                  <button type="submit" className="text-2xl text-[#4CAF50] p-2 rounded-full">
                     <PencilIcon />
                   </button>
                 </div>
