@@ -1,13 +1,22 @@
 import { MutableRefObject, useEffect, useState } from "react";
 import ProjectCard from "./projectCard/ProjectCard.tsx";
 import Loading from "./Loading.tsx";
-import { useScroll, useMotionValueEvent, motion, useMotionValue } from "framer-motion";
+import {
+  useScroll,
+  useMotionValueEvent,
+  motion,
+  useMotionValue,
+} from "framer-motion";
 import { useProjectStore } from "../shared/projectStore.ts";
 import { useSearchParams } from "react-router-dom";
 import { fetchProjectsByPage } from "../shared/proejctApi.ts";
 import { useNavigate } from "react-router-dom";
 
-export default function ProjectList({ scrollRef }: { scrollRef: MutableRefObject<null | HTMLDivElement> }) {
+export default function ProjectList({
+  scrollRef,
+}: {
+  scrollRef: MutableRefObject<null | HTMLDivElement>;
+}) {
   const [query] = useSearchParams();
   const page = Number(query.get("page")) || 0;
   const [isLoading, setLoading] = useState(true);
@@ -68,7 +77,10 @@ export default function ProjectList({ scrollRef }: { scrollRef: MutableRefObject
   };
 
   return (
-    <main className="flex flex-1 overflow-x-hidden place-content-center" ref={scrollRef}>
+    <main
+      className="flex flex-1 overflow-x-hidden place-content-center"
+      ref={scrollRef}
+    >
       <div className="grid w-full relative">
         <div className="w-full h-full absolute overflow-hidden">
           <motion.div
@@ -85,10 +97,16 @@ export default function ProjectList({ scrollRef }: { scrollRef: MutableRefObject
           ></motion.div>
         </div>
         <div className="grid px-4 py-6 md:px-6 justify-center w-full">
-          {error && <div className="text-center text-red-500 mb-4">{error}</div>}
+          {error && (
+            <div className="text-center text-red-500 mb-4">{error}</div>
+          )}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
             {Object.values(projectStore.projects).map((project) => (
-              <ProjectCard key={project.id} project={project} onClick={() => handleProjectClick(project.id)} />
+              <ProjectCard
+                key={project.id}
+                project={project}
+                onClick={() => handleProjectClick(project.id)}
+              />
             ))}
           </div>
           {isLoading ? <Loading /> : null}
