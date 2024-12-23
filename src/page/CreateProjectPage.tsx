@@ -25,22 +25,46 @@ const ROLES = [
   { title: "디자인", targetRole: "design" },
 ];
 
-export default function CreateProjectPage({
-  setViewPage,
-}: {
-  setViewPage: (page: number) => void;
-}) {
+export default function CreateProjectPage() {
   const navigate = useNavigate();
   const formStore = useProjectFormStore();
   const isDisabled = !formStore.name || !formStore.description;
 
-  function submitProjectData() {
-    if (!formStore.name) {
-      alert("프로젝트 이름을 입력해주세요");
-      return;
+  const submitProjectData = async () => {
+    if (isDisabled) return;
+
+    try {
+      const response = await fetch("/api/project/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formStore.name,
+          description: formStore.description,
+          frontend: formStore.frontend,
+          backend: formStore.backend,
+          android: formStore.android,
+          ios: formStore.ios,
+          flutter: formStore.flutter,
+          ai: formStore.ai,
+          design: formStore.design,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const projectId = data.id;
+        navigate(`/project/${projectId}`);
+      } else {
+        const errorData = await response.json();
+        alert(`프로젝트 생성에 실패했습니다: ${errorData.message}`);
+      }
+    } catch (error) {
+      console.error("Error submitting project:", error);
+      alert("프로젝트 생성 중 오류가 발생했습니다.");
     }
-    setViewPage(1);
-  }
+  };
 
   return (
     <div className="flex flex-col w-full bg-[#F4F9FF] h-screen">
@@ -128,12 +152,12 @@ export default function CreateProjectPage({
                 className={`py-2 px-6 w-[40%] rounded-md text-lg shadow-sm transition transform ${
                   isDisabled
                     ? "bg-gray-300 cursor-not-allowed text-gray-700"
-                    : "bg-[#DEFFEE] text-black hover:-translate-y-0.5 active:translate-y-0.5"
+                    : "bg-[#F4F9FF] text-black hover:-translate-y-0.5 active:translate-y-0.5"
                 }`}
                 disabled={isDisabled}
                 onClick={submitProjectData}
               >
-                Create Post
+                Create project
               </button>
             </div>
           </div>
@@ -142,7 +166,6 @@ export default function CreateProjectPage({
     </div>
   );
 }
-
 interface RoleInputProps {
   title: string;
   targetRole: keyof FormStore;
