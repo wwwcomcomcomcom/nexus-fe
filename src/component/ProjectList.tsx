@@ -96,7 +96,7 @@ export default function ProjectList({ scrollRef }: { scrollRef: MutableRefObject
                 githubUrl: "",
               }}
               isCreateCard={true}
-              onClick={() => navigate("/project/new")}
+              onClick={() => navigate("/createProject")}
             />
             {Object.values(projectStore.projects).map((project) => (
               <ProjectCard key={project.id} project={project} onClick={() => handleProjectClick(project.id)} />
