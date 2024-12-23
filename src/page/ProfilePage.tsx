@@ -10,10 +10,10 @@ import PostCard from "../component/projectCard/PostCard.tsx";
 const profile = generateProfileEntity();
 
 export default function ProfilePage() {
-  // const { isLogin, user } = useUpdatedUserStore();
-  const { user } = useUpdatedUserStore();
+  const { isLogin, user } = useUpdatedUserStore();
+  // const { user } = useUpdatedUserStore();
 
-  // if (isLogin() === false) return <h1>You are not logged in</h1>;
+  if (isLogin() === false) return <h1>You are not logged in</h1>;
   return (
     <div className="flex justify-center pt-24">
       <div className="flex flex-col items-center  w-[27%] rounded-3xl bg-[#F4F9FF]">
