@@ -1,5 +1,5 @@
 import PostCard from "./projectCard/PostCard.tsx";
-import { MutableRefObject, useEffect, useState } from "react";
+import { MutableRefObject, useEffect } from "react";
 import Loading from "./Loading.tsx";
 // import { getAllPostEntity } from "../shared/apiMockup.ts";
 import { useScroll, useMotionValueEvent } from "framer-motion";
@@ -13,8 +13,6 @@ interface PostListProps {
 }
 
 export default function PostList({ scrollRef, initialPosts, isLoading }: PostListProps) {
-  const [posts, setPosts] = useState<PostEntity[]>(initialPosts);
-
   // function loadPosts() {
   //   // setPosts([...posts, ...getAllPostEntity(20)]);
   // }
@@ -61,7 +59,7 @@ export default function PostList({ scrollRef, initialPosts, isLoading }: PostLis
         </div>
         <div className="grid px-10 py-6 justify-center w-full place-items-center">
           <div className="grid grid-cols-1 gap-9 relative z-10 w-full max-w-screen-xl">
-            {posts.map((post) => (
+            {initialPosts.map((post) => (
               <PostCard key={post.id} post={post} />
             ))}
           </div>
