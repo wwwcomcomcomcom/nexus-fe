@@ -14,7 +14,6 @@ interface ProjectCardProps extends DivProps {
 }
 
 export default function ProjectCard(props: ProjectCardProps) {
-  const colorSet = props.project ? getStatusColorSet(props.project.state) : [];
   const navigate = useNavigate();
   const { isLogin } = useUpdatedUserStore();
   const width = props.width ?? 200;
@@ -38,16 +37,19 @@ export default function ProjectCard(props: ProjectCardProps) {
         {isLogin() ? (
           <p className="mt-4 text-gray-500">새 프로젝트</p>
         ) : (
-          <span
-            className="text-blue-500 cursor-pointer underline mt-4"
-            onClick={() => navigate("/login")}
-          >
+          <span className="text-blue-500 cursor-pointer underline mt-4" onClick={() => navigate("/login")}>
             로그인이 필요합니다.
           </span>
         )}
       </div>
     );
   }
+
+  if (!props.project) {
+    return null;
+  }
+
+  const colorSet = getStatusColorSet(props.project.state);
 
   return (
     <div
@@ -59,15 +61,8 @@ export default function ProjectCard(props: ProjectCardProps) {
       data-v0-t="card"
     >
       <div className="grow flex items-center justify-center">
-        <div
-          className="p-4 rounded-3xl"
-          style={{ backgroundColor: colorSet[1] }}
-        >
-          <ProjectIcon
-            color={colorSet[0]}
-            width={width / 4}
-            height={width / 4}
-          />
+        <div className="p-4 rounded-3xl" style={{ backgroundColor: colorSet[1] }}>
+          <ProjectIcon color={colorSet[0]} width={width / 4} height={width / 4} />
         </div>
       </div>
       <div className="grow flex flex-col items-center">
@@ -75,9 +70,7 @@ export default function ProjectCard(props: ProjectCardProps) {
         <ProjectStatus status={props.project.state} />
         <div className="grid grow gap-2 text-sm justify-center mt-5">
           {/* <p className="truncate">{props.project.description}</p> */}
-          <p className="text-xs text-gray-500 dark:text-gray-400">
-            Updated 2 days ago
-          </p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">Updated 2 days ago</p>
         </div>
       </div>
     </div>
