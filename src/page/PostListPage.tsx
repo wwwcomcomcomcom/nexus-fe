@@ -30,7 +30,7 @@ export default function PostListPage(): JSX.Element {
       const data: PostEntity[] = await response.json();
       setPosts(data);
     } catch (err: unknown) {
-      console.error("게시글 로딩 실패:", err);
+      console.error(err);
       setError(err instanceof Error ? err.message : "서버 오류가 발생했습니다");
     } finally {
       setIsLoading(false);
