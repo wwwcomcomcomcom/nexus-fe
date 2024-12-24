@@ -34,14 +34,16 @@ export default function CreateProjectPage() {
     if (isDisabled) return;
 
     try {
-      const response = await fetch("/api/project/create", {
+      const response = await fetch("/api/project/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           title: formStore.title,
+          subtitle: formStore.subtitle,
           description: formStore.description,
+          githubUrl: formStore.githubUrl,
           frontend: formStore.frontend,
           backend: formStore.backend,
           android: formStore.android,
@@ -92,21 +94,64 @@ export default function CreateProjectPage() {
         <div className="flex flex-col items-center p-4 pb-10">
           <div className="w-full max-w-7xl mt-3 p-14 bg-white rounded-3xl shadow-lg border border-[#F2F2F2]">
             <div>
-              <div>
+              {/* 제목 */}
+              <div className="pb-3">
                 <label
                   htmlFor="projectName"
                   className="block text-xl font-bold text-gray-700"
                 >
-                  프로젝트 이름
+                  프로젝트 제목
                 </label>
                 <input
                   id="projectName"
                   type="text"
                   className="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm outline-none resize-none"
-                  placeholder="프로젝트 이름을 입력해주세요."
+                  placeholder="프로젝트 제목목을 입력해주세요."
                   value={formStore.title}
                   onInput={(e) =>
                     formStore.setProjectForm({ title: e.currentTarget.value })
+                  }
+                />
+              </div>
+
+              <div className="pb-3">
+                <label
+                  htmlFor="projectTitle"
+                  className="block text-xl font-bold text-gray-700"
+                >
+                  프로젝트 부제목
+                </label>
+                <input
+                  id="projectSubTitle"
+                  type="text"
+                  className="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm outline-none resize-none"
+                  placeholder="프로젝트 부제목을 입력해주세요."
+                  value={formStore.subtitle}
+                  onInput={(e) =>
+                    formStore.setProjectForm({
+                      subtitle: e.currentTarget.value,
+                    })
+                  }
+                />
+              </div>
+
+              <div className="pb-3">
+                <label
+                  htmlFor="GithugUrl"
+                  className="block text-xl font-bold text-gray-700"
+                >
+                  깃허브
+                </label>
+                <input
+                  id="projectName"
+                  type="text"
+                  className="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm outline-none resize-none"
+                  placeholder="깃허브 링크가 있다면 입력해주세요."
+                  value={formStore.githubUrl}
+                  onInput={(e) =>
+                    formStore.setProjectForm({
+                      githubUrl: e.currentTarget.value,
+                    })
                   }
                 />
               </div>
