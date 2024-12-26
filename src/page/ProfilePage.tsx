@@ -33,18 +33,21 @@ export default function ProfilePage() {
         setLoading(true);
 
         // 프로필 정보 가져오기
-        const profileResponse = await axios.get(`${ApiBaseUrl}/api/user/info`);
-        setProfile(profileResponse.data);
+        // const profileResponse = await axios.get(`${ApiBaseUrl}/api/user/info`);
+
+        setProfile(user as unknown as UserProfile);
 
         // 프로젝트 목록 가져오기
         const projectsResponse = await axios.get(
-          `${ApiBaseUrl}/api/project/user/${user.id}`
+          `${ApiBaseUrl}/api/project/`
+          // `${ApiBaseUrl}/api/project/user/${user.id}`
         );
         setProjects(projectsResponse.data);
 
         // 포스트 목록 가져오기
         const postsResponse = await axios.get(
-          `${ApiBaseUrl}/api/post/user/${user.id}`
+          `${ApiBaseUrl}/api/post`
+          // `${ApiBaseUrl}/api/post/user/${user.id}`
         );
         setPosts(postsResponse.data);
       } catch (err) {
@@ -56,7 +59,7 @@ export default function ProfilePage() {
     };
 
     fetchUserData();
-  }, [isLogin, user]);
+  }, []);
 
   if (!isLogin()) return <h1>로그인하세요;</h1>;
   if (loading)
