@@ -108,7 +108,7 @@ function ProjectPage() {
 
             <div className="flex flex-col">
               {/* 필요한 인력 섹션 */}
-              {project.state === "모집중" && (
+              {project.state === "모집중" && project.wanted && (
                 <div className="w-full flex justify-center pt-16 pl-5">
                   <div className="w-11/12 max-w-6xl">
                     <h3 className="text-2xl font-semibold mb-6">필요한 인력</h3>
