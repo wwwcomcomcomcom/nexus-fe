@@ -6,7 +6,6 @@ import GauthIcon from "../component/icons/GauthIcon.tsx";
 import { useUserStore } from "../shared/userStore.ts";
 import Logo from "../component/elements/Logo.tsx";
 import LeftArrowIcon from "../component/icons/LeftArrowIcon.tsx";
-import { login } from "../shared/authApi";
 
 export default function Login() {
   const [query] = useSearchParams();
@@ -14,11 +13,8 @@ export default function Login() {
   const githubCode = query.get("code");
   const gauthCode = query.get("gauth?code");
   const store = useUserStore();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
-  // 로그인 되어 있는 애인지 확인
+  // 로그인 되어 있는 애인지 확인s
   useEffect(() => {
     if (store.isLogin()) {
       navigate("/");
