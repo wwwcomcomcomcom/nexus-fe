@@ -10,6 +10,9 @@ import { generateProfileEntity } from "../shared/apiMockup";
 import Comments from "../component/Comments";
 
 function PostPage() {
+  const profileImageUrl =
+    "https://avatars.githubusercontent.com/u/68013923?v=4";
+
   const param = useParams();
   const navigate = useNavigate();
 
@@ -31,7 +34,10 @@ function PostPage() {
   return (
     <>
       <div className="px-4 py-2 sm:px-8 sm:py-4">
-        <span className="inline-block p-2 cursor-pointer" onClick={() => navigate(-1)}>
+        <span
+          className="inline-block p-2 cursor-pointer"
+          onClick={() => navigate(-1)}
+        >
           <LeftArrowIcon className="w-3 h-auto" />
         </span>
       </div>
@@ -47,23 +53,31 @@ function PostPage() {
             <div className="-translate-y-10">
               <PostGreenTopBox className="relative -left-10 w-[75%]" />
               <div className="grid absolute -translate-y-[200px] pl-3">
-                <p className="text-2xl">임시로 만든 제목</p>
+                <p className="text-2xl">넥서스를 만들며..</p>
                 <div className="flex py-5">
                   <img
-                    onClick={() => (window.location.href = `/profile/${profile.id}`)}
-                    src={profile.profileImageUrl}
+                    onClick={() =>
+                      (window.location.href = `/profile/${profile.id}`)
+                    }
+                    src={profileImageUrl}
                     alt="profile"
                     className="cursor-pointer flex h-9 relative rounded-full bg-white shadow-md"
                   />
-                  <div className="text-xl font-[450] p-2">{profile.name}</div>
+                  <div className="text-xl font-[450] p-2">이세민</div>
                 </div>
                 <div className="text-xs text-[#757575] ">
-                  <p>2024년 7월 29일</p>
+                  <p>2024년 12월 30일</p>
                   <p>오후 12:04</p>
                 </div>
               </div>
             </div>
-            <p className="mx-4 sm:mx-16 mt-10 font-thin leading-7 text-gray-800 text-sm">임시로 적는 본문입니다. ...</p>
+            <p className="mx-4 sm:mx-16 mt-10 font-thin leading-7 text-gray-800 text-sm">
+              이번 프로젝트는 정말 유익한 경험이었습니다. 협업과 소통의 중요성을
+              다시 한 번 깨닫게 되었고, 프로젝트를 성공적으로 진행할 수
+              있었습니다. 다음 프로젝트에서는 명확한 명세 작성과 체계적인 회의를
+              통해 역할을 더욱 효과적으로 분담하고, 효율적인 협업을 이루고자
+              합니다.
+            </p>
             <div className="flex justify-end">
               <div className="translate-x-8 translate-y-16 w-[50%] relative h-36 flex justify-center items-center">
                 <PostGreenBottomBox className="absolute w-full" />
@@ -81,7 +95,7 @@ function PostPage() {
                   </div>
                   <div className="bg-white rounded-full w-[35%] h-[50px] shadow-lg relative flex justify-between">
                     <CommentIcon className="pt-[0.7rem] ml-[0.5rem]" />
-                    <p className="pr-[1rem] pt-[0.7rem] text-lg">42</p>
+                    <p className="pr-[1rem] pt-[0.7rem] text-lg">2</p>
                   </div>
                 </div>
               </div>

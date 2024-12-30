@@ -1,5 +1,4 @@
 import { useCallback, useState, useRef } from "react";
-import { generateProfileEntity } from "../shared/apiMockup";
 import PencilIcon from "./icons/PencilIcon";
 
 interface Comment {
@@ -20,7 +19,7 @@ export default function Comments() {
     {}
   );
 
-  const profile = generateProfileEntity();
+  const imgUrl = "https://avatars.githubusercontent.com/u/164720957?v=4";
 
   // 댓글 추가
   const handleAddComment = useCallback(() => {
@@ -158,12 +157,11 @@ export default function Comments() {
               <div className="flex justify-between">
                 <div className="flex">
                   <img
-                    onClick={() => (window.location.href = `${profile.url}`)}
-                    src={profile.imgUrl}
+                    src={imgUrl}
                     alt="profile"
                     className="cursor-pointer flex h-7 relative rounded-full bg-white shadow-md mt-1"
                   />
-                  <p className="text-md font-[200] p-2">{profile.name}</p>
+                  <p className="text-md font-[200] p-2">정효주</p>
                 </div>
                 <button
                   onClick={() => handleDeleteComment(comment.id)}
@@ -195,14 +193,11 @@ export default function Comments() {
                     <div className="flex justify-between">
                       <div className="flex">
                         <img
-                          onClick={() =>
-                            (window.location.href = `${profile.url}`)
-                          }
-                          src={profile.imgUrl}
+                          src={imgUrl}
                           alt="profile"
                           className="cursor-pointer flex h-7 relative rounded-full bg-white shadow-md mt-1"
                         />
-                        <p className="text-md font-[200] p-2">{profile.name}</p>
+                        <p className="text-md font-[200] p-2">정효주</p>
                       </div>
                       <button
                         onClick={() => handleDeleteReply(comment.id, reply.id)}

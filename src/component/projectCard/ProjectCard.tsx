@@ -81,7 +81,9 @@ export default function ProjectCard(props: ProjectCardProps) {
         <div className="grid grow gap-2 text-sm justify-center mt-5">
           {/* <p className="truncate">{props.project.description}</p> */}
           <p className="text-xs text-gray-500 dark:text-gray-400">
-            Updated 2 days ago
+            {props.project.title === "넥서스"
+              ? "Updated 1 minute ago"
+              : "Updated 2 days ago"}
           </p>
         </div>
       </div>

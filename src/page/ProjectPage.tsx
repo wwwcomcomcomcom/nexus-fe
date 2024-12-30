@@ -14,7 +14,9 @@ import { ProjectEntity } from "../entity/ProjectEntity";
 import { ProfileEntity } from "../entity/ProfileEntity";
 import { ApiBaseUrl } from "../shared/apiConfig";
 
-export async function getUserProfile(userId: number): Promise<ProfileEntity | null> {
+export async function getUserProfile(
+  userId: number
+): Promise<ProfileEntity | null> {
   try {
     const response = await axios.get(`${ApiBaseUrl}/api/user/${userId}`);
     return response.data;
@@ -57,11 +59,15 @@ function ProjectPage() {
 
   useEffect(() => {
     if (project?.members) {
-      Promise.all(project.members.map((memberId) => getUserProfile(memberId))).then(
-        (profiles: (ProfileEntity | null)[]) => {
-          setMemberProfiles(profiles.filter((profile): profile is ProfileEntity => profile !== null));
-        }
-      );
+      Promise.all(
+        project.members.map((memberId) => getUserProfile(memberId))
+      ).then((profiles: (ProfileEntity | null)[]) => {
+        setMemberProfiles(
+          profiles.filter(
+            (profile): profile is ProfileEntity => profile !== null
+          )
+        );
+      });
     }
   }, [project]);
 
@@ -83,7 +89,10 @@ function ProjectPage() {
     <main className="flex flex-col gap-24 mb-10">
       {/* 이전 페이지로 돌아가기 버튼 */}
       <div className="p-8">
-        <span className="inline-block p-2 cursor-pointer" onClick={() => navigate(-1)}>
+        <span
+          className="inline-block p-2 cursor-pointer"
+          onClick={() => navigate(-1)}
+        >
           <LeftArrowIcon className="w-3 h-auto" />
         </span>
       </div>
@@ -97,7 +106,10 @@ function ProjectPage() {
             <div className="absolute bg-white rounded-full text-6xl font-extrabold py-5 px-10 translate-y-1/2 -translate-x-[80%] shadow-xl">
               {project.title}
               <div className="absolute bg-white shadow-xl flex items-center gap-2 rounded-full p-2 pr-4 border border-gray-200 translate-x-[60%]">
-                <div className="w-8 h-8 rounded-full" style={{ backgroundColor: colorSet[0] }}></div>
+                <div
+                  className="w-8 h-8 rounded-full"
+                  style={{ backgroundColor: colorSet[0] }}
+                ></div>
                 <div className="text-2xl">{project.state}</div>
               </div>
             </div>
@@ -131,9 +143,9 @@ function ProjectPage() {
               )}
 
               {/* 프로필 카드 섹션 */}
-              <div className="w-full flex justify-center pt-16 pl-5">
+              <div className="w-fit flex justify-center pt-16 pl-5">
                 <div className="w-11/12 max-w-6xl">
-                  <h3 className="text-2xl font-semibold mb-6">프로필</h3>
+                  <h3 className="text-2xl font-semibold mb-">프로필</h3>
                   <div className="flex flex-wrap gap-7">
                     {memberProfiles.map((profile, index) => (
                       <ProfileCard

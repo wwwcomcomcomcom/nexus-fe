@@ -106,7 +106,7 @@ export default function CreateProjectPage() {
                   id="projectName"
                   type="text"
                   className="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm outline-none resize-none"
-                  placeholder="프로젝트 제목목을 입력해주세요."
+                  placeholder="프로젝트 제목을 입력해주세요."
                   value={formStore.title}
                   onInput={(e) =>
                     formStore.setProjectForm({ title: e.currentTarget.value })
