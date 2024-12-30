@@ -4,6 +4,7 @@ import {
   useProjectFormStore,
 } from "../component/createProject/projectFormStore";
 import LeftArrowIcon from "../component/icons/LeftArrowIcon";
+import { useUserStore } from "../shared/userStore";
 
 type FormStore = {
   frontend: number;
@@ -29,7 +30,7 @@ export default function CreateProjectPage() {
   const navigate = useNavigate();
   const formStore = useProjectFormStore();
   const isDisabled = !formStore.title || !formStore.description;
-
+  const store = useUserStore();
   const submitProjectData = async () => {
     if (isDisabled) return;
 
@@ -38,6 +39,7 @@ export default function CreateProjectPage() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${store.jwt!}`,
         },
         body: JSON.stringify({
           title: formStore.title,
