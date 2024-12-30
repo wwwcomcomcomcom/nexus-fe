@@ -1,8 +1,7 @@
 import axios from "axios";
 import { ApiBaseUrl } from "../../shared/apiConfig";
+import { getToken } from "../../shared/tokenManager";
 
-//TODO:impl createProjectApi
-//TODO:move createProjectDto from projectFormStore
 export interface CreateProjectDto {
   title: string;
   subtitle?: string;
@@ -17,10 +16,18 @@ export interface CreateProjectDto {
 }
 
 export function submitProjectData(projectData: CreateProjectDto) {
-  return axios.post(`${ApiBaseUrl}/api/project`, projectData).then((res) => {
-    if (res.status === 200) {
-      return res.data;
-    }
-    throw new Error("프로젝트 생성 실패");
-  });
+  const token = getToken();
+
+  return axios
+    .post(`${ApiBaseUrl}/api/project`, projectData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      if (res.status === 200) {
+        return res.data;
+      }
+      throw new Error("프로젝트 생성 실패");
+    });
 }
