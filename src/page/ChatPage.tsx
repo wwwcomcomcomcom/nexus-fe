@@ -19,17 +19,17 @@ const users: User[] = [
   {
     id: "1",
     name: "이서희",
-    img: "https://avatars.githubusercontent.com/u/164720957?v=4",
+    img: "https://avatars.githubusercontent.com/u/156983141?v=4",
   },
   {
     id: "2",
-    name: "정효주",
-    img: "https://avatars.githubusercontent.com/u/164720957?v=4",
+    name: "송재욱",
+    img: "https://avatars.githubusercontent.com/u/123460320?v=4",
   },
   {
     id: "3",
     name: "이세민",
-    img: "https://avatars.githubusercontent.com/u/164720957?v=4",
+    img: "https://avatars.githubusercontent.com/u/68013923?v=4",
   },
 ]; // 유저 목록 데이터 예시
 
@@ -69,7 +69,9 @@ export default function ChatPage() {
   };
 
   // 선택된 유저와의 채팅 메시지만 필터링하여 표시
-  const filteredMessages = chatMessages.filter((message) => message.receiver === selectedUser.id);
+  const filteredMessages = chatMessages.filter(
+    (message) => message.receiver === selectedUser.id
+  );
 
   return (
     <div className="flex flex-col h-lvh">
@@ -86,7 +88,11 @@ export default function ChatPage() {
                   onClick={() => setSelectedUser(user)}
                 >
                   <div className="flex items-center gap-4 z-30">
-                    <img src={user.img} alt="profile" className="w-12 h-12 rounded-full object-cover" />
+                    <img
+                      src={user.img}
+                      alt="profile"
+                      className="w-12 h-12 rounded-full object-cover"
+                    />
                     <p className="text-2xl">{user.name}</p>
                   </div>
                   {user.id === selectedUser?.id && (
@@ -103,16 +109,23 @@ export default function ChatPage() {
           {/* 채팅 내용과 입력 박스 */}
           <div className="flex-1 flex flex-col gap-8">
             {/* 채팅 내용 */}
-            <div id="chat-box" className="flex-1 overflow-y-auto p-6 bg-white rounded-3xl shadow-lg border border-1">
+            <div
+              id="chat-box"
+              className="flex-1 overflow-y-auto p-6 bg-white rounded-3xl shadow-lg border border-1"
+            >
               <div className="flex flex-col gap-4">
                 {filteredMessages.map((message) => (
                   <div
                     key={message.id}
-                    className={`flex gap-2 ${message.sender === "me" ? "justify-end" : "justify-start"}`}
+                    className={`flex gap-2 ${
+                      message.sender === "me" ? "justify-end" : "justify-start"
+                    }`}
                   >
                     <span
                       className={`${
-                        message.sender === "me" ? "bg-[#FFE3E3] text-right" : "bg-[#E4E4E4] text-left"
+                        message.sender === "me"
+                          ? "bg-[#FFE3E3] text-right"
+                          : "bg-[#E4E4E4] text-left"
                       } text-xl py-3 px-5 rounded-2xl break-words max-w-[70%]`}
                     >
                       {message.message}
@@ -134,7 +147,10 @@ export default function ChatPage() {
                     className="flex-1 text-lg p-4 rounded-xl border border-[#DCDCDC] shadow-md focus:outline-none"
                     onKeyPress={handleSendMessage}
                   />
-                  <button type="submit" className="text-2xl text-[#4CAF50] p-2 rounded-full">
+                  <button
+                    type="submit"
+                    className="text-2xl text-[#4CAF50] p-2 rounded-full"
+                  >
                     <PencilIcon />
                   </button>
                 </div>

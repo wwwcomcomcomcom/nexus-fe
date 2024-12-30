@@ -35,9 +35,9 @@ export default function Login() {
         } catch (e) {
           // 타입에러
           if (e instanceof Error) {
-            alert("Failed to login: " + e.message);
+            console.log("Failed to login: " + e.message);
           } else {
-            alert("Failed to login");
+            console.log("Failed to login");
           }
         }
       }
