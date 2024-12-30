@@ -77,7 +77,7 @@ export default function ProfilePage() {
         <div className="flex flex-row w-full">
           <div className="grow flex items-center justify-center translate-x-[35%] gap-10">
             <div className="flex flex-col pt-10">
-              <h1 className="text-4xl">{profile.role || "무전공"}</h1>
+              <h1 className="text-4xl">{profile.role || "프론트엔드"}</h1>
               <h1 className="text-4xl font-extrabold pt-1">{profile.name}</h1>
               <p className="text-gray-500 my-9 text-2xl">
                 {profile.bio || "-"}
