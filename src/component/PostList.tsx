@@ -1,34 +1,28 @@
 import PostCard from "./projectCard/PostCard.tsx";
-import { MutableRefObject, useEffect, useState } from "react";
+import { MutableRefObject, useEffect } from "react";
 import Loading from "./Loading.tsx";
-import { getAllPostEntity } from "../shared/apiMockup.ts";
+// import { getAllPostEntity } from "../shared/apiMockup.ts";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 import { PostEntity } from "../entity/PostEntity.ts";
 import { motion, useMotionValue } from "framer-motion";
-export default function PostList({
-  scrollRef,
-}: {
+
+interface PostListProps {
   scrollRef: MutableRefObject<null | HTMLDivElement>;
-}) {
-  const [isloading, setLoading] = useState(true);
-  const [posts, setPosts] = useState<PostEntity[]>([]);
+  initialPosts: PostEntity[];
+  isLoading: boolean;
+}
 
-  function loadPosts() {
-    setLoading(true);
+export default function PostList({ scrollRef, initialPosts, isLoading }: PostListProps) {
+  // function loadPosts() {
+  //   // setPosts([...posts, ...getAllPostEntity(20)]);
+  // }
 
-    setPosts([...posts, ...getAllPostEntity(20)]);
-    setLoading(false);
-    // getAllProjectEntity(20).then((newProjects) => {
-    //   setProjects([...projects,...newProjects]);
-    //   setLoading(false);
-    // });
-  }
   function resetScroll() {
     window.scrollTo(0, 0);
   }
 
   useEffect(() => {
-    loadPosts();
+    // loadPosts();
     resetScroll();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -42,14 +36,12 @@ export default function PostList({
     translateY2.set(latest + 2500 * -sinPulse(latest / 3000));
     translateY3.set(latest + 3000 * sinPulse(latest / 2000));
 
-    if (scrollRef.current!.scrollHeight - latest < 1100) loadPosts();
+    // 스크롤 이벤트에서 loadPosts 호출 제거
+    // if (scrollRef.current!.scrollHeight - latest < 1100) loadPosts();
   });
 
   return (
-    <main
-      className="flex flex-1 overflow-x-hidden place-content-center"
-      ref={scrollRef}
-    >
+    <main className="flex flex-1 overflow-x-hidden place-content-center" ref={scrollRef}>
       <div className="grid w-full relative">
         <div className="w-full h-full absolute overflow-hidden">
           <motion.div
@@ -67,11 +59,11 @@ export default function PostList({
         </div>
         <div className="grid px-10 py-6 justify-center w-full place-items-center">
           <div className="grid grid-cols-1 gap-9 relative z-10 w-full max-w-screen-xl">
-            {posts.map((post) => (
+            {initialPosts.map((post) => (
               <PostCard key={post.id} post={post} />
             ))}
           </div>
-          {isloading ? <Loading /> : null}
+          {isLoading ? <Loading /> : null}
         </div>
       </div>
     </main>

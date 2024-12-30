@@ -23,7 +23,7 @@ const teamMembers: TeamMember[] = [
   {
     name: "이세민",
     imgSrc: "https://avatars.githubusercontent.com/u/68013923?v=4",
-    labels: ["FrontEnd", "Backend", "APP"],
+    labels: ["Frontend", "Backend", "APP"],
     github: "https://github.com/wwwcomcomcomcom",
   },
   {

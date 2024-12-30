@@ -10,8 +10,8 @@ export default function ProfileCard(props: ProfileCardProps) {
     <div className="flex w-[13.7rem] h-16 relative rounded-full bg-white shadow-md">
       <img
         className="flex rounded-full h-full w-auto cursor-pointer"
-        onClick={() => (window.location.href = `${props.profile.url}`)}
-        src={props.profile.imgUrl}
+        onClick={() => (window.location.href = `${props.profile.githubUrl}`)}
+        src={props.profile.profileImageUrl}
         alt="profile"
       ></img>
       <div className="flex justify-between w-full pr-5 pl-3 gap-1 items-center">

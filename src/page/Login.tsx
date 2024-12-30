@@ -35,9 +35,9 @@ export default function Login() {
         } catch (e) {
           // 타입에러
           if (e instanceof Error) {
-            alert("Failed to login: " + e.message);
+            console.log("Failed to login: " + e.message);
           } else {
-            alert("Failed to login");
+            console.log("Failed to login");
           }
         }
       }
@@ -50,7 +50,7 @@ export default function Login() {
   return (
     <>
       <div
-        className="inline-flex items-center justify-center cursor-pointer top-7 ml-10 p-3 m-2 absolute"
+        className="inline-flex items-center justify-center cursor-pointer top-7 ml-10 p-3 m-2 absolute "
         onClick={() => navigate(-1)}
       >
         <LeftArrowIcon />
@@ -75,7 +75,7 @@ export default function Login() {
           <path d="M19 12H5"></path>
         </svg>
       </a> */}
-      <div className="mx-auto max-w-md space-y-6 py-12">
+      <div className="mx-auto max-w-md space-y-6 h-screen  justify-center flex flex-col">
         <div className="text-center">
           <h1 className="text-3xl font-bold">로그인</h1>
           <p className="text-gray-500">
@@ -87,9 +87,12 @@ export default function Login() {
           role="none"
           className="shrink-0 bg-gray-100 h-[1px] w-full my-6"
         ></div>
-        <Logo className="py-3 mx-auto w-64 h-64" />
+        <Logo
+          className="py-3 mx-auto w-64 h-64 cursor-pointer"
+          onClick={() => navigate("/")}
+        />
         <a
-          className="space-y-4 block"
+          className="space-y-4 block w-full"
           href={`https://github.com/login/oauth/authorize?client_id=${GithubApi.GithubOauthClientId}&redirect_uri=${window.location.origin}/login?github`}
         >
           <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border transition-colors duration-300 hover:bg-black hover:text-white active:bg-gray-700 active:text-gray-300 h-10 px-4 py-2 w-full">
@@ -113,8 +116,8 @@ export default function Login() {
         </a>
 
         <a
-          className="space-y-4 block"
-          href={`https://gauth-msg.vercel.app/login?client_id=${GauthApi.GauthOauthClientId}&redirect_uri=${window.location.origin}/login?gauth`}
+          className="space-y-4 block w-full"
+          href={`https://gauth.co.kr/login?client_id=${GauthApi.GauthOauthClientId}&redirect_uri=${window.location.origin}/login?gauth`}
         >
           <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium border transition-colors duration-300 text-gauth-primary hover:bg-gauth-primary hover:text-white h-10 px-4 py-2 w-full">
             <GauthIcon className="h-4 w-4 mr-2" />
