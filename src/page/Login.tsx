@@ -1,11 +1,12 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import * as GithubApi from "../shared/githubApi.ts";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as GauthApi from "../shared/gauthApi.ts";
 import GauthIcon from "../component/icons/GauthIcon.tsx";
 import { useUserStore } from "../shared/userStore.ts";
 import Logo from "../component/elements/Logo.tsx";
 import LeftArrowIcon from "../component/icons/LeftArrowIcon.tsx";
+import { login } from "../shared/authApi";
 
 export default function Login() {
   const [query] = useSearchParams();
@@ -13,6 +14,9 @@ export default function Login() {
   const githubCode = query.get("code");
   const gauthCode = query.get("gauth?code");
   const store = useUserStore();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   // 로그인 되어 있는 애인지 확인
   useEffect(() => {
@@ -23,10 +27,7 @@ export default function Login() {
 
   // Github 또는 Gauth 로그인 처리
   useEffect(() => {
-    const handleLogin = async (
-      code: string | null,
-      loginFunction: (code: string) => Promise<string>
-    ) => {
+    const handleLogin = async (code: string | null, loginFunction: (code: string) => Promise<string>) => {
       if (code) {
         try {
           const jwt = await loginFunction(code);
@@ -78,19 +79,10 @@ export default function Login() {
       <div className="mx-auto max-w-md space-y-6 h-screen  justify-center flex flex-col">
         <div className="text-center">
           <h1 className="text-3xl font-bold">로그인</h1>
-          <p className="text-gray-500">
-            Gauth 또는 Github 계정을 이용하여 간편하게 로그인하세요!
-          </p>
+          <p className="text-gray-500">Gauth 또는 Github 계정을 이용하여 간편하게 로그인하세요!</p>
         </div>
-        <div
-          data-orientation="horizontal"
-          role="none"
-          className="shrink-0 bg-gray-100 h-[1px] w-full my-6"
-        ></div>
-        <Logo
-          className="py-3 mx-auto w-64 h-64 cursor-pointer"
-          onClick={() => navigate("/")}
-        />
+        <div data-orientation="horizontal" role="none" className="shrink-0 bg-gray-100 h-[1px] w-full my-6"></div>
+        <Logo className="py-3 mx-auto w-64 h-64 cursor-pointer" onClick={() => navigate("/")} />
         <a
           className="space-y-4 block w-full"
           href={`https://github.com/login/oauth/authorize?client_id=${GithubApi.GithubOauthClientId}&redirect_uri=${window.location.origin}/login?github`}
@@ -126,10 +118,7 @@ export default function Login() {
         </a>
         <div className="text-end px-4 text-gray-500">
           새로운 유저인가요?{" "}
-          <span
-            className="text-blue-400 ml-2 cursor-pointer"
-            onClick={() => navigate("/signup")}
-          >
+          <span className="text-blue-400 ml-2 cursor-pointer" onClick={() => navigate("/signup")}>
             회원가입
           </span>
         </div>
